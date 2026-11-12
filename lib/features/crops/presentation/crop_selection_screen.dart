@@ -78,9 +78,9 @@ class _CropSelectionScreenState extends ConsumerState<CropSelectionScreen> {
       return;
     }
 
-    // Update global state and navigate to Screen 08 (Plant Disease Detection)
+    // Update global state and navigate to Screen 08 (Crop Details Screen)
     ref.read(selectedCropProvider.notifier).state = crop;
-    context.push('/detect');
+    context.push('/crops/${crop.id}');
   }
 
   @override

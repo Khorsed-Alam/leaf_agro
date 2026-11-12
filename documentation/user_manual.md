@@ -76,9 +76,28 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
 2. **Dynamic Search:**
    - Type in the search bar (e.g., *"আলু"* or *"Tomato"*). The grid filters dynamically in real time.
    - If no crops match, an empty-state illustration appears with a **Clear Search** button.
-3. **Continue to Scan:**
+3. **Continue to Crop Details:**
    - Once a valid crop is selected, the bottom **Continue to Scan** button activates.
-   - Tapping it preserves your selection in application state and advances to **Screen 08: Plant Image Capture & AI Detection Screen** (`/detect`).
+   - Tapping it preserves your selection in application state and advances to **Screen 08: Crop Details Screen** (`/crops/:id`).
+
+### Screen 08: Crop Details Screen
+1. **Top Bar & Actions:**
+   - Displays dynamic crop name (e.g. *Rice Profile* / *ধানের বিবরণ*).
+   - Bookmark button to save the crop to farmer favorites.
+   - Back navigation returns to Crop Selection or Dashboard.
+2. **Hero Photograph & Identity:**
+   - High-resolution realistic photography with green gradient overlay.
+   - English and Bengali names, category badge, and AI-supported indicator with disease count.
+3. **Crop Information Cards (Agronomy):**
+   - 2-column visual grid showing Category, Growing Season (e.g. Aus, Aman, Boro), Water Need, Sunlight Requirement, Soil Preference, and Growth Duration.
+4. **Common Diseases Section:**
+   - Horizontal gallery of verified diseases trained in the MobileNetV2 AI model for the selected crop.
+   - Each card displays disease name, Bangla name, severity badge (Critical, High, Moderate, Healthy), symptom snippet, and details link to `/diseases/:id`.
+5. **Crop Care Tips:**
+   - Practical field care guidelines from verified Bangladeshi agricultural research (Water Depth, Balanced Urea, Weed Control, Pest Monitoring).
+6. **Prominent Disease Detection CTA:**
+   - Fixed bottom action button: **"Detect [Crop] Disease"** (e.g. *"Detect Rice Disease"* / *"ধানের রোগ পরীক্ষা করুন"*).
+   - Tapping verifies AI support, sets global crop selection, and advances to **Screen 09: Plant Image Capture & AI Detection** (`/detect`).
 
 ---
 
@@ -143,9 +162,26 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
 ২. **স্মার্ট সার্চ বার:**
    - বাংলায় বা ইংরেজিতে ফসলের নাম লিখে সহজে খুঁজুন (যেমন: *"আলু"* বা *"Tomato"*)।
    - কোনো ফসল না মিললে **Clear Search** বাটন চেপে পুনরায় পুরো তালিকা দেখুন।
-৩. **পরীক্ষায় এগিয়ে যান:**
-   - ফসল নির্বাচন সম্পন্ন হলে নিচের **Continue to Scan (পরীক্ষায় এগিয়ে যান)** বাটনটি সক্রিয় হবে।
-   - বাটনে চাপ দিয়ে সরাসরি **স্ক্রিন ০৮: পাতার ছবি গ্রহণ ও AI রোগ নির্ণয়** পেজে যান।
+৩. **পরবর্তী ধাপে যান:**
+   - ফসল নির্বাচন সম্পন্ন হলে নিচের **Continue to Scan (পরবর্তী ধাপ)** বাটনটি সক্রিয় হবে।
+   - বাটনে চাপ দিয়ে সরাসরি **স্ক্রিন ০৮: ফসলের বিবরণ ও রোগ তালিকা** পেজে যান।
+
+### স্ক্রিন ০৮: ফসলের বিস্তারিত তথ্য স্ক্রিন (Crop Details Screen)
+১. **হেডার ও বুকমার্ক:**
+   - নির্বাচিত ফসলের নাম (যেমন: *ধানের বিবরণ*) ও পছন্দের তালিকায় সংরক্ষণের জন্য বুকমার্ক বাটন।
+   - ব্যাক বাটন চেপে পুনরায় ফসল পরিবর্তন করা যায়।
+২. **হিরো ফটোগ্রাফি ও মূল তথ্য:**
+   - ফসলের বড় ছবি, বাংলা ও ইংরেজি নাম, ফসলের সারসংক্ষেপ ও AI সমর্থিত রোগের সংখ্যার ব্যাজ।
+৩. **কৃষি তথ্য কার্ড (Crop Information):**
+   - ২-কলামের তথ্য কার্ড: ফসলের বিভাগ, চাষের মৌসুম (আউশ, আমন, বোরো), পানির চাহিদা, সূর্যালোক, মাটির ধরন ও ফসল পাকার সময়।
+৪. **পরিচিত রোগসমূহ (Common Diseases):**
+   - উক্ত ফসলের জন্য প্রশিক্ষিত AI মডেলের রোগসমূহের গ্যালারি (যেমন ধানের জন্য: ব্যাকটেরিয়াল লিফ ব্লাইট, বাদামী দাগ, পাতার স্মাট ও সুস্থ পাতা)।
+   - তীব্রতার মাত্রা (মারাত্মক, উচ্চ, মাঝারি, সুস্থ) এবং বিস্তারিত দেখতে কার্ডে চাপ দিন।
+৫. **ফসল পরিচর্যার পরামর্শ (Crop Care Tips):**
+   - জমিতে পানির গভীরতা, সুষম ইউরিয়া সার প্রয়োগ, নিড়ানি ও রোগ পর্যবেক্ষণের নির্ভরযোগ্য পরামর্শ।
+৬. **রোগ নির্ণয় বাটন (Detect Crop Disease):**
+   - স্ক্রিনের নিচে বড় সবুজ বাটন: **"ধানের রোগ পরীক্ষা করুন"** (অন্যান্য ফসলের ক্ষেত্রে ফসলের নাম অনুযায়ী পরিবর্তিত হবে)।
+   - বাটনে চাপ দিলে সরাসরি **স্ক্রিন ০৯: পাতার ছবি গ্রহণ ও AI রোগ নির্ণয়** পেজে নিয়ে যাবে।
 
 ---
 
