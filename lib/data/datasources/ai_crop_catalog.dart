@@ -87,3 +87,4 @@ class AiCropCatalog {
     return 0;
   }
 }
+

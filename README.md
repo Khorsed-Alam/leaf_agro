@@ -71,6 +71,22 @@ AgriCare AI is a production-grade, offline-first mobile application designed to 
 - **Dedicated Reset Password Flow (`/reset-password`):** Supports deep linking (`agricareai://reset-password`) for setting a new password with interactive strength checks after opening the recovery email.
 - **Backend Recovery Integration:** Standardized `sendPasswordResetEmail(email)` method in `AuthService` connecting directly to Supabase Auth.
 
+### Screen 06: Main Home Dashboard
+- **Top Header:** Dynamic time-of-day greeting ("Good Morning / শুভ সকাল"), dynamic authenticated farmer name, user profile avatar with photo/initials, unread notification counter badge, and instant bilingual language toggle (`EN` | `বাংলা`).
+- **Plant Health Detection Hero:** Large green gradient hero card (`#14532D` to `#22C55E`) with holographic AI scanning laser beam animation over crop leaf and prominent tactile `Scan Plant` button routing to `/crop-select`.
+- **Compact Statistics:** Real-time metrics calculated from actual scan records: **Total Scans**, **Healthy Detections**, and **Disease Detections**.
+- **Explore Crops Section:** Horizontal scrollable carousel containing the 5 verified AI crops (**Rice**, **Mango**, **Potato**, **Tomato**, **Jute**) with high-resolution imagery and details routing.
+- **Recent Detections:** Authenticated user scan history sorted newest first with confidence scores, disease status badges, loading skeletons, and friendly empty state.
+- **Fixed Bottom Navigation:** Clean 4-item bar (**Home**, **Detect**, **History**, **Profile**) respecting safe areas.
+
+### Screen 07: Crop Selection Screen
+- **Step 01 Header:** Clean back navigation returning to Dashboard, Step 01 indicator, heading *"Select Your Crop"* (*"ফসল নির্বাচন করুন"*), and bilingual subtitle.
+- **Real-Time Search Field:** Live filter matching crop names in both English and Bengali (e.g. "Rice", "ধান", "Potato", "আলু") with instant clear button.
+- **AI-Model Verified Catalogue:** Strictly presents only crops supported by the MobileNetV2 AI model (**Rice**, **Potato**, **Tomato**, **Mango**, **Jute**); prevents non-model vegetables from false AI promises.
+- **Interactive 2-Column Grid:** Crop cards with realistic agricultural imagery, "AI Ready" tag, number of detectable disease classes, and tactile press animation.
+- **Selection Visual Feedback:** Fresh Green border (`#22C55E`, 2.4px), soft green background tint (`#F0FDF4`), and circular check indicator.
+- **Fixed Continue Button:** Fixed at bottom respecting safe areas, disabled when unselected, activates upon selection to write to `selectedCropProvider` (Riverpod) and route to Screen 08 (`/detect`).
+
 ---
 
 ## ☁️ Supabase Backend Architecture
@@ -125,21 +141,19 @@ flowchart TD
     ValCreds --> IsCredsValid{"Valid Credentials?"}
     IsCredsValid -->|No| S03
     IsCredsValid -->|Yes| SupaAuth["Supabase Authentication"]
-    SupaAuth --> S06["Screen 06: Main Dashboard"]
+    SupaAuth --> S06["Screen 06: Main Home Dashboard"]
     
     %% --- SIGN UP FLOW ---
     ActionChoice -->|Sign Up| S04["Screen 04: Registration Screen"]
-    S04 --> EnterReg["Enter Full Name, Email, Phone & Password"]
+    EnterReg["Enter Full Name, Email, Phone & Password"]
+    S04 --> EnterReg
     EnterReg --> AcceptTerms["Accept Terms & Conditions"]
     AcceptTerms --> ValReg["Validate Registration Form"]
     ValReg --> IsRegValid{"Valid Data?"}
     IsRegValid -->|No| S04
     IsRegValid -->|Yes| CreateAuth["Create Account in Supabase Auth"]
     CreateAuth --> CreateProfile["Create Farmer Profile in PostgreSQL"]
-    CreateProfile --> EmailVerifCheck{"Email Verification Required?"}
-    EmailVerifCheck -->|Yes| VerifyEmail["Verify Email"]
-    VerifyEmail --> RegSuccess["Registration Successful"]
-    EmailVerifCheck -->|No| RegSuccess
+    CreateProfile --> RegSuccess["Registration Successful"]
     RegSuccess --> S03
     
     %% --- FORGOT PASSWORD FLOW ---
@@ -155,6 +169,37 @@ flowchart TD
     ResetScreen --> SetNewPass["Set New Password"]
     SetNewPass --> UpdatePass["Update Password in Supabase"]
     UpdatePass --> S03
+
+    %% --- SCREEN 06: MAIN HOME DASHBOARD FLOW ---
+    S06 --> DashActions{"Dashboard Action"}
+    DashActions -->|Tap 'Scan Plant' / Detect Tab| S07["Screen 07: Crop Selection Screen"]
+    DashActions -->|Explore Crops / View All| CropList["Crop Encyclopedia (/crops)"]
+    DashActions -->|Tap Crop Card| CropDetail["Crop Details Screen (/crops/:id)"]
+    DashActions -->|Recent Scans / View All| ScanHistory["Diagnosis History (/history)"]
+    DashActions -->|Tap Scan Record| HistoryDetail["History Detail Screen (/history/:id)"]
+    DashActions -->|Profile Nav / Avatar| ProfileScreen["Farmer Profile Screen (/profile)"]
+    
+    %% --- SCREEN 07: CROP SELECTION FLOW ---
+    S07 --> LoadModelCrops["Load Verified AI Crops (Rice, Potato, Tomato, Mango, Jute)"]
+    LoadModelCrops --> CropSearch{"Search Crop?"}
+    CropSearch -->|Query Input| FilterGrid["Filter by English or Bengali Name"]
+    FilterGrid --> HasMatch{"Matching Crops Found?"}
+    HasMatch -->|No| EmptySearch["Empty Search State (Clear Search Action)"]
+    EmptySearch --> LoadModelCrops
+    HasMatch -->|Yes| GridView["2-Column Responsive Crop Grid"]
+    CropSearch -->|No Search Query| GridView
+    
+    GridView --> SelectCrop["Farmer Taps Crop Card (Single Selection)"]
+    SelectCrop --> VisualState["Highlight Card (Fresh Green Border & Check Indicator)"]
+    VisualState --> CheckSupport{"Crop AI-Supported?"}
+    CheckSupport -->|No| DisabledCTA["Continue Button Disabled"]
+    CheckSupport -->|Yes| EnabledCTA["Continue Button Enabled ('Continue to Scan')"]
+    
+    EnabledCTA --> TapContinue["Tap 'Continue to Scan'"]
+    TapContinue --> SaveCropState["Store in selectedCropProvider (Riverpod)"]
+    SaveCropState --> S08["Screen 08: Plant Image Capture & AI Detection (/detect)"]
+    
+    S07 -->|Tap Back Button| S06
 ```
 
 ---

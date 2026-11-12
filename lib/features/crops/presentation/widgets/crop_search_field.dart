@@ -67,3 +67,4 @@ class CropSearchField extends StatelessWidget {
     );
   }
 }
+

@@ -45,3 +45,4 @@ class CropSelectionIndicator extends StatelessWidget {
     );
   }
 }
+
