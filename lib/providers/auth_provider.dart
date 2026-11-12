@@ -43,7 +43,13 @@ class AuthState {
 // ── Notifier ──────────────────────────────────────────────────────────────────
 
 class AuthNotifier extends AsyncNotifier<AuthState> {
-  SupabaseClient get _supabase => Supabase.instance.client;
+  SupabaseClient? get _supabase {
+    try {
+      return Supabase.instance.client;
+    } catch (_) {
+      return null;
+    }
+  }
 
   @override
   Future<AuthState> build() async {
@@ -51,12 +57,16 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
   }
 
   Future<AuthState> _resolveCurrentSession() async {
-    final session = _supabase.auth.currentSession;
+    final client = _supabase;
+    if (client == null) {
+      return const AuthState(status: AuthStatus.unauthenticated);
+    }
+    final session = client.auth.currentSession;
     if (session == null) {
       return const AuthState(status: AuthStatus.unauthenticated);
     }
     try {
-      final profileData = await _supabase
+      final profileData = await client
           .from('profiles')
           .select()
           .eq('id', session.user.id)
@@ -74,14 +84,18 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
   Future<void> signIn(String email, String password) async {
     state = const AsyncValue.data(AuthState(status: AuthStatus.loading));
     try {
-      final response = await _supabase.auth.signInWithPassword(
+      final client = _supabase;
+      if (client == null) {
+        throw const AuthException('Backend service is currently unavailable.');
+      }
+      final response = await client.auth.signInWithPassword(
         email: email.trim(),
         password: password,
       );
       if (response.user == null) {
         throw const AuthException('Sign in failed: no user returned.');
       }
-      final profileData = await _supabase
+      final profileData = await client
           .from('profiles')
           .select()
           .eq('id', response.user!.id)
@@ -95,17 +109,31 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
       state = AsyncValue.data(
         AuthState(
           status: AuthStatus.error,
-          errorMessage: e.message,
+          errorMessage: _cleanErrorMessage(e),
         ),
       );
     } catch (e) {
       state = AsyncValue.data(
         AuthState(
           status: AuthStatus.error,
-          errorMessage: e.toString(),
+          errorMessage: _cleanErrorMessage(e),
         ),
       );
     }
+  }
+
+  static String _cleanErrorMessage(dynamic error) {
+    if (error is AuthException) {
+      return error.message;
+    }
+    final message = error.toString();
+    if (message.contains('Failed to fetch') ||
+        message.contains('SocketException') ||
+        message.contains('ClientException') ||
+        message.contains('NetworkImage')) {
+      return 'Unable to reach the server. Please check your internet connection.';
+    }
+    return message;
   }
 
   Future<void> signUp({
@@ -117,7 +145,11 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
   }) async {
     state = const AsyncValue.data(AuthState(status: AuthStatus.loading));
     try {
-      final response = await _supabase.auth.signUp(
+      final client = _supabase;
+      if (client == null) {
+        throw const AuthException('Backend service is currently unavailable.');
+      }
+      final response = await client.auth.signUp(
         email: email.trim(),
         password: password,
         data: {
@@ -144,7 +176,7 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
         createdAt: now,
       );
       try {
-        await _supabase.from('profiles').upsert(profile.toJson());
+        await client.from('profiles').upsert(profile.toJson());
       } catch (_) {
         // Handled gracefully if DB trigger already created profile
       }
@@ -153,11 +185,11 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
       );
     } on AuthException catch (e) {
       state = AsyncValue.data(
-        AuthState(status: AuthStatus.error, errorMessage: e.message),
+        AuthState(status: AuthStatus.error, errorMessage: _cleanErrorMessage(e)),
       );
     } catch (e) {
       state = AsyncValue.data(
-        AuthState(status: AuthStatus.error, errorMessage: e.toString()),
+        AuthState(status: AuthStatus.error, errorMessage: _cleanErrorMessage(e)),
       );
     }
   }
@@ -168,16 +200,20 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
   Future<void> signInWithGoogle() async {
     state = const AsyncValue.data(AuthState(status: AuthStatus.loading));
     try {
-      await _supabase.auth.signInWithOAuth(OAuthProvider.google);
+      final client = _supabase;
+      if (client == null) {
+        throw const AuthException('Backend service is currently unavailable.');
+      }
+      await client.auth.signInWithOAuth(OAuthProvider.google);
       final newState = await _resolveCurrentSession();
       state = AsyncValue.data(newState);
     } on AuthException catch (e) {
       state = AsyncValue.data(
-        AuthState(status: AuthStatus.error, errorMessage: e.message),
+        AuthState(status: AuthStatus.error, errorMessage: _cleanErrorMessage(e)),
       );
     } catch (e) {
       state = AsyncValue.data(
-        AuthState(status: AuthStatus.error, errorMessage: e.toString()),
+        AuthState(status: AuthStatus.error, errorMessage: _cleanErrorMessage(e)),
       );
     }
   }
@@ -200,7 +236,10 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
   Future<void> signOut() async {
     state = const AsyncValue.data(AuthState(status: AuthStatus.loading));
     try {
-      await _supabase.auth.signOut();
+      final client = _supabase;
+      if (client != null) {
+        await client.auth.signOut();
+      }
       state = const AsyncValue.data(
         AuthState(status: AuthStatus.unauthenticated),
       );

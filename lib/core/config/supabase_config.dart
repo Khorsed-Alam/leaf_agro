@@ -5,12 +5,13 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class SupabaseConfig {
   static const String url = String.fromEnvironment(
     'SUPABASE_URL',
-    defaultValue: 'https://placeholder-project.supabase.co',
+    defaultValue: 'https://ymbijuxlntxlzmvwotwy.supabase.co',
   );
 
   static const String publishableKey = String.fromEnvironment(
     'SUPABASE_PUBLISHABLE_KEY',
-    defaultValue: 'placeholder-anon-key',
+    defaultValue:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InltYmlqdXhsbnR4bHptdndvdHd5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ0OTYwMDMsImV4cCI6MjExMDA3MjAwM30.25YxGiaIqFyOf4UEC6MIKy5t3j68xgwL4Y5wgnrEjYU',
   );
 
   /// Table names in PostgreSQL

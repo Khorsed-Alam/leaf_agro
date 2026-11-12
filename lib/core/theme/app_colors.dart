@@ -14,6 +14,9 @@ class AppColors {
   static const freshGreen = Color(0xFF22C55E);
   static const limeGreen = Color(0xFFA3E635);
   static const softNaturalGreen = Color(0xFFF4F9F1);
+  static const primaryText = Color(0xFF1F2937);
+  static const secondaryText = Color(0xFF6B7280);
+  static const borderGreen = Color(0xFFD1E7D2);
 
   // Secondary & Accents
   static const secondary = Color(0xFF246B3A);
