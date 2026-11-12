@@ -123,3 +123,4 @@ class DiseaseEmptyState extends StatelessWidget {
     }
   }
 }
+

@@ -65,3 +65,6 @@ ai_model/dataset/processed/*
 !ai_model/dataset/processed/.gitkeep
 .ipynb_checkpoints/
 stitch_assets/
+
+/android/build/
+.gradle/

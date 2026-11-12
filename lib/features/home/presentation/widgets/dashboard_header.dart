@@ -116,6 +116,30 @@ class DashboardHeader extends ConsumerWidget {
 
             const SizedBox(width: 8),
 
+            // Search Icon Button
+            Material(
+              color: AppColors.surfaceContainerLowest,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+                side: const BorderSide(color: AppColors.borderGreen),
+              ),
+              child: InkWell(
+                onTap: () => context.push('/search'),
+                borderRadius: BorderRadius.circular(12),
+                child: const SizedBox(
+                  width: 40,
+                  height: 40,
+                  child: Icon(
+                    Icons.search_rounded,
+                    color: AppColors.primaryText,
+                    size: 22,
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(width: 8),
+
             // Notification Bell with dynamic unread indicator
             Stack(
               clipBehavior: Clip.none,

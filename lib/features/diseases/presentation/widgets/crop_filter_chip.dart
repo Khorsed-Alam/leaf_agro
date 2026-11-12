@@ -78,3 +78,4 @@ class CropFilterChip extends StatelessWidget {
     );
   }
 }
+

@@ -116,6 +116,30 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
 5. **Smart Empty & Error States:**
    - Contextual empty states for no matching query, no diseases for selected crop, and catalog loading with pull-to-refresh.
 
+### Screen 10: Global Search Screen
+1. **Header & Navigation:**
+   - Accessible via the search icon on the Home Dashboard header (`/search`) or deep link with query parameters (`/search?q=...`).
+   - Clean title: *"Global Search"* / *"সার্বিক অনুসন্ধান"*, subtitle: *"Find crops and diseases"*.
+   - Back arrow smoothly returns to the previous screen.
+2. **Debounced Search Bar:**
+   - Dynamic 300ms debounced input field.
+   - Real-time loading indicator while searching across crop catalogs and disease pathologies.
+   - Quick one-tap clear button (`X`) to reset query.
+3. **Suggestions & Search Ideas:**
+   - Curated list of popular search suggestion chips (e.g., *Rice*, *Potato*, *Late Blight*, *Bacterial Leaf Blight*).
+   - Tapping any suggestion immediately populates the search bar and executes the query.
+4. **Recent Search History:**
+   - Automatically records successful searches locally via `SharedPreferences`.
+   - Allows individual removal of previous search terms or a one-tap **"Clear All"** action.
+5. **Popular Crops Carousel:**
+   - Horizontal gallery showcasing all 5 verified AI-supported crops (*Rice*, *Potato*, *Tomato*, *Mango*, *Jute*).
+   - Tapping any crop card navigates directly to **Screen 08: Crop Details Screen**.
+6. **Dual-Section Search Results:**
+   - **Section A (Crops):** Displays matched crops with thumbnails, English and Bengali names, descriptions, and chevron linking to `/crops/:id`.
+   - **Section B (Diseases):** Displays matched diseases with crop badges, pathology titles, severity indicators (`Critical`, `High`, `Moderate`, `Healthy`), symptoms previews, and direct navigation to `/diseases/:id`.
+7. **Farmer-Friendly Empty State:**
+   - When no matching crops or diseases are found, an agricultural zero-result illustration appears with clear guidance and a **Clear Search** button.
+
 ---
 
 ## 🇧🇩 বাংলা ব্যবহারিক নির্দেশিকা (কৃষক ও মাঠ কর্মকর্তাদের জন্য)
@@ -215,6 +239,29 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - যেকোনো কার্ডে চাপ দিলে রোগটির সম্পূর্ণ সমাধান ও প্রতিরোধ সংক্রান্ত পেজে নিয়ে যায়।
 ৫. **স্মার্ট এম্পটি স্টেট:**
    - কোনো ফলাফল না মিললে বা ডাটাবেজ তথ্য না থাকলে বন্ধুত্বপূর্ণ নোটিফিকেশন ও ফিল্টার রিসেট বাটন প্রদর্শিত হয়।
+
+### স্ক্রিন ১০: সার্বিক অনুসন্ধান স্ক্রিন (Global Search Screen)
+১. **হেডার ও নেভিগেশন:**
+   - মূল ড্যাশবোর্ডের সার্চ আইকন বাটন থেকে সহজেই প্রবেশ করা যায় (`/search`)।
+   - শিরোনাম: *"সার্বিক অনুসন্ধান"*, উপশিরোনাম: *"ফসল ও রোগের তথ্য খুঁজুন"* এবং ব্যাক বাটন।
+২. **স্মার্ট সার্চ ইনপুট:**
+   - ৩০০ মিলি-সেকেন্ড ডিবাউন্সযুক্ত স্বয়ংক্রিয় অনুসন্ধান বার।
+   - টাইপ করার সাথে সাথে লোডিং স্পিনার ও তাৎক্ষণিক ফিল্টারিং।
+   - এক চাপে সার্চ মোছার জন্য ক্রস (X) বাটন।
+৩. **অনুসন্ধান পরামর্শ (Suggestions):**
+   - ডাটাবেজের জনপ্রিয় বিষয়বস্তুর চিপস (যেমন: *ধান*, *আলু*, *নাবী ধসা রোগ*, *টমেটো*, ইত্যাদি)।
+   - যেকোনো চিপে চাপ দিলে সাথে সাথে সেই বিষয়ে স্বয়ংক্রিয় অনুসন্ধান শুরু হয়।
+৪. **সাম্প্রতিক অনুসন্ধানের ইতিহাস:**
+   - কৃষকের পূর্ববর্তী অনুসন্ধানগুলো মেমোরিতে সংরক্ষিত থাকে।
+   - একক রেকর্ড মুছে ফেলার পাশাপাশি **সব মুছুন (Clear All)** বাটন দিয়ে সব ইতিহাস একবারে খালি করা যায়।
+৫. **জনপ্রিয় ফসল গ্যালারি:**
+   - AI সমর্থিত ৫টি শস্যের অনুভূমিক স্লাইডার (*ধান*, *আলু*, *টমেটো*, *আম*, *পাট*)।
+   - কার্ডে চাপ দিলে সরাসরি **স্ক্রিন ০৮: ফসলের বিবরণ ও রোগ তালিকা** পেজে নিয়ে যায়।
+৬. **দ্বি-বিভক্ত ফলাফল তালিকা:**
+   - **সেকশন ক (ফসল):** ছবির থাম্বনেইল, বাংলা ও ইংরেজি নাম, কৃষি বিবরণ ও বিস্তারিত যাওয়ার তীরচিহ্ন।
+   - **সেকশন খ (রোগসমূহ):** সংশ্লিষ্ট ফসলের ব্যাজ, রোগের নাম, তীব্রতার মাত্রা (মারাত্মক, উচ্চ, মাঝারি, সুস্থ), লক্ষণসমূহ ও চিকিৎসা পেজের লিংক।
+৭. **তথ্য না পাওয়ার সহজ বার্তা (Empty State):**
+   - কোনো ফলাফল না পাওয়া গেলে বন্ধুত্বপূর্ণ কৃষক বার্তা ও **"অনুসন্ধান মুছুন"** বাটন প্রদর্শিত হয়।
 
 ---
 

@@ -24,7 +24,7 @@ dependencies:
   supabase_flutter: ^2.5.6
 
   # ML / AI
-  tflite_flutter: ^0.10.4
+  tflite_flutter: ^0.12.1
 
   # Image Handling
   image_picker: ^1.1.2
@@ -33,6 +33,7 @@ dependencies:
   # Storage & Persistence
   shared_preferences: ^2.3.2
   path_provider: ^2.1.4
+  path: ^1.9.0
   sqflite: ^2.3.3+1
 
   # Utilities

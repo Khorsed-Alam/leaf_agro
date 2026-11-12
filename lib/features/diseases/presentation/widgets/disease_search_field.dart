@@ -65,3 +65,4 @@ class DiseaseSearchField extends StatelessWidget {
     );
   }
 }
+

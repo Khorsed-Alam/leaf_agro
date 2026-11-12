@@ -74,3 +74,4 @@ class DiseaseScreenHeader extends StatelessWidget {
     );
   }
 }
+

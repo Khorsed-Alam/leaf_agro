@@ -29,6 +29,7 @@ import '../../features/notifications/presentation/notifications_screen.dart';
 import '../../features/help/presentation/help_screen.dart';
 import '../../features/feedback/presentation/feedback_screen.dart';
 import '../../features/about/presentation/about_screen.dart';
+import '../../features/search/presentation/global_search_screen.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/splash',
@@ -173,6 +174,13 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/about',
       builder: (context, state) => const AboutScreen(),
+    ),
+    GoRoute(
+      path: '/search',
+      builder: (context, state) {
+        final query = state.uri.queryParameters['q'];
+        return GlobalSearchScreen(initialQuery: query);
+      },
     ),
   ],
 );

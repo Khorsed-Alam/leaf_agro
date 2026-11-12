@@ -73,3 +73,4 @@ class DiseaseErrorState extends StatelessWidget {
     );
   }
 }
+
