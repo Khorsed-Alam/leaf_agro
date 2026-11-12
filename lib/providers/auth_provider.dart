@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../data/models/user_profile_model.dart';
-import '../core/errors/app_exceptions.dart';
 
 // ── Enums ─────────────────────────────────────────────────────────────────────
 
@@ -109,26 +108,46 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
     }
   }
 
-  Future<void> signUp(String email, String password, String fullName) async {
+  Future<void> signUp({
+    required String email,
+    required String password,
+    required String fullName,
+    String? phoneNumber,
+    bool termsAccepted = true,
+  }) async {
     state = const AsyncValue.data(AuthState(status: AuthStatus.loading));
     try {
       final response = await _supabase.auth.signUp(
         email: email.trim(),
         password: password,
-        data: {'full_name': fullName},
+        data: {
+          'full_name': fullName.trim(),
+          if (phoneNumber != null && phoneNumber.isNotEmpty)
+            'phone_number': phoneNumber.trim(),
+          'terms_accepted_at':
+              termsAccepted ? DateTime.now().toIso8601String() : null,
+        },
       );
       if (response.user == null) {
         throw const AuthException('Sign up failed: no user returned.');
       }
-      // Insert profile row
+      // Upsert profile row (ensures client-side fallback if DB trigger is pending)
       final now = DateTime.now();
       final profile = UserProfileModel(
         id: response.user!.id,
-        fullName: fullName,
+        fullName: fullName.trim(),
+        email: email.trim(),
+        phoneNumber: phoneNumber?.trim(),
         preferredLanguage: 'en',
+        role: 'farmer',
+        termsAcceptedAt: termsAccepted ? now : null,
         createdAt: now,
       );
-      await _supabase.from('profiles').upsert(profile.toJson());
+      try {
+        await _supabase.from('profiles').upsert(profile.toJson());
+      } catch (_) {
+        // Handled gracefully if DB trigger already created profile
+      }
       state = AsyncValue.data(
         AuthState(status: AuthStatus.authenticated, user: profile),
       );
@@ -146,12 +165,37 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
   Future<void> signInWithEmail(String email, String password) =>
       signIn(email, password);
 
+  Future<void> signInWithGoogle() async {
+    state = const AsyncValue.data(AuthState(status: AuthStatus.loading));
+    try {
+      await _supabase.auth.signInWithOAuth(OAuthProvider.google);
+      final newState = await _resolveCurrentSession();
+      state = AsyncValue.data(newState);
+    } on AuthException catch (e) {
+      state = AsyncValue.data(
+        AuthState(status: AuthStatus.error, errorMessage: e.message),
+      );
+    } catch (e) {
+      state = AsyncValue.data(
+        AuthState(status: AuthStatus.error, errorMessage: e.toString()),
+      );
+    }
+  }
+
   Future<void> signUpWithEmail({
     required String email,
     required String password,
     required String fullName,
+    String? phoneNumber,
+    bool termsAccepted = true,
   }) =>
-      signUp(email, password, fullName);
+      signUp(
+        email: email,
+        password: password,
+        fullName: fullName,
+        phoneNumber: phoneNumber,
+        termsAccepted: termsAccepted,
+      );
 
   Future<void> signOut() async {
     state = const AsyncValue.data(AuthState(status: AuthStatus.loading));

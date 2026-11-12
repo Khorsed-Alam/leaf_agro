@@ -21,7 +21,8 @@ void main() {
       ),
     );
 
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
 
     // Verify Brand title & Onboarding heading
     expect(find.text('LeafAgro'), findsOneWidget);

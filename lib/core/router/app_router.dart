@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/splash/presentation/splash_screen.dart';
@@ -6,6 +5,7 @@ import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/auth/presentation/login_screen.dart';
 import '../../features/auth/presentation/register_screen.dart';
 import '../../features/auth/presentation/forgot_password_screen.dart';
+import '../../features/auth/presentation/reset_password_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/crops/presentation/crop_list_screen.dart';
 import '../../features/crops/presentation/crop_detail_screen.dart';
@@ -51,6 +51,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/forgot-password',
       builder: (context, state) => const ForgotPasswordScreen(),
+    ),
+    GoRoute(
+      path: '/reset-password',
+      builder: (context, state) => const ResetPasswordScreen(),
     ),
     GoRoute(
       path: '/home',

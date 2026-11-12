@@ -88,7 +88,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   void _finishOnboarding() {
-    context.go('/home');
+    context.go('/login');
   }
 
   @override
@@ -194,56 +194,59 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                             itemBuilder: (context, index) {
                               final item = _pages[index];
 
-                              return Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  // Technology category pill
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 10,
-                                      vertical: 3.5,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFFDCFCE7),
-                                      borderRadius: BorderRadius.circular(16),
-                                    ),
-                                    child: Text(
-                                      isBangla ? item.tagBn : item.tagEn,
-                                      style: const TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w700,
-                                        color: Color(0xFF15803D),
-                                        letterSpacing: 1.1,
+                              return SingleChildScrollView(
+                                physics: const NeverScrollableScrollPhysics(),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    // Technology category pill
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10,
+                                        vertical: 3.5,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFDCFCE7),
+                                        borderRadius: BorderRadius.circular(16),
+                                      ),
+                                      child: Text(
+                                        isBangla ? item.tagBn : item.tagEn,
+                                        style: const TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w700,
+                                          color: Color(0xFF15803D),
+                                          letterSpacing: 1.1,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 12),
+                                    const SizedBox(height: 10),
 
-                                  // Heading
-                                  Text(
-                                    isBangla ? item.titleBn : item.titleEn,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w800,
-                                      color: Color(0xFF14532D),
-                                      height: 1.25,
-                                      letterSpacing: -0.2,
+                                    // Heading
+                                    Text(
+                                      isBangla ? item.titleBn : item.titleEn,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w800,
+                                        color: Color(0xFF14532D),
+                                        height: 1.25,
+                                        letterSpacing: -0.2,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 10),
+                                    const SizedBox(height: 8),
 
-                                  // Description
-                                  Text(
-                                    isBangla ? item.descriptionBn : item.descriptionEn,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 13.5,
-                                      color: Colors.grey.shade700,
-                                      height: 1.45,
+                                    // Description
+                                    Text(
+                                      isBangla ? item.descriptionBn : item.descriptionEn,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 13.5,
+                                        color: Colors.grey.shade700,
+                                        height: 1.45,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               );
                             },
                           ),
