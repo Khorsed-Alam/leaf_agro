@@ -140,6 +140,31 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
 7. **Farmer-Friendly Empty State:**
    - When no matching crops or diseases are found, an agricultural zero-result illustration appears with clear guidance and a **Clear Search** button.
 
+### Screen 11: Detection Start Screen
+1. **Header & Context:**
+   - Heading: *"Detect Plant Disease"* / *"গাছের রোগ নির্ণয়"*.
+   - Subtitle: *"Take or upload a clear leaf photo to identify possible plant diseases."*
+   - Context Bar: Preserves selected crop information (e.g. *Rice (ধান)*) with disease count and quick *Change* action, or prompts to select a crop for increased accuracy.
+2. **Central AI Scanning Illustration:**
+   - Botanical healthy leaf with realistic veins and ambient green glow.
+   - Agricultural reticle corner brackets framing the leaf sample.
+   - Animated laser beam sweeping across the leaf sample with target tracking nodes.
+   - Tech pill indicator: *"AI Leaf Scanner • 224x224 Edge Model"*.
+3. **Primary Action Cards:**
+   - **Take Photo:** One-tap camera launch with permission handling and instant validation.
+   - **Choose from Gallery:** One-tap device photo selection with image type/size validation.
+   - Tap feedback with loading spinner preventing double-tap submissions.
+4. **Image Quality Guide:**
+   - 4 practical farmer tips with green icons:
+     1. *Use good lighting* (natural/clear light).
+     2. *Keep the leaf in focus* (veins and lesion visible).
+     3. *Avoid blurry images* (steady hand/phone).
+     4. *Capture the affected area clearly* (spots or damage centered).
+5. **On-Device Offline Availability Indicator:**
+   - Informational status pill confirming offline edge model availability on the device.
+6. **Next Step:**
+   - Proceeds seamlessly to **Screen 12: Image Preview Screen** (`/detect/preview`) for leaf confirmation before running AI neural network inference.
+
 ---
 
 ## 🇧🇩 বাংলা ব্যবহারিক নির্দেশিকা (কৃষক ও মাঠ কর্মকর্তাদের জন্য)
@@ -262,6 +287,29 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - **সেকশন খ (রোগসমূহ):** সংশ্লিষ্ট ফসলের ব্যাজ, রোগের নাম, তীব্রতার মাত্রা (মারাত্মক, উচ্চ, মাঝারি, সুস্থ), লক্ষণসমূহ ও চিকিৎসা পেজের লিংক।
 ৭. **তথ্য না পাওয়ার সহজ বার্তা (Empty State):**
    - কোনো ফলাফল না পাওয়া গেলে বন্ধুত্বপূর্ণ কৃষক বার্তা ও **"অনুসন্ধান মুছুন"** বাটন প্রদর্শিত হয়।
+
+### স্ক্রিন ১১: রোগ পরীক্ষা শুরুর স্ক্রিন (Detection Start Screen)
+১. **হেডার ও শস্যের তথ্য:**
+   - শিরোনাম: *"গাছের রোগ নির্ণয়"* ও উপশিরোনাম।
+   - পূর্বে নির্বাচিত ফসল থাকলে (যেমন: *ধান*) তার নাম, সমর্থিত রোগের সংখ্যা ও *পরিবর্তন* বাটন প্রদর্শিত হয়।
+২. **কেন্দ্রীয় AI স্ক্যানিং ইলাস্ট্রেশন:**
+   - পাতার বাস্তবসম্মত শিরা ও সবুজ আভা সহ আধুনিক বোটানিক্যাল আর্ট।
+   - কৃষি ভিউফাইন্ডার কর্নার ব্র্যাকেট ও অ্যানিমেটেড লেজার স্ক্যানিং রশ্মি।
+   - এজ মডেল নির্দেশক: *"AI পাতা স্ক্যানার • ২২৪x২২৪ এজ মডেল"|।
+৩. **দুটি প্রধান অ্যাকশন কার্ড:**
+   - **ছবি তুলুন (Take Photo):** ফোনের ক্যামেরা চালু করে সরাসরি পাতার ছবি তোলার সুবিধা।
+   - **গ্যালারি থেকে নির্বাচন (Choose from Gallery):** ফোন মেমোরি থেকে পূর্বে তোলা পাতার ছবি আপলোড।
+   - ডাবল-ট্যাপ প্রতিরোধ ও স্পষ্ট লোডিং নির্দেশক।
+৪. **ছবির মান বৃদ্ধির নির্দেশিকা (Quality Guide):**
+   - কৃষকদের জন্য ৪টি সহজ পরামর্শ:
+     ১. *পর্যাপ্ত আলো ব্যবহার করুন*
+     ২. *পাতার ওপর ফোকাস রাখুন*
+     ৩. *ঝাপসা ছবি তোলা এড়িয়ে চলুন*
+     ৪. *আক্রান্ত অংশ সুস্পষ্ট রাখুন*
+৫. **অফলাইন AI স্ট্যাটাস ব্যাজ:**
+   - ডিভাইসেই সম্পূর্ণ ইন্টারনেট ছাড়া রোগ নির্ণয় কার্যকর থাকার নিশ্চয়তা।
+৬. **পরবর্তী ধাপ:**
+   - ছবি নির্বাচনের পর স্বয়ংক্রিয়ভাবে **স্ক্রিন ১২: ছবি প্রিভিউ স্ক্রিন** (`/detect/preview`)-এ নিয়ে যাবে।
 
 ---
 

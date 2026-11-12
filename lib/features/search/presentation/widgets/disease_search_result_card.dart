@@ -224,3 +224,4 @@ class DiseaseSearchResultCard extends StatelessWidget {
     );
   }
 }
+

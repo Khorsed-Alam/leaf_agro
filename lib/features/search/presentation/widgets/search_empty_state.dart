@@ -96,3 +96,4 @@ class SearchEmptyState extends StatelessWidget {
     );
   }
 }
+

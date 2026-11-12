@@ -103,3 +103,4 @@ class GlobalSearchBar extends StatelessWidget {
     );
   }
 }
+

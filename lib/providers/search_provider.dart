@@ -236,3 +236,4 @@ final searchSuggestionsProvider = Provider<List<String>>((ref) {
     'Anthracnose',
   ];
 });
+

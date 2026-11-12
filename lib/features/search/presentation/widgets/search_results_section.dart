@@ -129,3 +129,4 @@ class SearchResultsSection extends StatelessWidget {
     );
   }
 }
+

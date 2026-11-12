@@ -40,3 +40,4 @@ class SearchLoadingState extends StatelessWidget {
     );
   }
 }
+

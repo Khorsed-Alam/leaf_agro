@@ -89,3 +89,4 @@ class SearchSuggestionsSection extends StatelessWidget {
     );
   }
 }
+
