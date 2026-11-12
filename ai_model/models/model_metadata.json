@@ -1,0 +1,16 @@
+{
+  "model_name": "AgriCare AI Leaf Disease Detector",
+  "model_version": "1.0.0",
+  "architecture": "MobileNetV2",
+  "input_width": 224,
+  "input_height": 224,
+  "input_channels": 3,
+  "color_order": "RGB",
+  "input_normalization": "mobilenet_v2_minus1_to_plus1",
+  "output_activation": "softmax",
+  "labels_file": "labels.json",
+  "supported_crops": ["Rice", "Potato", "Tomato", "Mango", "Jute"],
+  "num_classes": 19,
+  "target_platform": "Android (TensorFlow Lite)"
+}
+

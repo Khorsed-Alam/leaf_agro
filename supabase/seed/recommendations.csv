@@ -1,0 +1,7 @@
+class_name,recommendation_type,title_en,title_bn,content_en,content_bn
+Potato___Late_blight,treatment,Copper Oxychloride Spray,কপার অক্সিক্লোরাইড স্প্রে,Apply 2.5g/L water every 7 days,প্রতি লিটার পানিতে ২.৫ গ্রাম মিশিয়ে স্প্রে করুন
+Potato___Late_blight,prevention,Certified Seed Tubers,প্রত্যয়িত বীজ ব্যবহার,Source certified disease-free tubers,রোগমুক্ত প্রত্যয়িত বীজ ব্যবহার করুন
+Rice___Bacterial_leaf_blight,treatment,Copper Sulfate Application,তুঁতে প্রয়োগ,Drain field water and apply copper fungicide,জমির পানি সরিয়ে ছত্রাকনাশক স্প্রে করুন
+Rice___Bacterial_leaf_blight,prevention,Balanced Nitrogen,সুষম নাইট্রোজেন সার,Avoid excessive urea fertilizer application,অতিরিক্ত ইউরিয়া প্রয়োগ পরিহার করুন
+Tomato___Early_blight,treatment,Mancozeb Spray,ম্যানকোজেব স্প্রে,Spray Mancozeb 75 WP at 2g/L,ম্যানকোজেব ৭৫ ডব্লিউপি প্রতি লিটারে ২ গ্রাম স্প্রে করুন
+

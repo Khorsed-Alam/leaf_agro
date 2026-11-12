@@ -1,0 +1,21 @@
+crop_name,class_name,disease_name_en,disease_name_bn,is_healthy
+Rice,Rice___Bacterial_leaf_blight,Bacterial Leaf Blight,ব্যাকটেরিয়াল লিফ ব্লাইট,false
+Rice,Rice___Brown_spot,Brown Spot,বাদামী দাগ রোগ,false
+Rice,Rice___Leaf_smut,Leaf Smut,পাতার স্মাট রোগ,false
+Rice,Rice___healthy,Healthy Rice Leaf,সুস্থ ধান পাতা,true
+Potato,Potato___Early_blight,Early Blight,আগাম ধসা রোগ,false
+Potato,Potato___Late_blight,Late Blight,নাবী ধসা রোগ,false
+Potato,Potato___healthy,Healthy Potato Leaf,সুস্থ আলু পাতা,true
+Tomato,Tomato___Bacterial_spot,Bacterial Spot,ব্যাকটেরিয়াল স্পট,false
+Tomato,Tomato___Early_blight,Early Blight,আগাম ধসা রোগ,false
+Tomato,Tomato___Late_blight,Late Blight,নাবী ধসা রোগ,false
+Tomato,Tomato___Leaf_Mold,Leaf Mold,পাতার মোল্ড রোগ,false
+Tomato,Tomato___Septoria_leaf_spot,Septoria Leaf Spot,সেপ্টোরিয়া দাগ রোগ,false
+Tomato,Tomato___healthy,Healthy Tomato Leaf,সুস্থ টমেটো পাতা,true
+Mango,Mango___Anthracnose,Anthracnose,অ্যানথ্রাকনোজ রোগ,false
+Mango,Mango___Bacterial_canker,Bacterial Canker,ব্যাকটেরিয়াল ক্যাংকার,false
+Mango,Mango___healthy,Healthy Mango Leaf,সুস্থ আম পাতা,true
+Jute,Jute___Stem_rot,Stem Rot,কান্ড পচা রোগ,false
+Jute,Jute___Anthracnose,Anthracnose,অ্যানথ্রাকনোজ,false
+Jute,Jute___healthy,Healthy Jute Leaf,সুস্থ পাট পাতা,true
+

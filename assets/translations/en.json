@@ -1,0 +1,22 @@
+{
+  "app_name": "AgriCare AI",
+  "tagline": "AI-Based Crop Health & Disease Diagnostic System",
+  "diagnose_crop": "Diagnose Crop",
+  "camera": "Camera",
+  "gallery": "Gallery",
+  "analyzing": "Analyzing leaf sample...",
+  "prediction_result": "Diagnostic Result",
+  "confidence": "Confidence",
+  "healthy": "Healthy",
+  "diseased": "Diseased",
+  "treatment": "Treatment",
+  "prevention": "Prevention",
+  "crops": "Crops",
+  "history": "History",
+  "profile": "Profile",
+  "settings": "Settings",
+  "language": "Language",
+  "english": "English",
+  "bangla": "বাংলা",
+  "offline_mode": "Offline Mode (Local AI Active)"
+}

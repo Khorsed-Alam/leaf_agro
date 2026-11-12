@@ -1,0 +1,62 @@
+name: leaf_agro
+description: AgriCare AI - Crop Disease Detection and Agricultural Assistant App
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # Navigation
+  go_router: ^14.2.7
+
+  # Backend
+  supabase_flutter: ^2.5.6
+
+  # ML / AI
+  tflite_flutter: ^0.10.4
+
+  # Image Handling
+  image_picker: ^1.1.2
+  image: ^4.1.7
+
+  # Storage & Persistence
+  shared_preferences: ^2.3.2
+  path_provider: ^2.1.4
+  sqflite: ^2.3.3+1
+
+  # Utilities
+  intl: ^0.19.0
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+
+  # UI
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.12
+  freezed: ^2.5.7
+  json_serializable: ^6.8.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/models/
+    - assets/images/
+    - assets/icons/
+    - assets/translations/
