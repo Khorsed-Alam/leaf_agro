@@ -210,3 +210,4 @@ class DetectionHistoryCard extends StatelessWidget {
     );
   }
 }
+

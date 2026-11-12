@@ -192,7 +192,7 @@ class _DashboardHeroCardState extends ConsumerState<DashboardHeroCard>
                   // Prominent CTA Button
                   ScanPlantButton(
                     label: isBn ? 'উদ্ভিদ স্ক্যান করুন' : 'Scan Plant',
-                    onTap: () => context.push('/detect'),
+                    onTap: () => context.push('/crop-select'),
                   ),
                 ],
               ),
@@ -287,3 +287,4 @@ class _DashboardHeroCardState extends ConsumerState<DashboardHeroCard>
     );
   }
 }
+

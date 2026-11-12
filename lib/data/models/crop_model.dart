@@ -1,3 +1,5 @@
+import '../datasources/ai_crop_catalog.dart';
+
 class CropModel {
   final int id;
   final String nameEn;
@@ -16,6 +18,12 @@ class CropModel {
     this.imageUrl,
     this.isActive = true,
   });
+
+  /// True if this crop is supported by the on-device AI plant disease model
+  bool get isAiSupported => AiCropCatalog.isSupported(nameEn);
+
+  /// Number of detectable disease classes in labels.json for this crop
+  int get supportedDiseaseCount => AiCropCatalog.getDiseaseCount(nameEn);
 
   factory CropModel.fromJson(Map<String, dynamic> json) {
     return CropModel(

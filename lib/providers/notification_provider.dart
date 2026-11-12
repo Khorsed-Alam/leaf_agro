@@ -19,3 +19,4 @@ final unreadNotificationsCountProvider = FutureProvider<int>((ref) async {
     return 0;
   }
 });
+

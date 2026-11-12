@@ -56,7 +56,7 @@ class DashboardBottomNavigation extends ConsumerWidget {
                 inactiveIcon: Icons.document_scanner_outlined,
                 label: isBn ? 'রোগ স্ক্যান' : 'Detect',
                 isSelected: selectedIndex == 1,
-                onTap: () => context.push('/detect'),
+                onTap: () => context.push('/crop-select'),
               ),
               _buildNavItem(
                 context: context,
@@ -125,3 +125,4 @@ class DashboardBottomNavigation extends ConsumerWidget {
     );
   }
 }
+

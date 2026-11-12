@@ -9,6 +9,7 @@ import '../../features/auth/presentation/reset_password_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/crops/presentation/crop_list_screen.dart';
 import '../../features/crops/presentation/crop_detail_screen.dart';
+import '../../features/crops/presentation/crop_selection_screen.dart';
 import '../../features/diseases/presentation/disease_catalog_screen.dart';
 import '../../features/diseases/presentation/disease_detail_screen.dart';
 import '../../features/detection/presentation/detection_start_screen.dart';
@@ -72,6 +73,10 @@ final appRouter = GoRouter(
           },
         ),
       ],
+    ),
+    GoRoute(
+      path: '/crop-select',
+      builder: (context, state) => const CropSelectionScreen(),
     ),
     GoRoute(
       path: '/diseases',

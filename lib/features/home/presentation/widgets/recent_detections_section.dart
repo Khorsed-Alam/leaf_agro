@@ -281,3 +281,4 @@ class RecentDetectionsSection extends ConsumerWidget {
     );
   }
 }
+

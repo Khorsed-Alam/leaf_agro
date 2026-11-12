@@ -182,3 +182,4 @@ class _CropCardState extends State<CropCard> with SingleTickerProviderStateMixin
     );
   }
 }
+
