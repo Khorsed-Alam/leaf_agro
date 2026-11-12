@@ -103,3 +103,4 @@ class CropInformationSection extends StatelessWidget {
     );
   }
 }
+

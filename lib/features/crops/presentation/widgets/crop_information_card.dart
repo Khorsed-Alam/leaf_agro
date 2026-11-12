@@ -76,3 +76,4 @@ class CropInformationCard extends StatelessWidget {
     );
   }
 }
+

@@ -97,7 +97,24 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - Practical field care guidelines from verified Bangladeshi agricultural research (Water Depth, Balanced Urea, Weed Control, Pest Monitoring).
 6. **Prominent Disease Detection CTA:**
    - Fixed bottom action button: **"Detect [Crop] Disease"** (e.g. *"Detect Rice Disease"* / *"ধানের রোগ পরীক্ষা করুন"*).
-   - Tapping verifies AI support, sets global crop selection, and advances to **Screen 09: Plant Image Capture & AI Detection** (`/detect`).
+   - Tapping verifies AI support, sets global crop selection, and advances to the diagnostic scanner (`/detect`).
+
+### Screen 09: Plant Disease Categories Screen
+1. **Directory Header & Overview:**
+   - Heading: *"Plant Diseases"* / *"ফসলের রোগসমূহ"*.
+   - Subtitle: *"Explore common diseases affecting crops."*
+   - Accessible from the Home Dashboard or the Crop Details screen.
+2. **Crop Filter Selector:**
+   - Horizontally scrollable filter chips: **All Crops**, **Rice**, **Potato**, **Tomato**, **Mango**, **Jute**.
+   - Tap any crop chip to instantly isolate the pathology catalog for that specific plant.
+3. **Bilingual Search Bar:**
+   - Real-time search by disease English name, Bangla name, symptoms, or associated crop.
+   - Includes one-tap clear search button and immediate local filtering.
+4. **Disease Category Cards:**
+   - Clean white rounded cards with crop badge, disease titles, severity indicator (`Critical`, `High`, `Moderate`, `Healthy`), and symptom preview.
+   - Tapping a disease card navigates to the detailed disease diagnosis and treatment view (`/diseases/:id`).
+5. **Smart Empty & Error States:**
+   - Contextual empty states for no matching query, no diseases for selected crop, and catalog loading with pull-to-refresh.
 
 ---
 
@@ -181,7 +198,23 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - জমিতে পানির গভীরতা, সুষম ইউরিয়া সার প্রয়োগ, নিড়ানি ও রোগ পর্যবেক্ষণের নির্ভরযোগ্য পরামর্শ।
 ৬. **রোগ নির্ণয় বাটন (Detect Crop Disease):**
    - স্ক্রিনের নিচে বড় সবুজ বাটন: **"ধানের রোগ পরীক্ষা করুন"** (অন্যান্য ফসলের ক্ষেত্রে ফসলের নাম অনুযায়ী পরিবর্তিত হবে)।
-   - বাটনে চাপ দিলে সরাসরি **স্ক্রিন ০৯: পাতার ছবি গ্রহণ ও AI রোগ নির্ণয়** পেজে নিয়ে যাবে।
+   - বাটনে চাপ দিলে সরাসরি পাতার ছবি গ্রহণ ও রোগ নির্ণয় পেজে নিয়ে যাবে।
+
+### স্ক্রিন ০৯: উদ্ভিদের রোগ ক্যাটাগরি ও তালিকা স্ক্রিন (Plant Disease Categories)
+১. **ডিরেক্টরি হেডার:**
+   - শিরোনাম: *"ফসলের রোগসমূহ"* এবং ব্যাক নেভিগেশন বাটন।
+   - ড্যাশবোর্ড বা ফসলের বিবরণী পেজ থেকে সহজেই প্রবেশ করা যায়।
+২. **ফসল ফিল্টার চিপস:**
+   - অনুভূমিকভাবে স্ক্রোলযোগ্য ফিল্টার: **সকল ফসল**, **ধান**, **আলু**, **টমেটো**, **আম**, **পাট**।
+   - যেকোনো ফসলে চাপ দিয়ে মুহূর্তেই সেই ফসলের রোগ তালিকা আলাদা করা যায়।
+৩. **দ্বিভাষিক সার্চ বার:**
+   - রোগের নাম (বাংলা বা ইংরেজি), ফসলের নাম বা লক্ষণ লিখে সরাসরি রিয়েল-টাইম সার্চ।
+   - ক্রস (X) বাটন চেপে এক ক্লিকে সার্চ ক্লিয়ার করার সুবিধা।
+৪. **রোগ ক্যাটাগরি কার্ড:**
+   - প্রতিটি কার্ডে ফসলের ব্যাজ, রোগের ইংরেজি ও বাংলা নাম, তীব্রতার মাত্রা (মারাত্মক, উচ্চ, মাঝারি, সুস্থ) ও ক্ষতিকর লক্ষণের সারসংক্ষেপ প্রদর্শিত হয়।
+   - যেকোনো কার্ডে চাপ দিলে রোগটির সম্পূর্ণ সমাধান ও প্রতিরোধ সংক্রান্ত পেজে নিয়ে যায়।
+৫. **স্মার্ট এম্পটি স্টেট:**
+   - কোনো ফলাফল না মিললে বা ডাটাবেজ তথ্য না থাকলে বন্ধুত্বপূর্ণ নোটিফিকেশন ও ফিল্টার রিসেট বাটন প্রদর্শিত হয়।
 
 ---
 

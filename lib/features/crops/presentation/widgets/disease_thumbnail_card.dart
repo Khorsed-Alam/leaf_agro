@@ -191,3 +191,4 @@ class DiseaseThumbnailCard extends StatelessWidget {
     );
   }
 }
+

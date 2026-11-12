@@ -228,3 +228,4 @@ class CropHeroSection extends StatelessWidget {
     );
   }
 }
+

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../providers/disease_provider.dart';
 import '../../../shared/widgets/status_badge.dart';
@@ -49,18 +48,18 @@ class DiseaseDetailScreen extends ConsumerWidget {
                 const SizedBox(height: 12),
                 const Text('Symptoms', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
                 const SizedBox(height: 6),
-                Text(disease.symptomsEn ?? 'No symptom record available.'),
-                if (disease.symptomsBn != null) ...[
+                Text(disease.symptomsEn.isNotEmpty ? disease.symptomsEn : 'No symptom record available.'),
+                if (disease.symptomsBn.isNotEmpty) ...[
                   const SizedBox(height: 4),
-                  Text(disease.symptomsBn!, style: const TextStyle(color: AppColors.onSurfaceVariant)),
+                  Text(disease.symptomsBn, style: const TextStyle(color: AppColors.onSurfaceVariant)),
                 ],
                 const SizedBox(height: 16),
                 const Text('Causes', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
                 const SizedBox(height: 6),
-                Text(disease.causesEn ?? 'No causal agent record available.'),
-                if (disease.causesBn != null) ...[
+                Text(disease.causesEn.isNotEmpty ? disease.causesEn : 'No causal agent record available.'),
+                if (disease.causesBn.isNotEmpty) ...[
                   const SizedBox(height: 4),
-                  Text(disease.causesBn!, style: const TextStyle(color: AppColors.onSurfaceVariant)),
+                  Text(disease.causesBn, style: const TextStyle(color: AppColors.onSurfaceVariant)),
                 ],
                 const SizedBox(height: 24),
                 const Text('Verified Solutions', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),

@@ -66,3 +66,21 @@ final cropProfileProvider =
     Provider.family<CropProfile?, int>((ref, cropId) {
   return AiCropCatalog.getCropProfile(cropId);
 });
+
+final allDiseasesProvider = FutureProvider<List<DiseaseModel>>((ref) async {
+  try {
+    final client = Supabase.instance.client;
+    final response = await client
+        .from('disease_catalog')
+        .select()
+        .order('crop_id')
+        .order('disease_name_en');
+
+    final list =
+        (response as List).map((row) => DiseaseModel.fromJson(row)).toList();
+    if (list.isNotEmpty) return list;
+    return AiCropCatalog.verifiedDiseases;
+  } catch (_) {
+    return AiCropCatalog.verifiedDiseases;
+  }
+});

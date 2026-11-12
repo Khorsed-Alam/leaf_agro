@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/models/disease_model.dart';
 import 'disease_thumbnail_card.dart';
@@ -52,18 +53,40 @@ class CommonDiseasesSection extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                      decoration: BoxDecoration(
-                        color: AppColors.softNaturalGreen,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        isBn ? '${diseases.length}টি রোগ' : '${diseases.length} mapped',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.forestGreen,
+                    InkWell(
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: () {
+                        try {
+                          context.push('/diseases');
+                        } catch (_) {}
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: AppColors.softNaturalGreen,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: AppColors.freshGreen.withValues(alpha: 0.3),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              isBn ? '${diseases.length}টি রোগ' : '${diseases.length} mapped',
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.forestGreen,
+                              ),
+                            ),
+                            const SizedBox(width: 4),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              size: 10,
+                              color: AppColors.forestGreen,
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -178,3 +201,4 @@ class CommonDiseasesSection extends StatelessWidget {
     );
   }
 }
+

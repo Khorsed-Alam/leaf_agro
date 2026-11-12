@@ -9,6 +9,7 @@ class DiseaseModel {
   final String causesEn;
   final String causesBn;
   final bool isHealthy;
+  final String? imageUrl;
 
   const DiseaseModel({
     required this.id,
@@ -21,6 +22,7 @@ class DiseaseModel {
     required this.causesEn,
     required this.causesBn,
     this.isHealthy = false,
+    this.imageUrl,
   });
 
   factory DiseaseModel.fromJson(Map<String, dynamic> json) {
@@ -30,11 +32,12 @@ class DiseaseModel {
       className: json['class_name'] as String,
       diseaseNameEn: json['disease_name_en'] as String,
       diseaseNameBn: json['disease_name_bn'] as String,
-      symptomsEn: json['symptoms_en'] as String,
-      symptomsBn: json['symptoms_bn'] as String,
-      causesEn: json['causes_en'] as String,
-      causesBn: json['causes_bn'] as String,
+      symptomsEn: (json['symptoms_en'] as String?) ?? '',
+      symptomsBn: (json['symptoms_bn'] as String?) ?? '',
+      causesEn: (json['causes_en'] as String?) ?? '',
+      causesBn: (json['causes_bn'] as String?) ?? '',
       isHealthy: (json['is_healthy'] as bool?) ?? false,
+      imageUrl: json['image_url'] as String?,
     );
   }
 
@@ -50,6 +53,7 @@ class DiseaseModel {
       'causes_en': causesEn,
       'causes_bn': causesBn,
       'is_healthy': isHealthy,
+      'image_url': imageUrl,
     };
   }
 
@@ -64,6 +68,7 @@ class DiseaseModel {
     String? causesEn,
     String? causesBn,
     bool? isHealthy,
+    String? imageUrl,
   }) {
     return DiseaseModel(
       id: id ?? this.id,
@@ -76,6 +81,7 @@ class DiseaseModel {
       causesEn: causesEn ?? this.causesEn,
       causesBn: causesBn ?? this.causesBn,
       isHealthy: isHealthy ?? this.isHealthy,
+      imageUrl: imageUrl ?? this.imageUrl,
     );
   }
 
