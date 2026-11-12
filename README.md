@@ -1,129 +1,124 @@
-# AgriCare AI 🌿
+# AgriCare AI (LeafAgro) 🌿
+*AI-Based Multi-Crop Plant Disease Detection and Agricultural Assistant for Bangladeshi Farmers*
 
-AgriCare AI is a Flutter-based mobile application designed to help Bangladeshi farmers detect crop diseases, get treatment recommendations, and access agricultural knowledge — all powered by on-device AI and a Supabase cloud backend.
-
----
-
-## Features
-
-- **AI-Powered Disease Detection** — Identify crop diseases from leaf photos using a TFLite MobileNetV2 model running entirely on-device (offline capable).
-- **Bilingual Support** — Full English and Bangla (বাংলা) localization.
-- **Crop & Disease Catalog** — Browse diseases, symptoms, treatments, and prevention tips.
-- **History** — Track past scans and results with timestamps.
-- **Recommendations** — Context-aware treatment and prevention advice.
-- **User Profiles** — Auth via Supabase with district and phone data.
-- **Notifications** — Push alerts for seasonal advisories.
+AgriCare AI is a production-grade, offline-first mobile application designed to empower smallholder farmers, agronomists, and field extension officers across Bangladesh. It identifies plant diseases directly on-device using a MobileNetV2 TensorFlow Lite neural network and provides verified treatment and prevention recommendations backed by Supabase cloud storage.
 
 ---
 
-## Tech Stack
+## 🎨 Master Design System
 
-| Layer | Technology |
-|---|---|
-| Framework | Flutter 3.x (Dart 3) |
-| State Management | Riverpod 2 (code-gen) |
-| Navigation | GoRouter 14 |
-| Backend | Supabase (Auth + PostgreSQL + Storage) |
-| ML Inference | TFLite Flutter (MobileNetV2) |
-| Local DB | SQLite (sqflite) |
-| Localization | Custom JSON-based (en, bn) |
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Flutter SDK >= 3.13.0
-- Dart SDK >= 3.0.0
-- A Supabase project (get URL and anon key from your project dashboard)
-
-### Setup
-
-1. **Clone the repo**
-   ```bash
-   git clone https://github.com/your-org/leaf_agro.git
-   cd leaf_agro
-   ```
-
-2. **Install dependencies**
-   ```bash
-   flutter pub get
-   ```
-
-3. **Run code generation**
-   ```bash
-   dart run build_runner build --delete-conflicting-outputs
-   ```
-
-4. **Configure Supabase credentials**
-
-   Pass them via `--dart-define` at build/run time:
-   ```bash
-   flutter run \
-     --dart-define=SUPABASE_URL=https://your-project.supabase.co \
-     --dart-define=SUPABASE_ANON_KEY=your-anon-key
-   ```
-
-5. **Place TFLite model**
-
-   Copy your MobileNetV2 TFLite model and labels file into:
-   ```
-   assets/models/plant_disease_model.tflite
-   assets/models/labels.txt
-   ```
-
-6. **Run the app**
-   ```bash
-   flutter run
-   ```
+| Token | Color Code | Role & Usage |
+|---|---|---|
+| **Forest Green** | `#14532D` | Primary brand color, headers, primary buttons, active badges |
+| **Fresh Green** | `#22C55E` | Secondary brand color, laser scanning beams, active indicators |
+| **Lime Green** | `#A3E635` | Accent highlights, glowing digital nodes, tech reticles |
+| **Soft Natural Green** | `#F4F9F1` | Background canvas, soothing natural tone for field use |
+| **Dark Charcoal Green** | `#191C1B` | High-contrast readable typography for titles and body |
+| **Surface White** | `#FFFFFF` | Cards, elevated sheets, high-contrast readable containers |
 
 ---
 
-## Project Structure
+## 📱 Implemented Production Screens
 
-```
-lib/
-├── main.dart                   # Entry point
-├── app.dart                    # Root app widget
-├── core/
-│   ├── constants/              # App & Supabase constants
-│   ├── theme/                  # Colors & ThemeData
-│   ├── router/                 # GoRouter config
-│   ├── localization/           # JSON-based i18n
-│   ├── errors/                 # Exception hierarchy
-│   └── utils/                  # Image & validation utils
-├── data/
-│   ├── models/                 # Freezed data classes
-│   ├── repositories/           # Data access layer
-│   └── datasources/            # Supabase + local DB sources
-├── domain/
-│   └── usecases/               # Business logic
-└── presentation/
-    ├── screens/                # UI screens
-    ├── widgets/                # Reusable widgets
-    └── providers/              # Riverpod providers
-assets/
-├── models/                     # TFLite model & labels
-├── images/                     # Static images
-├── icons/                      # Custom icons
-└── translations/               # en.json, bn.json
+### Screen 01: Splash Screen
+- **Visuals:** Dark forest gradient with ambient floating bio-particles and micro-leaves.
+- **Centerpiece:** Custom vector leaf logo with central midrib, circuit nodes, and an animated vertical laser scanning beam.
+- **Animation Sequence:** 5-phase timeline (Background Fade → Leaf Growth & HUD Ring Expansion → AI Laser Scan Sweep → "LeafAgro" Brand & Tagline Reveal → Smooth Exit Transition).
+- **Navigation:** Automatically transfers control to **Screen 02 (Onboarding)**.
+
+### Screen 02: Onboarding Screen
+- **Hero Illustration:** Custom vector illustration depicting a Bangladeshi rural farmer examining a green crop leaf while a smartphone projects an animated holographic AI laser scanning beam.
+- **PageView Carousel (3 Curated Slides):**
+  1. **Smart Plant Disease Detection (স্মার্ট ফসলের রোগ নির্ণয়):** AI-powered crop diagnosis and instant treatment advice.
+  2. **Instant Offline Field Diagnosis (ইন্টারনেট ছাড়াই ক্ষেতের মাঠে পরীক্ষা):** Edge inference directly on mobile hardware without requiring internet connectivity.
+  3. **Expert Care & Maximum Yield (বিশেষজ্ঞ অনুমোদিত কৃষি সেবা):** Certified chemical and organic treatments, fertilizer dosages, and preventive care.
+- **Language Selector:** Top-right interactive toggle (`EN` and `বাংলা`) with instant bilingual UI state re-rendering via Riverpod.
+- **Progress Indicators:** Animated 3-dot indicator (active elongated pill + inactive circular dots).
+- **Action Buttons:** Full-width primary button (*Next* / *Get Started*) with smooth page traversal, and secondary *Skip* button routing directly to `/home`.
+
+---
+
+## 🚀 Navigation Flow
+
+```mermaid
+graph LR
+    Splash["Screen 01: Splash Screen (/splash)"] --> Onboarding["Screen 02: Onboarding Screen (/onboarding)"]
+    Onboarding -->|Get Started / Skip| Home["Home Dashboard (/home)"]
+    Onboarding -->|Login to Cloud| Auth["Auth Flow (/login)"]
 ```
 
 ---
 
-## Supabase Schema (key tables)
+## 🛠️ Tech Stack & Architecture
 
-- `profiles` — user profile data
-- `crops` — crop catalog
-- `disease_catalog` — disease info, symptoms, images
-- `recommendations` — treatment recommendations
-- `prediction_history` — scan results per user
-- `feedback` — user feedback submissions
-- `notifications` — push notification records
+- **Framework:** Flutter 3.x (Dart 3)
+- **State Management:** Riverpod 2 (`StateNotifier`, `AsyncNotifier`, `Provider`)
+- **Navigation:** GoRouter 14
+- **Backend & Database:** Supabase (PostgreSQL, Row-Level Security, Cloud Storage)
+- **AI / ML Runtime:** TensorFlow Lite (MobileNetV2 on-device inference)
+- **Local Persistence:** SQLite (`sqflite`), `shared_preferences`
+- **Localization:** Bilingual English & Bengali (বাংলা) support
 
 ---
 
-## License
+## 📂 Project Structure
 
-MIT © 2024 AgriCare AI Team
+```text
+leaf_agro/
+├── ai_model/                # Python ML training pipeline & TFLite export
+├── supabase/                # PostgreSQL migrations, RLS policies, seed CSVs
+├── documentation/           # Architecture, ERD, AI specs, test reports, manuals
+├── assets/
+│   ├── models/              # TFLite model, labels.json, model_metadata.json
+│   └── translations/        # en.json, bn.json
+└── lib/
+    ├── app.dart             # MaterialApp.router with bilingual delegates
+    ├── main.dart            # Entry point & provider scope setup
+    ├── core/
+    │   ├── constants/       # App & API constants
+    │   ├── router/          # GoRouter configuration
+    │   ├── theme/           # AppColors & AppTheme tokens
+    │   ├── localization/    # Bilingual translation engine
+    │   ├── errors/          # Custom failures and exceptions
+    │   └── utils/           # Image & Date formatters
+    ├── data/
+    │   ├── models/          # Data models (Crops, Diseases, Predictions)
+    │   ├── datasources/     # Local (TFLite, SQLite, Prefs) & Remote (Supabase)
+    │   └── repositories/    # Auth, Crop, Detection, History repositories
+    ├── features/
+    │   ├── splash/          # Screen 01: Animated AI Splash Screen
+    │   ├── onboarding/      # Screen 02: Farmer Hero & Bilingual Onboarding
+    │   ├── auth/            # Login, Registration, Forgot Password
+    │   ├── home/            # Dashboard, Quick diagnose, Field scans
+    │   ├── crops/           # Crop encyclopedia & profile
+    │   ├── diseases/        # Disease directory & details
+    │   ├── detection/       # Camera scan, AI analyzer & Result cards
+    │   ├── recommendations/ # Treatment & Prevention guides
+    │   ├── history/         # Local & Cloud synchronized field log
+    │   └── profile/         # User profile & preferences
+    ├── providers/           # Riverpod state notifiers
+    └── shared/widgets/      # Reusable buttons, badges, leaf image views
+```
+
+---
+
+## 🏃 Running the Application
+
+### 1. Install Dependencies
+```bash
+flutter pub get
+```
+
+### 2. Launch the Application
+- **On Chrome Web Browser:**
+  ```bash
+  flutter run -d chrome
+  ```
+- **On Android Smartphone / Emulator:**
+  ```bash
+  flutter run -d android
+  ```
+- **On Windows Desktop:**
+  ```bash
+  flutter run -d windows
+  ```

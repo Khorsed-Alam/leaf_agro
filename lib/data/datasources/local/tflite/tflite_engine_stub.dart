@@ -1,9 +1,3 @@
-import '../../../models/prediction_model.dart';
-
-abstract class TfliteEngine {
-  Future<void> initialize();
-  Future<PredictionModel> predictImage(String imagePath);
-  void dispose();
-}
+import 'tflite_engine_interface.dart';
 
 TfliteEngine createTfliteEngine() => throw UnsupportedError('Platform not supported');

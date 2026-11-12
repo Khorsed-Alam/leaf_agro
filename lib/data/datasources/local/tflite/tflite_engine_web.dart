@@ -1,6 +1,6 @@
 import '../../../models/prediction_model.dart';
 import '../../../../core/constants/app_constants.dart';
-import 'tflite_engine_stub.dart';
+import 'tflite_engine_interface.dart';
 
 class WebTfliteEngine implements TfliteEngine {
   @override

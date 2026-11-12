@@ -153,7 +153,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   void _navigateToHome() {
     if (_isNavigated || !mounted) return;
     _isNavigated = true;
-    context.go('/home');
+    context.go('/onboarding');
   }
 
   @override

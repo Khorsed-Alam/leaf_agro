@@ -23,8 +23,8 @@ class AgriCareApp extends ConsumerWidget {
         Locale('en', 'US'),
         Locale('bn', 'BD'),
       ],
-      localizationsDelegates: const [
-        AppLocalizationsDelegate(),
+      localizationsDelegates: [
+        const AppLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

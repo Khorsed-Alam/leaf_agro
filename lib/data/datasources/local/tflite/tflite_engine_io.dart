@@ -5,7 +5,7 @@ import 'package:image/image.dart' as img;
 import 'package:tflite_flutter/tflite_flutter.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../models/prediction_model.dart';
-import 'tflite_engine_stub.dart';
+import 'tflite_engine_interface.dart';
 
 class IoTfliteEngine implements TfliteEngine {
   Interpreter? _interpreter;

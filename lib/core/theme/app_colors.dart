@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 /// Design tokens derived from Stitch "AgriCare Verdant Intelligence"
 class AppColors {
   // Primary Greens
-  static const primary = Color(0xFF006030);
+  static const primary = Color(0xFF14532D); // Forest Green
   static const onPrimary = Color(0xFFFFFFFF);
   static const primaryContainer = Color(0xFF237A45);
   static const onPrimaryContainer = Color(0xFFB0FFC1);
   static const inversePrimary = Color(0xFF84D99A);
+
+  // Master Palette Tokens
+  static const forestGreen = Color(0xFF14532D);
+  static const freshGreen = Color(0xFF22C55E);
+  static const limeGreen = Color(0xFFA3E635);
+  static const softNaturalGreen = Color(0xFFF4F9F1);
 
   // Secondary & Accents
   static const secondary = Color(0xFF246B3A);
