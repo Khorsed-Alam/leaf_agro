@@ -9,6 +9,7 @@ class RecommendationModel {
   final String? sourceName;
   final String? sourceUrl;
   final bool isVerified;
+  final bool isSample;
 
   const RecommendationModel({
     required this.id,
@@ -21,6 +22,7 @@ class RecommendationModel {
     this.sourceName,
     this.sourceUrl,
     this.isVerified = false,
+    this.isSample = false,
   });
 
   factory RecommendationModel.fromJson(Map<String, dynamic> json) {
@@ -35,6 +37,7 @@ class RecommendationModel {
       sourceName: json['source_name'] as String?,
       sourceUrl: json['source_url'] as String?,
       isVerified: (json['is_verified'] as bool?) ?? false,
+      isSample: (json['is_sample'] as bool?) ?? false,
     );
   }
 
@@ -50,6 +53,7 @@ class RecommendationModel {
       'source_name': sourceName,
       'source_url': sourceUrl,
       'is_verified': isVerified,
+      'is_sample': isSample,
     };
   }
 
@@ -64,6 +68,7 @@ class RecommendationModel {
     String? sourceName,
     String? sourceUrl,
     bool? isVerified,
+    bool? isSample,
   }) {
     return RecommendationModel(
       id: id ?? this.id,
@@ -76,6 +81,7 @@ class RecommendationModel {
       sourceName: sourceName ?? this.sourceName,
       sourceUrl: sourceUrl ?? this.sourceUrl,
       isVerified: isVerified ?? this.isVerified,
+      isSample: isSample ?? this.isSample,
     );
   }
 

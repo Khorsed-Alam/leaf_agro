@@ -15,10 +15,15 @@ class PreventionScreen extends ConsumerWidget {
       appBar: AppBar(title: const Text('Prevention & Care Protocols')),
       body: recsAsync.when(
         data: (recs) {
-          final preventions = recs.where((r) => r.recommendationType == 'prevention' || r.recommendationType == 'care').toList();
+          final preventions = recs
+              .where((r) =>
+                  r.recommendationType == 'prevention' ||
+                  r.recommendationType == 'care')
+              .toList();
 
           if (preventions.isEmpty) {
-            return const Center(child: Text('No prevention guidelines listed.'));
+            return const Center(
+                child: Text('No prevention guidelines listed.'));
           }
 
           return ListView.separated(
@@ -35,17 +40,27 @@ class PreventionScreen extends ConsumerWidget {
                     children: [
                       Row(
                         children: [
-                          const Icon(Icons.shield_outlined, color: AppColors.secondary),
+                          const Icon(Icons.shield_outlined,
+                              color: AppColors.secondary),
                           const SizedBox(width: 8),
-                          Text(p.titleEn, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+                          Text(p.titleEn,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 16)),
                         ],
                       ),
                       const SizedBox(height: 4),
-                      Text(p.titleBn, style: const TextStyle(color: AppColors.onSurfaceVariant, fontSize: 14)),
+                      Text(p.titleBn,
+                          style: const TextStyle(
+                              color: AppColors.onSurfaceVariant, fontSize: 14)),
                       const SizedBox(height: 12),
-                      Text(p.contentEn, style: const TextStyle(fontSize: 14, height: 1.4)),
+                      Text(p.contentEn,
+                          style: const TextStyle(fontSize: 14, height: 1.4)),
                       const SizedBox(height: 8),
-                      Text(p.contentBn, style: const TextStyle(fontSize: 14, height: 1.4, color: AppColors.onSurfaceVariant)),
+                      Text(p.contentBn,
+                          style: const TextStyle(
+                              fontSize: 14,
+                              height: 1.4,
+                              color: AppColors.onSurfaceVariant)),
                     ],
                   ),
                 ),
@@ -59,4 +74,3 @@ class PreventionScreen extends ConsumerWidget {
     );
   }
 }
-

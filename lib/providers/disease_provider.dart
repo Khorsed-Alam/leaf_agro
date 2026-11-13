@@ -49,11 +49,13 @@ final recommendationsByDiseaseProvider =
         .select()
         .eq('disease_id', diseaseId);
 
-    return (response as List)
+    final list = (response as List)
         .map((row) => RecommendationModel.fromJson(row))
         .toList();
+    if (list.isNotEmpty) return list;
+    return AiCropCatalog.getRecommendationsForDisease(diseaseId);
   } catch (_) {
-    return [];
+    return AiCropCatalog.getRecommendationsForDisease(diseaseId);
   }
 });
 

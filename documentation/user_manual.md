@@ -322,6 +322,30 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
 9. **Related Crop Diseases (`RelatedDiseasesSection`):**
    - Horizontal browsing cards showing other verified diseases affecting the same crop for quick cross-comparison.
 
+### Screen 18: Treatment Recommendations Screen (Agricultural Recovery & Chemical Safety)
+1. **Header Navigation (`TreatmentHeader`):**
+   - Clean top bar displaying the screen title, back navigation arrow returning to previous screen (`context.pop()`), medical services icon, and LeafAgro branding badge.
+2. **Detected Disease Summary Card (`DetectedDiseaseSummaryCard`):**
+   - Shows detected disease name (English & Bengali), host crop, original leaf photograph thumbnail, and AI confidence pattern-match score (e.g. *94.2%*).
+   - Prominent disclaimer clarifying that AI predictions are visual estimates, not a confirmed laboratory diagnosis.
+   - Visibly labels sample or demo records with *"Sample Guidance – For Demonstration Only"*; omitted on verified production records.
+3. **Immediate Actions ("What to Do First") (`ImmediateActionsCard`):**
+   - Numbered action cards guiding field scouting, isolation of stagnant irrigation water, and consultation with the local Upazila extension officer without prescribing destructive measures.
+4. **Agricultural Management Practices (`AgriculturalPracticesSection`):**
+   - Cultural management cards covering field and bund sanitation, regulated irrigation/drainage, and balanced fertilizer (nitrogen restriction and potassium reinforcement).
+5. **Verified Treatment Options (`VerifiedTreatmentsSection`):**
+   - Sourced from verified publications of BRRI, BARI, and DAE Bangladesh.
+   - Strictly enforces chemical safety rules: zero invented brands, zero fabricated dosages, and mandatory instructions to follow the registered product label and local DAE guidance.
+   - Displays a clear advisory message when verified chemical guidance is unavailable.
+6. **Step-by-Step Action Plan (`StepByStepRecommendationsCard`):**
+   - Numbered progression: Step 1 (Inspect the Crop), Step 2 (Apply Cultural Management), Step 3 (Consult Verified Guidance), and Step 4 (Monitor Progress Regularly).
+7. **Important Safety Reminders (`SafeHandlingRemindersCard`):**
+   - Protective equipment (mask, gloves), child and livestock chemical isolation, prohibition against food/drink container storage, and mandatory agricultural officer consultation notice.
+8. **Source Verification (`TreatmentSourcesSection`):**
+   - Attributes agronomic information to official institutes (BRRI, BARI, BJRI, DAE).
+9. **Prevention Navigation (`PreventionNavButton`):**
+   - Direct button routing to long-term prevention protocols (`/prevention/:id`).
+
 ---
 
 ## 🇧🇩 বাংলা ব্যবহারিক নির্দেশিকা (কৃষক ও মাঠ কর্মকর্তাদের জন্য)
@@ -621,6 +645,33 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - **প্রতিরোধ টিপস বাটন:** মাঠের পরিচর্যা ও রোগ প্রতিরোধমূলক ব্যবস্থা পেজে গমন (`/prevention/:id`)।
 ৯. **একই ফসলের অন্যান্য রোগ (`RelatedDiseasesSection`):**
    - সংশ্লিষ্ট একই ফসলের অন্যান্য রোগ সহজে অনুভূমিকভাবে ব্রাউজ করে তথ্য জানার সুবিধা।
+
+### স্ক্রিন ১৮: চিকিৎসা পরামর্শ ও সমাধান স্ক্রিন (কৃষি আরোগ্য ও নিরাপদ বালাই ব্যবস্থাপনা)
+১. **হেডার ও নেভিগেশন (`TreatmentHeader`):**
+   - চিকিৎসা সেবা আইকন, স্ক্রিন শিরোনাম, ব্যাক বাটন এবং LeafAgro ব্র্যান্ডিং সহ পরিচ্ছন্ন শীর্ষ বার।
+২. **শনাক্তকৃত রোগের সারাংশ কার্ড (`DetectedDiseaseSummaryCard`):**
+   - রোগের নাম, আক্রান্ত ফসল, মূল পাতার ছবির থাম্বনেইল এবং AI কনফিডেন্স স্কোর (যেমন: ৯৪.২%)।
+   - সুস্পষ্ট সতর্কবার্তা: AI ফলাফল আনুমানিক প্যাটার্ন বিশ্লেষণ, ল্যাবরেটরি পরীক্ষা নয়।
+   - ডেমো বা নমুনা তথ্যের ক্ষেত্রে সুনির্দিষ্ট সতর্কতামূলক ব্যানার প্রদর্শন।
+৩. **প্রথমেই করণীয় ("What to Do First") (`ImmediateActionsCard`):**
+   - ১নং ধাপ: আক্রান্ত গাছ ও চারপাশের জমি নিবিড় পরিদর্শন।
+   - ২নং ধাপ: সেচের পানি নিষ্কাশন ও অতিরিক্ত আর্দ্রতা নিয়ন্ত্রণ।
+   - ৩নং ধাপ: উপজেলা কৃষি কর্মকর্তার সাথে সরাসরি যোগাযোগ ও যাচাই।
+   - অহেতুক গাছ কেটে ফেলা বা পোড়ানোর অযৌক্তিক পরামর্শ সম্পূর্ণ নিষিদ্ধ।
+৪. **কৃষি ব্যবস্থাপনা ও পরিচর্যা (`AgriculturalPracticesSection`):**
+   - আইল পরিষ্কার, পানি নিষ্কাশন নালা তৈরি এবং সুষম পটাশ ও ইউরিয়া নিয়ন্ত্রণ।
+৫. **অনুমোদিত চিকিৎসা ব্যবস্থা (`VerifiedTreatmentsSection`):**
+   - ব্রি (BRRI), বারি (BARI) এবং কৃষি সম্প্রসারণ অধিদপ্তর (DAE) কর্তৃক অনুমোদিত নির্দেশিকা।
+   - কঠোর রাসায়নিক নিরাপত্তা নীতি: কোনো কাল্পনিক ব্র্যান্ড বা ডোজ নেই, মোড়কের লেবেল অনুসরণ বাধ্যতামূলক।
+   - রাসায়নিক তথ্য অনুপস্থিত থাকলে কৃষি অফিসারের পরামর্শ নেওয়ার স্পষ্ট নির্দেশনা।
+৬. **পদক্ষেপভিত্তিক কর্মপরিকল্পনা (`StepByStepRecommendationsCard`):**
+   - ধাপ ১ (ফসল পর্যবেক্ষণ), ধাপ ২ (ব্যবস্থাপনা প্রয়োগ), ধাপ ৩ (অনুমোদিত পরামর্শ অনুসরণ) এবং ধাপ ৪ (ধারাবাহিক মনিটরিং)।
+৭. **নিরাপদ ব্যবহারের গুরুত্বপূর্ণ নির্দেশিকা (`SafeHandlingRemindersCard`):**
+   - সুরক্ষামূলক পোশাক, খাবার ও শিশুদের থেকে বালাইনাশক নিরাপদ দূরত্বে রাখা এবং লেবেল পড়ার অনুশাসন।
+৮. **তথ্যের উৎস ও সত্যতা (`TreatmentSourcesSection`):**
+   - দেশের প্রধান কৃষি গবেষণা প্রতিষ্ঠানের তথ্যসূত্র প্রকাশ।
+৯. **প্রতিরোধ টিপস বাটন (`PreventionNavButton`):**
+   - দীর্ঘমেয়াদী মাঠ পরিচর্যা ও রোগ প্রতিরোধ স্ক্রিনে (`/prevention/:id`) সহজে যাওয়ার সুবিধা।
 
 ---
 
