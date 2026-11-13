@@ -1,0 +1,27 @@
+{
+  "audit_timestamp": "2026-11-13T15:13:04.606318+00:00",
+  "total_records_audited": 90,
+  "exact_duplicate_leakage": {
+    "status": "PASSED",
+    "conflicts": []
+  },
+  "perceptual_duplicate_leakage": {
+    "status": "PASSED",
+    "conflicts": []
+  },
+  "group_leakage": {
+    "status": "PASSED",
+    "conflicts": []
+  },
+  "manifest_integrity": {
+    "status": "PASSED",
+    "errors": []
+  },
+  "image_decodability": {
+    "status": "PASSED",
+    "errors": []
+  },
+  "critical_failures": 0,
+  "warnings": 0,
+  "final_decision": "APPROVED_LEAKAGE_FREE"
+}

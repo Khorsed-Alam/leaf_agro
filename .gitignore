@@ -63,6 +63,9 @@ ai_model/dataset/raw/*
 !ai_model/dataset/raw/.gitkeep
 ai_model/dataset/processed/*
 !ai_model/dataset/processed/.gitkeep
+!ai_model/dataset/processed/**/.gitkeep
+!ai_model/dataset/processed/metadata
+!ai_model/dataset/processed/metadata/*
 .ipynb_checkpoints/
 stitch_assets/
 

@@ -1,0 +1,26 @@
+{
+  "pipeline_version": "1.0.0-phase35",
+  "execution_timestamp": "2026-11-13T15:11:27.082124+00:00",
+  "random_seed": 42,
+  "input_manifest_fingerprint": "bf936ec8aba0cb76c32c62394a21a55f2c24e0b0fe8fb1199ee01e5359f84607",
+  "target_ratios": {
+    "train": 0.7,
+    "validation": 0.15,
+    "test": 0.15
+  },
+  "actual_counts": {
+    "total_images": 90,
+    "train": 63,
+    "validation": 14,
+    "test": 13
+  },
+  "actual_percentages": {
+    "train": 70.0,
+    "validation": 15.56,
+    "test": 14.44
+  },
+  "num_classes": 19,
+  "active_classes_with_data": 9,
+  "split_manifest_path": "ai_model/dataset/processed/metadata/split_manifest.csv",
+  "split_summary_path": "ai_model/dataset/processed/metadata/split_summary.csv"
+}
