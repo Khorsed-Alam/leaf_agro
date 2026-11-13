@@ -1,0 +1,128 @@
+{
+  "timestamp": 1794584204.294053,
+  "phase": "Phase 37 \u2014 MobileNetV2 Transfer Learning Model Architecture",
+  "tests": {
+    "A_environment": {
+      "status": "PASS",
+      "details": {
+        "tensorflow_version": "2.22.0-rc0",
+        "keras_version": "3.16.0.dev2026111303",
+        "cpu_devices": [
+          "/physical_device:CPU:0"
+        ],
+        "gpu_devices": []
+      }
+    },
+    "B_model_construction": {
+      "status": "PASS",
+      "details": {
+        "model_name": "AgriCare_MobileNetV2",
+        "backbone_name": "mobilenetv2_1.00_224",
+        "layers_count": 6,
+        "backbone_layers_count": 154,
+        "has_rescaling": true,
+        "has_dropout": true,
+        "has_dense_predictions": true
+      }
+    },
+    "C_input_shape": {
+      "status": "PASS",
+      "details": {
+        "input_shape": [
+          null,
+          224,
+          224,
+          3
+        ]
+      }
+    },
+    "D_output_shape": {
+      "status": "PASS",
+      "details": {
+        "output_shape": [
+          null,
+          19
+        ]
+      }
+    },
+    "E_dummy_forward_pass": {
+      "status": "PASS",
+      "details": {
+        "status": "PASS",
+        "shape_valid": true,
+        "actual_shape": [
+          4,
+          19
+        ],
+        "expected_shape": [
+          4,
+          19
+        ],
+        "has_nan": false,
+        "has_inf": false,
+        "sums_valid": true,
+        "range_valid": true,
+        "sample_sums": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "min_probability": 0.003409,
+        "max_probability": 0.164816
+      }
+    },
+    "F_transfer_learning_stages": {
+      "status": "PASS",
+      "details": {
+        "stage_a_backbone_frozen": true,
+        "stage_a_trainable_tensors": 2,
+        "stage_b_trainable_tensors": 20,
+        "stage_b_upper_bn_layers_count": 18,
+        "stage_b_all_bn_frozen": true,
+        "fine_tune_cutoff_layer": 100
+      }
+    },
+    "G_save_and_reload": {
+      "status": "PASS",
+      "details": {
+        "save_path": "C:\\Users\\khors\\AppData\\Local\\Temp\\agricare_model_val_3dwhw5w6\\test_arch.keras",
+        "reloaded_input_shape": [
+          null,
+          224,
+          224,
+          3
+        ],
+        "reloaded_output_shape": [
+          null,
+          19
+        ],
+        "forward_pass": "SUCCESS"
+      }
+    },
+    "H_class_mapping_labels": {
+      "status": "PASS",
+      "details": {
+        "num_classes": 19,
+        "labels_file": "F:\\leaf_agro\\ai_model\\models\\labels.json",
+        "stable_order_verified": true
+      }
+    },
+    "I_summary_and_metadata": {
+      "status": "PASS",
+      "details": {
+        "summary_path": "F:\\leaf_agro\\ai_model\\reports\\model_summary.txt",
+        "metadata_path": "F:\\leaf_agro\\ai_model\\models\\model_architecture.json",
+        "total_parameters": 2282323,
+        "stage_a_trainable": 24339,
+        "stage_b_trainable": 1863955,
+        "estimated_size_mb": 8.71
+      }
+    }
+  },
+  "summary": {
+    "pass_count": 9,
+    "warning_count": 0,
+    "fail_count": 0
+  }
+}

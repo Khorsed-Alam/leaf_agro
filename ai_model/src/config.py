@@ -95,18 +95,30 @@ AUG_TRANSLATION_WIDTH = 0.05    # +/- 5% horizontal shift
 AUG_BRIGHTNESS_FACTOR = 0.10    # +/- 10% brightness variation
 AUG_CONTRAST_FACTOR = 0.10      # +/- 10% contrast variation
 
-# Model Hyperparameters (for training phases)
+# Model Hyperparameters & Architecture Configuration (Phase 37)
+BACKBONE = "MobileNetV2"
+WEIGHTS = "imagenet"
+DROPOUT_RATE = 0.3
+LEARNING_RATE = 0.001
+INITIAL_LEARNING_RATE = LEARNING_RATE
+FINE_TUNE_LEARNING_RATE = 0.00001
+FINE_TUNE_AT_LAYER = 100
+
 INITIAL_EPOCHS = 20
 FINE_TUNE_EPOCHS = 15
 TOTAL_EPOCHS = INITIAL_EPOCHS + FINE_TUNE_EPOCHS
-INITIAL_LEARNING_RATE = 1e-3
-FINE_TUNE_LEARNING_RATE = 1e-5
 
-# Model File Names
+# Model File Names & Artifact Paths
 KERAS_MODEL_NAME = "best_model.keras"
 TFLITE_MODEL_NAME = "plant_disease_model.tflite"
 LABELS_FILE_NAME = "labels.json"
 METADATA_FILE_NAME = "model_metadata.json"
+
+LABELS_PATH = MODELS_DIR / "labels.json"
+MODEL_METADATA_PATH = MODELS_DIR / "model_metadata.json"
+MODEL_ARCHITECTURE_PATH = MODELS_DIR / "model_architecture.json"
+ARCHITECTURE_VALIDATION_PATH = REPORTS_DIR / "architecture_validation.json"
+MODEL_SUMMARY_PATH = REPORTS_DIR / "model_summary.txt"
 
 # Verified Default Class List (Fallback baseline matching Phase 32 standardization)
 DEFAULT_CLASSES: List[str] = [

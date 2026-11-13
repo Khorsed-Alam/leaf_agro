@@ -1,0 +1,52 @@
+======================================================================
+  AgriCare AI — MobileNetV2 Architecture Summary
+======================================================================
+
+Model Name:              AgriCare_MobileNetV2
+Backbone:                MobileNetV2 (ImageNet pretrained, alpha=1.0)
+Input Tensor Shape:      (None, 224, 224, 3)
+Output Tensor Shape:     (None, 19)
+Target Disease Classes:  19
+Dropout Regularization:  0.3
+Preprocessing Contract:  RGB [0.0, 255.0] -> Rescaling ((x/127.5) - 1.0)
+
+----------------------------------------------------------------------
+Parameter Breakdown by Training Stage:
+----------------------------------------------------------------------
+Total Model Parameters:  2,282,323
+Estimated Float32 Size:  8.71 MB
+
+Stage A — Feature Extraction (Frozen Backbone):
+  Trainable Parameters:    24,339 (Classifier Head: 1,280 x 19 + 19)
+  Non-trainable Parameters:2,257,984 (Backbone feature extractor)
+
+Stage B — Fine-Tuning (Cutoff Layer >= 100, BatchNorm Frozen):
+  Trainable Parameters:    1,863,955 (Upper conv blocks + Head)
+  Non-trainable Parameters:418,368 (Lower conv blocks + BatchNorm)
+
+----------------------------------------------------------------------
+Layer Structure:
+----------------------------------------------------------------------
+Model: "AgriCare_MobileNetV2"
+┌─────────────────────────────────┬────────────────────────┬───────────────┐
+│ Layer (type)                    │ Output Shape           │       Param # │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ input_image (InputLayer)        │ (None, 224, 224, 3)    │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ mobilenetv2_rescaling           │ (None, 224, 224, 3)    │             0 │
+│ (Rescaling)                     │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ mobilenetv2_1.00_224            │ (None, 7, 7, 1280)     │     2,257,984 │
+│ (Functional)                    │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ global_avg_pool                 │ (None, 1280)           │             0 │
+│ (GlobalAveragePooling2D)        │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ head_dropout (Dropout)          │ (None, 1280)           │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ predictions (Dense)             │ (None, 19)             │        24,339 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+ Total params: 2,282,323 (8.71 MB)
+ Trainable params: 1,863,955 (7.11 MB)
+ Non-trainable params: 418,368 (1.60 MB)
+
