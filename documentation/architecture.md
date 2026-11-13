@@ -6,9 +6,11 @@ AgriCare AI is an offline-first, mobile-centric agricultural assistant designed 
 
 ---
 
-## 2. Complete Application Flow & Architecture (Screens 01–07)
+## 2. Complete Application Flow & Architecture (Screens 00–20)
 
-![AgriCare AI Complete Application Flow](images/agricare_ai_application_flowchart.jpg)
+![AgriCare AI Complete Application Flow (Screens 00–20)](images/agricare_ai_user_flow_00_20.png)
+
+> **Developer Architecture Reference**: The full user flow, modular sub-flows, and navigation mapping tables are documented in [user_flow_architecture_00_20.md](user_flow_architecture_00_20.md) and [agricare_ai_user_flow_00_20.mmd](agricare_ai_user_flow_00_20.mmd).
 
 ### Complete Flowchart (Mermaid)
 

@@ -5,9 +5,9 @@
 
 ## 🌟 Application Workflow Overview
 
-![AgriCare AI Flowchart](images/agricare_ai_application_flowchart.jpg)
+![AgriCare AI Master Flowchart (Screen 00–20)](images/agricare_ai_user_flow_00_20.png)
 
-AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosis tailored specifically for Bangladeshi agricultural ecosystems. The user workflow spans **Screens 01 through 07** to guide farmers seamlessly from authentication to crop diagnosis.
+AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosis tailored specifically for Bangladeshi agricultural ecosystems. The complete user workflow spans **Screens 00 through 20**, guiding farmers seamlessly from authentication to crop diagnosis, treatment, and long-term crop protection.
 
 ---
 

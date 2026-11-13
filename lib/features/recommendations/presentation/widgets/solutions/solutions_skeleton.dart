@@ -194,3 +194,4 @@ class _SolutionsSkeletonState extends State<SolutionsSkeleton>
     );
   }
 }
+

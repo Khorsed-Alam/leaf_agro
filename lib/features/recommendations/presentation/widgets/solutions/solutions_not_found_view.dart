@@ -128,3 +128,4 @@ class SolutionsNotFoundView extends StatelessWidget {
     );
   }
 }
+

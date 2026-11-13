@@ -1,0 +1,210 @@
+%% AgriCare AI (LeafAgro) — Master User Flow Architecture (Screen 00 to Screen 20)
+%% Professional Dark-Mode Flowchart Implementation Reference for Developers
+
+flowchart TB
+    %% ─────────────────────────────────────────────────────────────────────────────
+    %% STYLING DEFINITIONS (Dark-Mode Technical Theme)
+    %% ─────────────────────────────────────────────────────────────────────────────
+    classDef startEnd fill:#0F172A,stroke:#38BDF8,stroke-width:2px,color:#F8FAFC;
+    classDef screenNode fill:#102A43,stroke:#2563EB,stroke-width:2px,color:#F8FAFC;
+    classDef highlightScreen fill:#064E3B,stroke:#10B981,stroke-width:2.5px,color:#ECFDF5;
+    classDef decisionNode fill:#1E293B,stroke:#F59E0B,stroke-width:2px,color:#FEF3C7;
+    classDef errorNode fill:#450A0A,stroke:#EF4444,stroke-width:1.5px,color:#FEE2E2;
+    classDef noteNode fill:#1E293B,stroke:#64748B,stroke-width:1.5px,color:#CBD5E1;
+    classDef successNode fill:#064E3B,stroke:#10B981,stroke-width:1.5px,color:#D1FAE5;
+
+    %% ─────────────────────────────────────────────────────────────────────────────
+    %% GROUP 1: APPLICATION ENTRY & AUTHENTICATION (SCREENS 00–05)
+    %% ─────────────────────────────────────────────────────────────────────────────
+    subgraph G1 ["GROUP 1: Application Entry & Authentication (Screens 00–05)"]
+        direction TB
+
+        S00["<b>Screen 00</b><br/>App Initialization & Route Resolver<br/><i>(TFLite & Supabase Init)</i>"]:::startEnd
+
+        D_Session{"Active Session &<br/>Onboarding Status?"}:::decisionNode
+
+        S01["<b>Screen 01</b><br/>Animated Splash Screen<br/><code>/splash</code>"]:::screenNode
+        S02["<b>Screen 02</b><br/>Interactive Onboarding<br/><code>/onboarding</code>"]:::screenNode
+        S03["<b>Screen 03</b><br/>Farmer Login Screen<br/><code>/login</code>"]:::screenNode
+        S04["<b>Screen 04</b><br/>Farmer Registration<br/><code>/register</code>"]:::screenNode
+        S05["<b>Screen 05</b><br/>Forgot & Reset Password<br/><code>/forgot-password & /reset-password</code>"]:::screenNode
+
+        Err_Auth["Invalid Credentials /<br/>Network Timeout Error"]:::errorNode
+        Err_Reg["Validation Failure /<br/>Duplicate Account Error"]:::errorNode
+        Err_Reset["Expired Token /<br/>Invalid Email Error"]:::errorNode
+
+        S00 --> D_Session
+        D_Session -->|First Time Launch| S01
+        D_Session -->|Existing Session Active| S06_Ref["<b>Screen 06: Home Dashboard</b>"]:::highlightScreen
+        D_Session -->|Unauthenticated User| S03
+
+        S01 --> S02
+        S02 -->|Get Started / Skip| S03
+
+        S03 -->|Tap Create Account| S04
+        S03 -->|Tap Forgot Password| S05
+        S03 -->|Submit Valid Credentials| S06_Ref
+        S03 -.->|Invalid Input / Offline| Err_Auth
+        Err_Auth -.->|Retry| S03
+
+        S04 -->|Submit Valid Profile| S03
+        S04 -.->|Validation / Duplicate Error| Err_Reg
+        Err_Reg -.->|Correct Errors| S04
+        S04 -->|Already have account| S03
+
+        S05 -->|Submit Email & Deep Link Reset| S03
+        S05 -.->|Invalid Link / Timeout| Err_Reset
+        Err_Reset -.->|Retry| S05
+    end
+
+    %% ─────────────────────────────────────────────────────────────────────────────
+    %% GROUP 2: DASHBOARD & CROP DISCOVERY (SCREENS 06–10)
+    %% ─────────────────────────────────────────────────────────────────────────────
+    subgraph G2 ["GROUP 2: Dashboard & Crop Discovery (Screens 06–10)"]
+        direction TB
+
+        S06["<b>Screen 06</b><br/>Home Dashboard<br/><code>/home</code>"]:::highlightScreen
+
+        D_Nav{"Farmer Dashboard Action"}:::decisionNode
+
+        S07["<b>Screen 07</b><br/>Crop Selection Screen<br/><code>/crops/select</code>"]:::screenNode
+        S08["<b>Screen 08</b><br/>Crop Details Screen<br/><code>/crops/:id</code>"]:::screenNode
+        S09["<b>Screen 09</b><br/>Disease Categories Screen<br/><code>/diseases</code>"]:::screenNode
+        S10["<b>Screen 10</b><br/>Global Search Screen<br/><code>/search</code>"]:::screenNode
+
+        D_CropSupport{"Selected Crop<br/>Supported by AI?"}:::decisionNode
+        Warn_Crop["Informational Banner:<br/>Only Rice, Potato, Tomato, Mango,<br/>Jute supported by AI model"]:::noteNode
+
+        S06_Ref --> S06
+        S06 --> D_Nav
+
+        D_Nav -->|Scan Plant / Detect Nav| S07
+        D_Nav -->|Explore Crop Card| S08
+        D_Nav -->|Disease Categories| S09
+        D_Nav -->|Global Search Bar| S10
+
+        S07 --> D_CropSupport
+        D_CropSupport -->|Yes: Rice, Potato, Tomato, Mango, Jute| S08
+        D_CropSupport -->|No: Unsupported Crop| Warn_Crop
+        Warn_Crop -.->|Reselect Crop| S07
+
+        S08 -->|Detect This Crop| S11_Ref["<b>Screen 11: Detection Start</b>"]:::highlightScreen
+        S08 -->|Common Diseases| S09
+        S08 -->|Back| S07
+        S07 -->|Back| S06
+
+        S09 -->|Select Disease Card| S17_Ref["<b>Screen 17: Disease Details</b>"]:::screenNode
+        S09 -->|Search Diseases| S10
+        S09 -->|Back| S06
+
+        S10 -->|Select Crop Result| S08
+        S10 -->|Select Disease Result| S17_Ref
+        S10 -->|Back| S06
+    end
+
+    %% ─────────────────────────────────────────────────────────────────────────────
+    %% GROUP 3: AI PLANT DISEASE DETECTION WORKFLOW (SCREENS 11–16)
+    %% ─────────────────────────────────────────────────────────────────────────────
+    subgraph G3 ["GROUP 3: AI Plant Disease Detection Journey (Screens 11–16)"]
+        direction TB
+
+        S11["<b>Screen 11</b><br/>Detection Start Screen<br/><code>/detect</code>"]:::highlightScreen
+
+        D_InputSource{"Choose Image Source"}:::decisionNode
+
+        S12["<b>Screen 12</b><br/>Camera Capture Screen<br/><code>/detect/camera</code>"]:::screenNode
+        S13["<b>Screen 13</b><br/>Gallery Upload Screen<br/><code>/detect/gallery</code>"]:::screenNode
+        S14["<b>Screen 14</b><br/>Image Preview Screen<br/><code>/detect/preview</code>"]:::screenNode
+        S15["<b>Screen 15</b><br/>AI Analysis Screen<br/><code>/detect/analyzing</code>"]:::screenNode
+        S16["<b>Screen 16</b><br/>AI Detection Result Screen<br/><code>/detect/result</code>"]:::highlightScreen
+
+        Err_Cam["Camera Permission Denied /<br/>Sensor Unavailable"]:::errorNode
+        Err_File["Unsupported Format /<br/>Corrupt Image (>20MB)"]:::errorNode
+        Err_Infer["TFLite Model Error /<br/>Analysis Failure"]:::errorNode
+
+        D_DiagResult{"Diagnosis Result State"}:::decisionNode
+        State_Healthy["Healthy Plant Detected<br/><i>(Standard Maintenance & Prevention)</i>"]:::successNode
+        State_Diseased["Pathology Detected<br/><i>(Severity, Confidence & Advisory)</i>"]:::decisionNode
+
+        S11_Ref --> S11
+        S11 --> D_InputSource
+
+        D_InputSource -->|Take Photo| S12
+        D_InputSource -->|Upload from Gallery| S13
+
+        S12 -->|Capture Success| S14
+        S12 -.->|Permission Denied / Sensor Error| Err_Cam
+        Err_Cam -.->|Go to Settings / Retry| S12
+        S12 -->|Switch to Gallery| S13
+        S12 -->|Cancel| S11
+
+        S13 -->|Select Valid Image| S14
+        S13 -.->|Invalid Image File| Err_File
+        Err_File -.->|Reselect| S13
+        S13 -->|Cancel Picker| S11
+
+        S14 -->|Analyze Leaf with AI| S15
+        S14 -->|Retake Photo| S12
+        S14 -->|Change Image| S13
+
+        S15 -->|TFLite Edge Inference Success| S16
+        S15 -.->|Inference Failure| Err_Infer
+        Err_Infer -.->|Retry Analysis| S15
+        Err_Infer -.->|Choose Another Image| S14
+
+        S16 --> D_DiagResult
+        D_DiagResult -->|Healthy State| State_Healthy
+        D_DiagResult -->|Disease Detected| State_Diseased
+
+        S16 -->|Scan Another Plant| S11
+        S16 -->|Save Scan to SQLite & Cloud| S16
+        S16 -->|Close Button| S06
+    end
+
+    %% ─────────────────────────────────────────────────────────────────────────────
+    %% GROUP 4: DISEASE EDUCATION & MANAGEMENT JOURNEY (SCREENS 17–20)
+    %% ─────────────────────────────────────────────────────────────────────────────
+    subgraph G4 ["GROUP 4: Disease Education & Management Journey (Screens 17–20)"]
+        direction TB
+
+        S17["<b>Screen 17</b><br/>Disease Details Screen<br/><code>/diseases/:id</code>"]:::screenNode
+        S18["<b>Screen 18</b><br/>Treatment Recommendations<br/><code>/recommendations/:id</code>"]:::screenNode
+        S19["<b>Screen 19</b><br/>Prevention & Plant Care<br/><code>/prevention & /prevention/:id</code>"]:::screenNode
+        S20["<b>Screen 20</b><br/>Product & Solution Info<br/><code>/solutions & /solutions/:id</code>"]:::screenNode
+
+        State_Diseased -->|View Disease Details| S17
+        State_Diseased -->|Treatment Recommendations| S18
+        State_Diseased -->|Prevention Tips| S19
+        State_Diseased -->|Product & Solutions| S20
+
+        State_Healthy -->|General Crop Care| S19
+
+        S17_Ref --> S17
+
+        %% Inter-screen transitions within Group 4
+        S17 -->|View Treatment Options| S18
+        S17 -->|View Prevention Guide| S19
+        S17 -->|View Solutions & Safety| S20
+        S17 -->|Back| Prev_Context_17["Return to Source Context<br/>(Screen 16 / 09 / 10)"]:::noteNode
+
+        S18 -->|View Prevention Tips| S19
+        S18 -->|Product & Solution Info| S20
+        S18 -->|Back| Prev_Context_18["Return to Source Context<br/>(Screen 16 / 17)"]:::noteNode
+
+        S19 -->|Product & Solution Info| S20
+        S19 -->|Back| Prev_Context_19["Return to Source Context<br/>(Screen 16 / 17 / 18 / 08)"]:::noteNode
+
+        S20 -->|View Treatment Recommendations| S18
+        S20 -->|Back| Prev_Context_20["Return to Source Context<br/>(Screen 16 / 17 / 18 / 19)"]:::noteNode
+    end
+
+    %% ─────────────────────────────────────────────────────────────────────────────
+    %% PERSISTENT BOTTOM NAVIGATION SHORTCUTS
+    %% ─────────────────────────────────────────────────────────────────────────────
+    subgraph BNav ["Persistent Bottom Navigation (Global Access)"]
+        direction LR
+        Nav_Home["🏠 Home<br/>(Screen 06)"]:::noteNode
+        Nav_Detect["🔍 Detect<br/>(Screen 07 / 11)"]:::noteNode
+        Nav_History["📋 History<br/>(/history)"]:::noteNode
+        Nav_Profile["👤 Profile<br/>(/profile)"]:::noteNode
+    end
