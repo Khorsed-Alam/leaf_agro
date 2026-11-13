@@ -182,7 +182,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
     final isBn = settings.language == 'bn';
 
     final notificationsAsync = ref.watch(notificationsProvider);
-    final unreadCount = ref.watch(unreadNotificationsCountProvider);
+    final unreadCount = ref.watch(unreadNotificationsCountProvider).value ?? 0;
 
     return Scaffold(
       backgroundColor: AppColors.background,

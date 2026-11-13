@@ -284,7 +284,10 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       path: '/feedback',
-      builder: (context, state) => const FeedbackScreen(),
+      builder: (context, state) {
+        final category = state.uri.queryParameters['category'];
+        return FeedbackScreen(initialCategory: category);
+      },
     ),
     GoRoute(
       path: '/about',

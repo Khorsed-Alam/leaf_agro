@@ -216,6 +216,18 @@ class SettingsScreen extends ConsumerWidget {
                     },
                   ),
                   SettingsListTile(
+                    icon: Icons.feedback_outlined,
+                    title: isBn ? 'মতামত পাঠান' : 'Send Feedback',
+                    subtitle: isBn
+                        ? 'অভিজ্ঞতা ও পরামর্শ আমাদের জানান'
+                        : 'Rate experience and share suggestions',
+                    onTap: () {
+                      try {
+                        context.push('/feedback');
+                      } catch (_) {}
+                    },
+                  ),
+                  SettingsListTile(
                     icon: Icons.privacy_tip_outlined,
                     title: isBn ? 'গোপনীয়তা নীতি' : 'Privacy Policy',
                     subtitle: isBn

@@ -4,6 +4,7 @@ class FeedbackModel {
   final int rating;
   final String? category;
   final String message;
+  final String? attachmentPath;
   final DateTime createdAt;
 
   const FeedbackModel({
@@ -12,6 +13,7 @@ class FeedbackModel {
     required this.rating,
     this.category,
     required this.message,
+    this.attachmentPath,
     required this.createdAt,
   });
 
@@ -22,6 +24,7 @@ class FeedbackModel {
       rating: json['rating'] as int,
       category: json['category'] as String?,
       message: json['message'] as String,
+      attachmentPath: json['attachment_path'] as String?,
       createdAt: DateTime.parse(json['created_at'] as String),
     );
   }
@@ -31,10 +34,29 @@ class FeedbackModel {
       'id': id,
       'user_id': userId,
       'rating': rating,
-      'category': category,
+      if (category != null) 'category': category,
       'message': message,
       'created_at': createdAt.toIso8601String(),
     };
   }
-}
 
+  FeedbackModel copyWith({
+    String? id,
+    String? userId,
+    int? rating,
+    String? category,
+    String? message,
+    String? attachmentPath,
+    DateTime? createdAt,
+  }) {
+    return FeedbackModel(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      rating: rating ?? this.rating,
+      category: category ?? this.category,
+      message: message ?? this.message,
+      attachmentPath: attachmentPath ?? this.attachmentPath,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
+}

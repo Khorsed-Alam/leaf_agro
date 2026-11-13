@@ -3,10 +3,11 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../core/config/supabase_config.dart';
 
 class StorageService {
-  final SupabaseClient _client;
+  final SupabaseClient? _clientOverride;
 
-  StorageService([SupabaseClient? client])
-      : _client = client ?? SupabaseConfig.client;
+  StorageService([SupabaseClient? client]) : _clientOverride = client;
+
+  SupabaseClient get _client => _clientOverride ?? SupabaseConfig.client;
 
   /// Upload captured or selected plant leaf image for AI diagnosis
   /// Stored securely under authenticated user directory: <bucket>/<user_id>/<file>
@@ -15,11 +16,31 @@ class StorageService {
     required Uint8List bytes,
     String fileExtension = 'jpg',
   }) async {
-    final fileName = '$userId/scan_${DateTime.now().millisecondsSinceEpoch}.$fileExtension';
-    
-    await _client.storage
-        .from(SupabaseConfig.bucketDiseaseImages)
-        .uploadBinary(
+    final fileName =
+        '$userId/scan_${DateTime.now().millisecondsSinceEpoch}.$fileExtension';
+
+    await _client.storage.from(SupabaseConfig.bucketDiseaseImages).uploadBinary(
+          fileName,
+          bytes,
+          fileOptions: FileOptions(
+            contentType: 'image/$fileExtension',
+            upsert: false,
+          ),
+        );
+
+    return fileName;
+  }
+
+  /// Upload optional feedback attachment
+  Future<String> uploadFeedbackAttachment({
+    required String userId,
+    required Uint8List bytes,
+    String fileExtension = 'jpg',
+  }) async {
+    final fileName =
+        '$userId/feedback_${DateTime.now().millisecondsSinceEpoch}.$fileExtension';
+
+    await _client.storage.from(SupabaseConfig.bucketDiseaseImages).uploadBinary(
           fileName,
           bytes,
           fileOptions: FileOptions(
@@ -37,11 +58,10 @@ class StorageService {
     required Uint8List bytes,
     String fileExtension = 'jpg',
   }) async {
-    final fileName = '$userId/avatar_${DateTime.now().millisecondsSinceEpoch}.$fileExtension';
+    final fileName =
+        '$userId/avatar_${DateTime.now().millisecondsSinceEpoch}.$fileExtension';
 
-    await _client.storage
-        .from(SupabaseConfig.bucketProfileImages)
-        .uploadBinary(
+    await _client.storage.from(SupabaseConfig.bucketProfileImages).uploadBinary(
           fileName,
           bytes,
           fileOptions: FileOptions(
@@ -72,4 +92,3 @@ class StorageService {
     await _client.storage.from(bucket).remove([path]);
   }
 }
-
