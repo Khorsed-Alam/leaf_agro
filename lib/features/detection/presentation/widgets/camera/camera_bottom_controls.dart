@@ -82,3 +82,4 @@ class CameraBottomControls extends StatelessWidget {
     );
   }
 }
+

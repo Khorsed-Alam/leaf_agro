@@ -85,3 +85,4 @@ class CameraCaptureButton extends StatelessWidget {
     );
   }
 }
+

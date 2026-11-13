@@ -133,3 +133,4 @@ class CameraPermissionState extends StatelessWidget {
     );
   }
 }
+

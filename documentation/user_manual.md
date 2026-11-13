@@ -185,7 +185,31 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - Graceful camera permission dialog with direct retry, settings navigation, and gallery fallback.
    - Hardware sensor timeout and error recovery states with clear farmer instructions.
 6. **Next Step:**
-   - After image capture and validation, smoothly routes to **Screen 13: Image Confirmation & Preview Screen** (`/detect/preview`).
+   - After image capture and validation, smoothly routes to **Image Confirmation & Preview Screen** (`/detect/preview`).
+
+### Screen 13: Gallery Upload Screen (Device Photo Selection)
+1. **Screen Header & Crop Context:**
+   - Heading: *"Choose a Plant Image"*, Subtitle: *"Select a clear leaf image from your device."*
+   - Clean circular back button returning smoothly to the previous screen without triggering picker dialogs.
+   - Preserves active crop context badge (e.g., *Rice (ধান)*) confirming the diagnosis target.
+2. **Native Android Photo Picker Integration:**
+   - Respects Android 13+ native system Photo Picker (`ImagePicker` with `ImageSource.gallery`), providing maximum privacy without requesting broad external storage permissions.
+   - Graceful cancellation handling without displaying errors when users dismiss the picker.
+   - Comprehensive file validation checking file existence, corrupted zero-byte files, supported formats (`.jpg`, `.jpeg`, `.png`, `.webp`), and size limit (maximum 20MB).
+3. **Gallery Selection Area (Initial State):**
+   - High-contrast visual illustration featuring photo library iconography with light-green gradient highlights.
+   - Heading: *"Select from Gallery"*, with clear farmer explanation text.
+   - Prominent **Browse Gallery** button with instant tap feedback and loading spinner.
+4. **Selected Image Preview (Post-Selection State):**
+   - High-fidelity preview of the actual selected leaf photograph inside a rounded card with Fresh Green (`#22C55E`) border and elevation shadow.
+   - Verified badge (*"Ready"*) and metadata pill showing image file name and formatted file size (KB/MB).
+   - Prominent **Change Image** outlined button allowing farmers to easily swap the selected leaf photo.
+5. **Image Quality Guidelines:**
+   - 4 quick tips helping farmers pick diagnostic-quality photos (good lighting, sharp focus, non-blurry, clearly visible lesion).
+6. **Continue Action Button:**
+   - Ergonomic pinned bottom button: **Continue** (`/detect/preview`).
+   - Initially disabled until a valid image is selected; automatically enables with active tactile feedback.
+   - Prevents duplicate clicks during preparation.
 
 ---
 
@@ -353,7 +377,31 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - ক্যামেরা পারমিশন না থাকলে বন্ধুত্বপূর্ণ বার্তা, সেটিংস খোলার অপশন এবং গ্যালারি বিকল্প।
    - হার্ডওয়্যার সংযোগে সমস্যা হলে স্পষ্ট ত্রুটি বার্তা ও পুনরায় চেষ্টার বাটন।
 ৬. **পরবর্তী ধাপ:**
-   - ছবি তোলার পর স্বয়ংক্রিয়ভাবে **স্ক্রিন ১৩: ছবি নিশ্চিতকরণ ও প্রিভিউ** (`/detect/preview`) পেজে নিয়ে যায়।
+   - ছবি তোলার পর স্বয়ংক্রিয়ভাবে **ছবি নিশ্চিতকরণ ও প্রিভিউ** (`/detect/preview`) পেজে নিয়ে যায়।
+
+### স্ক্রিন ১৩: গ্যালারি আপলোড স্ক্রিন (ডিভাইস থেকে ছবি নির্বাচন)
+১. **হেডার ও শস্যের তথ্য:**
+   - শিরোনাম: *"গাছের ছবি নির্বাচন করুন"*, উপশিরোনাম: *"আপনার ডিভাইস থেকে পাতার স্পষ্ট ছবি নির্বাচন করুন।"*
+   - ব্যাক বাটন চেপে ছবি নির্বাচন প্রক্রিয়া ছাড়া পূর্বের পেজে ফিরে যাওয়ার সুবিধা।
+   - সক্রিয় ফসলের ব্যাজ (যেমন: *ধান (Rice)*) প্রদর্শন করে।
+২. **অ্যান্ড্রয়েড নেটিভ ফটো পিকার ইন্টিগ্রেশন:**
+   - অ্যান্ড্রয়েড ১৩+ সিস্টেমের নেটিভ ফটো পিকার ব্যবহার করায় মেমোরির পূর্ণ পারমিশন চাওয়ার প্রয়োজন হয় না।
+   - কৃষক পিকার বন্ধ করলে কোনো অপ্রয়োজনীয় ত্রুটি না দেখিয়ে স্বাভাবিক অবস্থা বজায় রাখা হয়।
+   - ছবির সাইজ (সর্বোচ্চ ২০ মেগাবাইট) এবং ফরম্যাট (`.jpg`, `.jpeg`, `.png`, `.webp`) স্বয়ংক্রিয়ভাবে যাচাই করা হয়।
+৩. **গ্যালারি নির্বাচন এরিয়া (প্রাথমিক অবস্থা):**
+   - হালকা সবুজ গ্রেডিয়েন্ট ও ফটো লাইব্রেরি আইকন সম্বলিত আকর্ষণীয় কার্ড।
+   - শিরোনাম: *"গ্যালারি থেকে নির্বাচন করুন"* ও ব্যাখ্যা।
+   - বড় **গ্যালারি ব্রাউজ করুন** বাটন।
+৪. **নির্বাচিত ছবির প্রিভিউ (ছবি নির্বাচনের পর):**
+   - বাস্তব নির্বাচিত পাতার ছবির প্রিভিউ কার্ড (সতেজ সবুজ বর্ডার ও শ্যাডো সহ)।
+   - যাচাইকৃত ব্যাজ (*"যাচাইকৃত"*) এবং ছবির নাম ও সাইজ (KB/MB)।
+   - **অন্য ছবি পরিবর্তন করুন** বাটন চেপে নতুন ছবি নির্বাচনের সুযোগ।
+৫. **ছবির গুণমান নির্দেশিকা:**
+   - পর্যাপ্ত আলো, সঠিক ফোকাস, ঝাপসা না হওয়া এবং আক্রান্ত অংশ সুস্পষ্ট রাখার ৪টি সহজ পরামর্শ।
+6. **এগিয়ে যান (Continue) বাটন:**
+   - স্ক্রিনের নিচে পিন করা বড় বাটন: **এগিয়ে যান**।
+   - ছবি নির্বাচিত না হওয়া পর্যন্ত নিষ্ক্রিয় থাকে এবং ছবি নির্বাচনের পর সচল হয়।
+   - বাটনে চাপ দিলে সরাসরি **ছবি প্রিভিউ ও নিশ্চিতকরণ স্ক্রিন** (`/detect/preview`)-এ নিয়ে যায়।
 
 ---
 

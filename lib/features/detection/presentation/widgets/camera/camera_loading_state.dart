@@ -38,3 +38,4 @@ class CameraLoadingState extends StatelessWidget {
     );
   }
 }
+

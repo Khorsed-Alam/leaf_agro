@@ -14,6 +14,7 @@ import '../../features/diseases/presentation/disease_catalog_screen.dart';
 import '../../features/diseases/presentation/disease_detail_screen.dart';
 import '../../features/detection/presentation/detection_start_screen.dart';
 import '../../features/detection/presentation/camera_screen.dart';
+import '../../features/detection/presentation/gallery_upload_screen.dart';
 import '../../features/detection/presentation/image_preview_screen.dart';
 import '../../features/detection/presentation/analyzing_screen.dart';
 import '../../features/detection/presentation/detection_result_screen.dart';
@@ -99,6 +100,10 @@ final appRouter = GoRouter(
         GoRoute(
           path: 'camera',
           builder: (context, state) => const CameraScreen(),
+        ),
+        GoRoute(
+          path: 'gallery',
+          builder: (context, state) => const GalleryUploadScreen(),
         ),
         GoRoute(
           path: 'preview',

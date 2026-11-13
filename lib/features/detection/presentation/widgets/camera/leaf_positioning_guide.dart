@@ -177,3 +177,4 @@ class _CornerAccentsPainter extends CustomPainter {
         oldDelegate.radius != radius;
   }
 }
+

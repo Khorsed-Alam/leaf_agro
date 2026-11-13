@@ -63,3 +63,4 @@ class CameraSwitchButton extends StatelessWidget {
     );
   }
 }
+
