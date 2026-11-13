@@ -17,7 +17,7 @@ import '../../features/detection/presentation/detection_start_screen.dart';
 import '../../features/detection/presentation/camera_screen.dart';
 import '../../features/detection/presentation/gallery_upload_screen.dart';
 import '../../features/detection/presentation/image_preview_screen.dart';
-import '../../features/detection/presentation/analyzing_screen.dart';
+import '../../features/detection/presentation/screens/ai_analysis_screen.dart';
 import '../../features/detection/presentation/detection_result_screen.dart';
 import '../../features/recommendations/presentation/treatment_screen.dart';
 import '../../features/recommendations/presentation/prevention_screen.dart';
@@ -115,7 +115,7 @@ final appRouter = GoRouter(
         ),
         GoRoute(
           path: 'analyzing',
-          builder: (context, state) => const AnalyzingScreen(),
+          builder: (context, state) => const AiAnalysisScreen(),
         ),
         GoRoute(
           path: 'result',

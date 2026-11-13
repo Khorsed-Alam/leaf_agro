@@ -169,6 +169,19 @@ class InferenceException extends AiModelException {
         );
 }
 
+/// Thrown when image decoding, EXIF baking, resizing, or tensor formatting fails.
+class ImagePreprocessingException extends AiModelException {
+  ImagePreprocessingException(
+    String message, {
+    super.technicalDetails,
+    super.originalError,
+    super.stackTrace,
+  }) : super(
+          'Image preprocessing failed: $message',
+          code: 'IMAGE_PREPROCESSING_FAILED',
+        );
+}
+
 /// Thrown when quantization parameters are unexpected or incompatible with the model type.
 class QuantizationMismatchException extends AiModelException {
   QuantizationMismatchException(
