@@ -13,18 +13,33 @@ class AgriCareApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
 
+    final ThemeMode themeMode;
+    switch (settings.themeMode) {
+      case 'dark':
+        themeMode = ThemeMode.dark;
+        break;
+      case 'light':
+        themeMode = ThemeMode.light;
+        break;
+      default:
+        themeMode = ThemeMode.system;
+        break;
+    }
+
     return MaterialApp.router(
       title: 'AgriCare AI',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: themeMode,
       routerConfig: appRouter,
       locale: Locale(settings.language),
       supportedLocales: const [
         Locale('en', 'US'),
         Locale('bn', 'BD'),
       ],
-      localizationsDelegates: [
-        const AppLocalizationsDelegate(),
+      localizationsDelegates: const [
+        AppLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

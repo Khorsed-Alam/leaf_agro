@@ -1,5 +1,14 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../core/config/supabase_config.dart';
+
+final authServiceProvider = Provider<AuthService>((ref) {
+  try {
+    return AuthService(Supabase.instance.client);
+  } catch (_) {
+    return AuthService();
+  }
+});
 
 class AuthService {
   final SupabaseClient? _clientOverride;

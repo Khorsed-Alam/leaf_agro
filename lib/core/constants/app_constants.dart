@@ -16,5 +16,10 @@ class AppConstants {
   static const String keyLanguage = 'preferred_language';
   static const String keyIsFirstLaunch = 'is_first_launch';
   static const String keyOfflineHistory = 'offline_history';
+  static const String keyThemeMode = 'theme_mode';
+  static const String keyNotificationsEnabled = 'notifications_enabled';
+  static const String keyPlantCareReminders = 'plant_care_reminders';
+  static const String keyDetectionAlerts = 'detection_alerts';
+  static const String keyOfflineOnlyMode = 'offline_only_mode';
 }
 
