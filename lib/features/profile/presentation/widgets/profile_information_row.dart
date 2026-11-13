@@ -88,3 +88,4 @@ class ProfileInformationRow extends StatelessWidget {
     );
   }
 }
+
