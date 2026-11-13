@@ -120,3 +120,4 @@ A training run is considered successful when:
 3. `reports/plots/accuracy.png` and `reports/plots/loss.png` show decreasing loss and increasing accuracy.
 4. Validation loss decreases steadily (in our run, loss dropped from 2.84 to 0.85).
 5. The independent test set was **never touched** or loaded.
+

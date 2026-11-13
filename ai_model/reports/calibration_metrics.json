@@ -1,0 +1,129 @@
+{
+  "expected_calibration_error": 0.3149,
+  "multiclass_brier_score": 0.48448,
+  "brier_score_convention": "Mean squared error summed over all 19 classes: (1/N)*sum(sum((p_ik - y_ik)^2)), range [0.0, 2.0]",
+  "binning_method": "Fixed-width 10 equal-sized intervals between 0.0 and 1.0",
+  "bins": [
+    {
+      "bin_index": 0,
+      "bin_range": [
+        0.0,
+        0.1
+      ],
+      "sample_count": 0,
+      "mean_confidence": 0.0,
+      "empirical_accuracy": 0.0,
+      "calibration_gap": 0.0
+    },
+    {
+      "bin_index": 1,
+      "bin_range": [
+        0.1,
+        0.2
+      ],
+      "sample_count": 0,
+      "mean_confidence": 0.0,
+      "empirical_accuracy": 0.0,
+      "calibration_gap": 0.0
+    },
+    {
+      "bin_index": 2,
+      "bin_range": [
+        0.2,
+        0.3
+      ],
+      "sample_count": 0,
+      "mean_confidence": 0.0,
+      "empirical_accuracy": 0.0,
+      "calibration_gap": 0.0
+    },
+    {
+      "bin_index": 3,
+      "bin_range": [
+        0.3,
+        0.4
+      ],
+      "sample_count": 3,
+      "mean_confidence": 0.3504,
+      "empirical_accuracy": 0.0,
+      "calibration_gap": 0.3504
+    },
+    {
+      "bin_index": 4,
+      "bin_range": [
+        0.4,
+        0.5
+      ],
+      "sample_count": 1,
+      "mean_confidence": 0.4353,
+      "empirical_accuracy": 1.0,
+      "calibration_gap": 0.5647
+    },
+    {
+      "bin_index": 5,
+      "bin_range": [
+        0.5,
+        0.6
+      ],
+      "sample_count": 1,
+      "mean_confidence": 0.567,
+      "empirical_accuracy": 1.0,
+      "calibration_gap": 0.433
+    },
+    {
+      "bin_index": 6,
+      "bin_range": [
+        0.6,
+        0.7
+      ],
+      "sample_count": 2,
+      "mean_confidence": 0.6642,
+      "empirical_accuracy": 0.0,
+      "calibration_gap": 0.6642
+    },
+    {
+      "bin_index": 7,
+      "bin_range": [
+        0.7,
+        0.8
+      ],
+      "sample_count": 1,
+      "mean_confidence": 0.7504,
+      "empirical_accuracy": 1.0,
+      "calibration_gap": 0.2496
+    },
+    {
+      "bin_index": 8,
+      "bin_range": [
+        0.8,
+        0.9
+      ],
+      "sample_count": 2,
+      "mean_confidence": 0.8407,
+      "empirical_accuracy": 1.0,
+      "calibration_gap": 0.1593
+    },
+    {
+      "bin_index": 9,
+      "bin_range": [
+        0.9,
+        1.0
+      ],
+      "sample_count": 3,
+      "mean_confidence": 0.9505,
+      "empirical_accuracy": 1.0,
+      "calibration_gap": 0.0495
+    }
+  ],
+  "confidence_statistics": {
+    "overall_mean": 0.6666,
+    "overall_median": 0.6731,
+    "overall_std": 0.2285,
+    "correct_mean": 0.7857,
+    "incorrect_mean": 0.4759
+  },
+  "threshold_policy": {
+    "status": "UNTOUCHED_UNBOUND_TEST_EVALUATION",
+    "reason": "Confidence thresholds must be tuned strictly using validation or external calibration sets; never optimized using the untouched test partition."
+  }
+}

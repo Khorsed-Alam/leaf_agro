@@ -1,0 +1,18 @@
+{
+  "total_test_samples": 13,
+  "accuracy": 0.6153846153846154,
+  "top_1_accuracy": 0.6153846153846154,
+  "top_3_accuracy": 0.7692307692307693,
+  "macro_precision": 0.574074074074074,
+  "macro_recall": 0.6666666666666666,
+  "macro_f1_score": 0.5888888888888889,
+  "weighted_precision": 0.5641025641025641,
+  "weighted_recall": 0.6153846153846154,
+  "weighted_f1_score": 0.5589743589743589,
+  "metric_definitions": {
+    "accuracy": "Proportion of total predictions that exactly match ground truth.",
+    "top_1_accuracy": "Proportion where the highest-probability class matches ground truth (equivalent to accuracy in single-label classification).",
+    "macro_averaging": "Unweighted mean across all classes; treats every class equally regardless of sample frequency.",
+    "weighted_averaging": "Support-weighted mean across classes; reflects empirical class frequency distribution."
+  }
+}

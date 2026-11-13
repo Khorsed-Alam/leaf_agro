@@ -31,6 +31,7 @@ try:
         SPLIT_MANIFEST_PATH,
         SPLIT_SUMMARY_PATH,
         CLASS_MAPPING_PATH,
+        LABELS_PATH,
         IMAGE_SIZE,
         IMG_HEIGHT,
         IMG_WIDTH,
@@ -49,6 +50,7 @@ except ImportError:
         SPLIT_MANIFEST_PATH,
         SPLIT_SUMMARY_PATH,
         CLASS_MAPPING_PATH,
+        LABELS_PATH,
         IMAGE_SIZE,
         IMG_HEIGHT,
         IMG_WIDTH,
@@ -66,11 +68,48 @@ def get_verified_class_index_map(mapping_path: Optional[Path] = None) -> Tuple[D
     """
     Builds stable bidirectional mapping between standardized class names and numeric indices.
     Index range is [0, NUM_CLASSES - 1].
+    Prioritizes labels.json and split_summary.csv for exact model output neuron alignment.
     """
-    path = Path(mapping_path) if mapping_path else CLASS_MAPPING_PATH
     class_to_idx: Dict[str, int] = {}
     idx_to_class: Dict[int, str] = {}
 
+    # Priority 1: Check labels.json
+    target_labels = LABELS_PATH if not mapping_path else None
+    if target_labels and target_labels.exists():
+        import json
+        try:
+            with open(target_labels, mode="r", encoding="utf-8") as f:
+                data = json.load(f)
+                indices = data.get("class_indices", {})
+                for cls_name, idx in indices.items():
+                    class_to_idx[cls_name] = int(idx)
+                    idx_to_class[int(idx)] = cls_name
+                    # Also map uppercase alias without underscores
+                    alias = "AGRI_" + cls_name.replace("___", "_").upper()
+                    class_to_idx[alias] = int(idx)
+                if class_to_idx:
+                    return class_to_idx, idx_to_class
+        except Exception:
+            pass
+
+    # Priority 2: Check split_summary.csv
+    if SPLIT_SUMMARY_PATH.exists() and not mapping_path:
+        with open(SPLIT_SUMMARY_PATH, mode="r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                cls_name = row.get("class_name", "").strip()
+                idx_str = row.get("class_index", "").strip()
+                if cls_name and idx_str.isdigit():
+                    idx = int(idx_str)
+                    class_to_idx[cls_name] = idx
+                    idx_to_class[idx] = cls_name
+                    alias = "AGRI_" + cls_name.replace("___", "_").upper()
+                    class_to_idx[alias] = idx
+            if class_to_idx:
+                return class_to_idx, idx_to_class
+
+    # Priority 3: Fallback to verified_class_mapping.csv
+    path = Path(mapping_path) if mapping_path else CLASS_MAPPING_PATH
     if path.exists():
         with open(path, mode="r", encoding="utf-8") as f:
             reader = csv.DictReader(f)

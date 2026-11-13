@@ -1,0 +1,50 @@
+{
+  "model_file_path": "F:/leaf_agro/ai_model/models/best_model.keras",
+  "model_file_size_bytes": 24644940,
+  "model_file_size_mb": 23.5,
+  "model_loading_time_seconds": 0.9199,
+  "benchmark_parameters": {
+    "input_shape": [
+      1,
+      224,
+      224,
+      3
+    ],
+    "warmup_runs": 10,
+    "timed_runs": 50,
+    "timing_clock": "time.perf_counter (high-resolution monotonic)"
+  },
+  "model_latency_ms": {
+    "mean": 66.02,
+    "median": 65.64,
+    "p95": 68.96,
+    "min": 62.77,
+    "max": 75.34,
+    "std_dev": 2.11
+  },
+  "preprocessing_latency_ms": {
+    "mean": 1.1,
+    "operation": "tf.io.decode_image + tf.image.resize(bilinear) + tf.cast"
+  },
+  "estimated_end_to_end_latency_ms": 67.12,
+  "throughput_inferences_per_second": 15.15,
+  "memory_profile": {
+    "peak_loading_memory_mb": 36.83
+  },
+  "hardware_environment": {
+    "os": "Windows 11 (10.0.26300)",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "python_version": "3.14.6",
+    "tensorflow_version": "2.22.0-rc0",
+    "gpu_available": false,
+    "gpu_count": 0,
+    "gpu_devices": [],
+    "execution_device": "CPU"
+  },
+  "android_deployment_notes": [
+    "Desktop CPU benchmark measures host performance on x86_64 architecture.",
+    "Mobile performance on Android (ARM Cortex / Snapdragon / MediaTek) requires TFLite conversion (Phase 40).",
+    "TFLite models with FP16/INT8 quantization typically execute significantly faster and with <15MB RAM footprint on modern mobile devices."
+  ]
+}

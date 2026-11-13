@@ -136,3 +136,4 @@ All training steps, checkpoints, histories, plots, and tests executed with real,
 
 **Ready for Phase 39 – Model Evaluation on Independent Test Set:** **`YES`**  
 `best_model.keras` is trained, selected, and ready for unbiased evaluation on the untouched 13-image test split.
+
