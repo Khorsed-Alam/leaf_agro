@@ -88,7 +88,8 @@ class _StorageCacheSheetState extends State<StorageCacheSheet> {
             Expanded(
               child: Text(
                 isBn ? 'অস্থায়ী ক্যাশ মুছবেন?' : 'Clear Temporary Cache?',
-                style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+                style:
+                    const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
               ),
             ),
           ],
@@ -97,14 +98,16 @@ class _StorageCacheSheetState extends State<StorageCacheSheet> {
           isBn
               ? 'এটি কেবল অস্থায়ী ফাইল ও ব্রাউজিং ক্যাশ মুছে ফেলবে। আপনার সংরক্ষিত স্ক্যান হিস্ট্রি এবং অ্যাকাউন্টের তথ্যের কোনো ক্ষতি হবে না।'
               : 'This will remove temporary files and cached content. Your saved detections and account information will remain unchanged.',
-          style: const TextStyle(fontSize: 13.5, color: AppColors.secondaryText, height: 1.4),
+          style: const TextStyle(
+              fontSize: 13.5, color: AppColors.secondaryText, height: 1.4),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
             child: Text(
               isBn ? 'বাতিল' : 'Cancel',
-              style: const TextStyle(color: AppColors.secondaryText, fontWeight: FontWeight.w700),
+              style: const TextStyle(
+                  color: AppColors.secondaryText, fontWeight: FontWeight.w700),
             ),
           ),
           ElevatedButton(
@@ -112,10 +115,12 @@ class _StorageCacheSheetState extends State<StorageCacheSheet> {
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.error,
               foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
               elevation: 0,
             ),
-            child: Text(isBn ? 'ক্যাশ মুছুন' : 'Clear Cache', style: const TextStyle(fontWeight: FontWeight.w800)),
+            child: Text(isBn ? 'ক্যাশ মুছুন' : 'Clear Cache',
+                style: const TextStyle(fontWeight: FontWeight.w800)),
           ),
         ],
       ),
@@ -217,7 +222,9 @@ class _StorageCacheSheetState extends State<StorageCacheSheet> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        isBn ? 'স্টোরেজ ও ক্যাশ তথ্য' : 'Storage & Cache Management',
+                        isBn
+                            ? 'স্টোরেজ ও ক্যাশ তথ্য'
+                            : 'Storage & Cache Management',
                         style: const TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.w800,
@@ -225,7 +232,9 @@ class _StorageCacheSheetState extends State<StorageCacheSheet> {
                         ),
                       ),
                       Text(
-                        isBn ? 'অস্থায়ী ফাইল ও মেমরি পর্যবেক্ষণ' : 'Manage temporary file storage',
+                        isBn
+                            ? 'অস্থায়ী ফাইল ও মেমরি পর্যবেক্ষণ'
+                            : 'Manage temporary file storage',
                         style: const TextStyle(
                           fontSize: 12,
                           color: AppColors.secondaryText,
@@ -252,7 +261,9 @@ class _StorageCacheSheetState extends State<StorageCacheSheet> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        isBn ? 'অস্থায়ী ক্যাশ ফাইলের আকার' : 'Temporary Cache Size',
+                        isBn
+                            ? 'অস্থায়ী ক্যাশ ফাইলের আকার'
+                            : 'Temporary Cache Size',
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -360,4 +371,3 @@ class _StorageCacheSheetState extends State<StorageCacheSheet> {
     );
   }
 }
-

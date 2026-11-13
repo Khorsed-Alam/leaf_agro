@@ -47,7 +47,8 @@ class SettingsScreen extends ConsumerWidget {
         backgroundColor: AppColors.surfaceContainerLowest,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded, color: AppColors.primaryText),
+          icon: const Icon(Icons.arrow_back_rounded,
+              color: AppColors.primaryText),
           tooltip: isBn ? 'ফিরে যান' : 'Back',
           onPressed: () {
             if (context.canPop()) {
@@ -100,7 +101,8 @@ class SettingsScreen extends ConsumerWidget {
                   SettingsListTile(
                     icon: Icons.logout_rounded,
                     iconColor: AppColors.error,
-                    iconBgColor: AppColors.errorContainer.withValues(alpha: 0.5),
+                    iconBgColor:
+                        AppColors.errorContainer.withValues(alpha: 0.5),
                     title: isBn ? 'লগআউট' : 'Log Out',
                     subtitle: isBn
                         ? 'অ্যাকাউন্ট থেকে নিরাপদে বের হয়ে যান'
@@ -200,6 +202,18 @@ class SettingsScreen extends ConsumerWidget {
                         ? 'অস্থায়ী ক্যাশ মেমরি পর্যবেক্ষণ ও মুছুন'
                         : 'View storage usage and manage temporary files',
                     onTap: () => StorageCacheSheet.show(context, isBn),
+                  ),
+                  SettingsListTile(
+                    icon: Icons.help_outline_rounded,
+                    title: isBn ? 'সহায়তা ও প্রশ্নোত্তর' : 'Help & FAQ',
+                    subtitle: isBn
+                        ? 'ব্যবহারবিধি, ছবি তোলার নিয়ম ও সাধারণ প্রশ্ন'
+                        : 'Guides, photography tips, and FAQs',
+                    onTap: () {
+                      try {
+                        context.push('/help');
+                      } catch (_) {}
+                    },
                   ),
                   SettingsListTile(
                     icon: Icons.privacy_tip_outlined,

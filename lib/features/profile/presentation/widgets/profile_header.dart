@@ -102,7 +102,9 @@ class ProfileHeader extends StatelessWidget {
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  isBn ? 'আপনার অ্যাগ্রিকেয়ার অ্যাকাউন্ট' : 'Your AgriCare Account',
+                  isBn
+                      ? 'আপনার অ্যাগ্রিকেয়ার অ্যাকাউন্ট'
+                      : 'Your AgriCare Account',
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -117,4 +119,3 @@ class ProfileHeader extends StatelessWidget {
     );
   }
 }
-

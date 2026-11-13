@@ -60,7 +60,9 @@ class LanguageScreen extends ConsumerWidget {
     required bool isSelected,
   }) {
     return Material(
-      color: isSelected ? AppColors.softNaturalGreen : AppColors.surfaceContainerLowest,
+      color: isSelected
+          ? AppColors.softNaturalGreen
+          : AppColors.surfaceContainerLowest,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
         side: BorderSide(

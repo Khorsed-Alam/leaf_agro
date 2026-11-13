@@ -173,7 +173,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
               ),
               const SizedBox(height: 12),
               ListTile(
-                leading: const Icon(Icons.camera_alt_outlined, color: AppColors.forestGreen),
+                leading: const Icon(Icons.camera_alt_outlined,
+                    color: AppColors.forestGreen),
                 title: Text(isBn ? 'ক্যামেরা দিয়ে তুলুন' : 'Take a Photo'),
                 onTap: () {
                   Navigator.pop(context);
@@ -181,7 +182,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.photo_library_outlined, color: AppColors.forestGreen),
+                leading: const Icon(Icons.photo_library_outlined,
+                    color: AppColors.forestGreen),
                 title: Text(isBn ? 'গ্যালারি থেকে নিন' : 'Choose from Gallery'),
                 onTap: () {
                   Navigator.pop(context);
@@ -310,7 +312,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
         backgroundColor: AppColors.surfaceContainerLowest,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded, color: AppColors.primaryText),
+          icon: const Icon(Icons.arrow_back_rounded,
+              color: AppColors.primaryText),
           tooltip: isBn ? 'ফিরে যান' : 'Back',
           onPressed: () => context.pop(),
         ),
@@ -341,7 +344,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                           height: 96,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(color: AppColors.borderGreen, width: 2.5),
+                            border: Border.all(
+                                color: AppColors.borderGreen, width: 2.5),
                             image: DecorationImage(
                               image: MemoryImage(_pickedImageBytes!),
                               fit: BoxFit.cover,
@@ -385,7 +389,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                 Center(
                   child: TextButton.icon(
                     onPressed: () => _showImageSourceDialog(isBn),
-                    icon: const Icon(Icons.photo_camera, size: 16, color: AppColors.forestGreen),
+                    icon: const Icon(Icons.photo_camera,
+                        size: 16, color: AppColors.forestGreen),
                     label: Text(
                       isBn ? 'ছবি পরিবর্তন করুন' : 'Change Photo',
                       style: const TextStyle(
@@ -411,18 +416,23 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                 TextFormField(
                   controller: _nameController,
                   decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.person_outline_rounded, color: AppColors.forestGreen),
-                    hintText: isBn ? 'আপনার পুরো নাম লিখুন' : 'Enter your full name',
+                    prefixIcon: const Icon(Icons.person_outline_rounded,
+                        color: AppColors.forestGreen),
+                    hintText:
+                        isBn ? 'আপনার পুরো নাম লিখুন' : 'Enter your full name',
                     fillColor: Colors.white,
                     filled: true,
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 14),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
-                      borderSide: const BorderSide(color: AppColors.borderGreen),
+                      borderSide:
+                          const BorderSide(color: AppColors.borderGreen),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
-                      borderSide: const BorderSide(color: AppColors.borderGreen),
+                      borderSide:
+                          const BorderSide(color: AppColors.borderGreen),
                     ),
                   ),
                   validator: (value) {
@@ -438,7 +448,9 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
 
                 // 2. Email (Read-Only)
                 Text(
-                  isBn ? 'ইমেইল ঠিকানা (পরিবর্তনযোগ্য নয়)' : 'Email Address (Read-Only)',
+                  isBn
+                      ? 'ইমেইল ঠিকানা (পরিবর্তনযোগ্য নয়)'
+                      : 'Email Address (Read-Only)',
                   style: const TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
@@ -451,18 +463,23 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                   readOnly: true,
                   style: const TextStyle(color: AppColors.secondaryText),
                   decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.mail_outline_rounded, color: AppColors.secondaryText),
-                    suffixIcon: const Icon(Icons.lock_outline_rounded, size: 18, color: AppColors.secondaryText),
+                    prefixIcon: const Icon(Icons.mail_outline_rounded,
+                        color: AppColors.secondaryText),
+                    suffixIcon: const Icon(Icons.lock_outline_rounded,
+                        size: 18, color: AppColors.secondaryText),
                     fillColor: const Color(0xFFF0F4EF),
                     filled: true,
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 14),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
-                      borderSide: const BorderSide(color: AppColors.borderGreen),
+                      borderSide:
+                          const BorderSide(color: AppColors.borderGreen),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
-                      borderSide: const BorderSide(color: AppColors.borderGreen),
+                      borderSide:
+                          const BorderSide(color: AppColors.borderGreen),
                     ),
                   ),
                 ),
@@ -482,18 +499,22 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                   controller: _phoneController,
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.phone_outlined, color: AppColors.forestGreen),
+                    prefixIcon: const Icon(Icons.phone_outlined,
+                        color: AppColors.forestGreen),
                     hintText: isBn ? '০১XXXXXXXXX' : '01XXXXXXXXX',
                     fillColor: Colors.white,
                     filled: true,
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 14),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
-                      borderSide: const BorderSide(color: AppColors.borderGreen),
+                      borderSide:
+                          const BorderSide(color: AppColors.borderGreen),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
-                      borderSide: const BorderSide(color: AppColors.borderGreen),
+                      borderSide:
+                          const BorderSide(color: AppColors.borderGreen),
                     ),
                   ),
                 ),
@@ -514,18 +535,24 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                       ? _selectedDistrict
                       : null,
                   decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.location_on_outlined, color: AppColors.forestGreen),
-                    hintText: isBn ? 'আপনার জেলা নির্বাচন করুন' : 'Select your district',
+                    prefixIcon: const Icon(Icons.location_on_outlined,
+                        color: AppColors.forestGreen),
+                    hintText: isBn
+                        ? 'আপনার জেলা নির্বাচন করুন'
+                        : 'Select your district',
                     fillColor: Colors.white,
                     filled: true,
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 14),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
-                      borderSide: const BorderSide(color: AppColors.borderGreen),
+                      borderSide:
+                          const BorderSide(color: AppColors.borderGreen),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
-                      borderSide: const BorderSide(color: AppColors.borderGreen),
+                      borderSide:
+                          const BorderSide(color: AppColors.borderGreen),
                     ),
                   ),
                   items: _districts.map((d) {
@@ -542,7 +569,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
 
                 // Save Profile Button
                 ElevatedButton(
-                  onPressed: _isLoading ? null : () => _saveProfile(profile, isBn),
+                  onPressed:
+                      _isLoading ? null : () => _saveProfile(profile, isBn),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.forestGreen,
                     foregroundColor: Colors.white,
@@ -558,7 +586,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                           height: 22,
                           child: CircularProgressIndicator(
                             strokeWidth: 2.5,
-                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.white),
                           ),
                         )
                       : Text(

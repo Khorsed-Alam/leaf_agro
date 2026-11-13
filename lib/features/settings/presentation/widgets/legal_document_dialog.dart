@@ -34,9 +34,8 @@ class LegalDocumentDialog extends StatelessWidget {
         ? (isBn ? 'গোপনীয়তা নীতি' : 'Privacy Policy')
         : (isBn ? 'শর্তাবলী ও নীতিমালা' : 'Terms & Conditions');
 
-    final icon = isPrivacy
-        ? Icons.privacy_tip_outlined
-        : Icons.description_outlined;
+    final icon =
+        isPrivacy ? Icons.privacy_tip_outlined : Icons.description_outlined;
 
     final content = isPrivacy
         ? (isBn
@@ -128,4 +127,3 @@ class LegalDocumentDialog extends StatelessWidget {
     );
   }
 }
-

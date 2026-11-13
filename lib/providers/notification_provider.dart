@@ -74,7 +74,7 @@ final notificationsProvider =
 );
 
 /// Dynamic unread notifications count, synchronized with notificationsProvider
-final unreadNotificationsCountProvider = Provider<int>((ref) {
+final unreadNotificationsCountProvider = FutureProvider<int>((ref) async {
   final notifsAsync = ref.watch(notificationsProvider);
   return notifsAsync.value?.where((n) => !n.isRead).length ?? 0;
 });

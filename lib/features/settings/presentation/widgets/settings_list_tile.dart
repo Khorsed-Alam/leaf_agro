@@ -37,7 +37,8 @@ class SettingsListTile extends StatelessWidget {
           child: InkWell(
             onTap: onTap,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 13.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 13.0),
               child: Row(
                 children: [
                   // Icon Container
@@ -111,4 +112,3 @@ class SettingsListTile extends StatelessWidget {
     );
   }
 }
-

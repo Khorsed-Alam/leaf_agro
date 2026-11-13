@@ -149,7 +149,8 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog> {
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   labelText: isBn ? 'নতুন পাসওয়ার্ড' : 'New Password',
-                  prefixIcon: const Icon(Icons.lock_outline_rounded, size: 20, color: AppColors.forestGreen),
+                  prefixIcon: const Icon(Icons.lock_outline_rounded,
+                      size: 20, color: AppColors.forestGreen),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword
@@ -170,7 +171,8 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog> {
                     borderRadius: BorderRadius.circular(14),
                     borderSide: const BorderSide(color: AppColors.borderGreen),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                 ),
                 validator: (val) {
                   if (val == null || val.length < 8) {
@@ -188,8 +190,10 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog> {
                 controller: _confirmPasswordController,
                 obscureText: _obscureConfirmPassword,
                 decoration: InputDecoration(
-                  labelText: isBn ? 'পাসওয়ার্ড নিশ্চিত করুন' : 'Confirm Password',
-                  prefixIcon: const Icon(Icons.lock_outline_rounded, size: 20, color: AppColors.forestGreen),
+                  labelText:
+                      isBn ? 'পাসওয়ার্ড নিশ্চিত করুন' : 'Confirm Password',
+                  prefixIcon: const Icon(Icons.lock_outline_rounded,
+                      size: 20, color: AppColors.forestGreen),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscureConfirmPassword
@@ -199,7 +203,8 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog> {
                       color: AppColors.secondaryText,
                     ),
                     onPressed: () {
-                      setState(() => _obscureConfirmPassword = !_obscureConfirmPassword);
+                      setState(() =>
+                          _obscureConfirmPassword = !_obscureConfirmPassword);
                     },
                   ),
                   border: OutlineInputBorder(
@@ -210,7 +215,8 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog> {
                     borderRadius: BorderRadius.circular(14),
                     borderSide: const BorderSide(color: AppColors.borderGreen),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                 ),
                 validator: (val) {
                   if (val != _passwordController.text) {
@@ -276,4 +282,3 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog> {
     );
   }
 }
-

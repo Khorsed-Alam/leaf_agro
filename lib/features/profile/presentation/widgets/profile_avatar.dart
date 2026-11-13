@@ -106,4 +106,3 @@ class ProfileAvatar extends StatelessWidget {
     );
   }
 }
-

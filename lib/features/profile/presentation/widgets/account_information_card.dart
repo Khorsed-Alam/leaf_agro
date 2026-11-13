@@ -53,7 +53,11 @@ class AccountInformationCard extends StatelessWidget {
     };
 
     final bnMonth = bnMonths[date.month] ?? enMonth;
-    final bnYear = date.year.toString().split('').map((d) => enToBnDigits[d] ?? d).join('');
+    final bnYear = date.year
+        .toString()
+        .split('')
+        .map((d) => enToBnDigits[d] ?? d)
+        .join('');
     return '$bnMonth $bnYear থেকে সদস্য';
   }
 
@@ -147,4 +151,3 @@ class AccountInformationCard extends StatelessWidget {
     );
   }
 }
-

@@ -76,7 +76,9 @@ class DetectionActivityCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          isBn ? 'আপনার ফসলের স্বাস্থ্য কার্যক্রম' : 'Your Plant Health Activity',
+                          isBn
+                              ? 'আপনার ফসলের স্বাস্থ্য কার্যক্রম'
+                              : 'Your Plant Health Activity',
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w800,
@@ -103,7 +105,8 @@ class DetectionActivityCard extends StatelessWidget {
                       width: 54,
                       height: 54,
                       decoration: BoxDecoration(
-                        color: AppColors.secondaryContainer.withValues(alpha: 0.6),
+                        color:
+                            AppColors.secondaryContainer.withValues(alpha: 0.6),
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
                           color: AppColors.borderGreen,
@@ -154,7 +157,9 @@ class DetectionActivityCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            isBn ? 'মোট স্ক্যান ও শনাক্তকরণ' : 'Total Detections',
+                            isBn
+                                ? 'মোট স্ক্যান ও শনাক্তকরণ'
+                                : 'Total Detections',
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w700,

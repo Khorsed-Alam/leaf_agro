@@ -133,7 +133,8 @@ class ProfileScreen extends ConsumerWidget {
 
             // E. Account & Preferences Card
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               decoration: BoxDecoration(
                 color: AppColors.surfaceContainerLowest,
                 borderRadius: BorderRadius.circular(20),
@@ -197,6 +198,27 @@ class ProfileScreen extends ConsumerWidget {
                     subtitle: languageSubtitle,
                     onTap: () => LanguageSelectionSheet.show(context),
                   ),
+                  const Divider(
+                    height: 1,
+                    thickness: 0.8,
+                    indent: 56,
+                    endIndent: 16,
+                    color: Color(0xFFF0F4EF),
+                  ),
+
+                  // 4. Help & Support
+                  ProfileActionTile(
+                    icon: Icons.help_outline_rounded,
+                    title: isBn ? 'সহায়তা ও প্রশ্নোত্তর' : 'Help & FAQ',
+                    subtitle: isBn
+                        ? 'অ্যাপ ব্যবহারবিধি ও সাধারণ জিজ্ঞাসা'
+                        : 'Guides, photography tips, and FAQs',
+                    onTap: () {
+                      try {
+                        context.push('/help');
+                      } catch (_) {}
+                    },
+                  ),
                 ],
               ),
             ),
@@ -207,7 +229,8 @@ class ProfileScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: OutlinedButton.icon(
                 onPressed: () => LogoutConfirmationDialog.show(context, isBn),
-                icon: const Icon(Icons.logout_rounded, color: AppColors.error, size: 20),
+                icon: const Icon(Icons.logout_rounded,
+                    color: AppColors.error, size: 20),
                 label: Text(
                   isBn ? 'লগআউট' : 'Log Out',
                   style: const TextStyle(
@@ -217,7 +240,8 @@ class ProfileScreen extends ConsumerWidget {
                   ),
                 ),
                 style: OutlinedButton.styleFrom(
-                  backgroundColor: AppColors.errorContainer.withValues(alpha: 0.25),
+                  backgroundColor:
+                      AppColors.errorContainer.withValues(alpha: 0.25),
                   side: BorderSide(
                     color: AppColors.error.withValues(alpha: 0.35),
                     width: 1.2,

@@ -28,9 +28,11 @@ class LanguageSelectionSheet extends ConsumerWidget {
     // Sync preferred language to profile row in Supabase if profile is available
     try {
       final currentProfile = ref.read(profileProvider).value;
-      if (currentProfile != null && currentProfile.preferredLanguage != languageCode) {
+      if (currentProfile != null &&
+          currentProfile.preferredLanguage != languageCode) {
         final userService = ref.read(userServiceProvider);
-        final updated = currentProfile.copyWith(preferredLanguage: languageCode);
+        final updated =
+            currentProfile.copyWith(preferredLanguage: languageCode);
         await userService.updateProfile(updated);
         ref.invalidate(profileProvider);
       }

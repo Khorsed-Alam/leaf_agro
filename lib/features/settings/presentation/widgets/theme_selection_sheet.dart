@@ -76,7 +76,9 @@ class ThemeSelectionSheet extends ConsumerWidget {
             _ThemeOptionTile(
               icon: Icons.brightness_auto_rounded,
               title: isBn ? 'ডিভাইস ডিফল্ট' : 'System Default',
-              subtitle: isBn ? 'ফোনের সেটিংস অনুযায়ী পরিবর্তিত হবে' : 'Match your device settings',
+              subtitle: isBn
+                  ? 'ফোনের সেটিংস অনুযায়ী পরিবর্তিত হবে'
+                  : 'Match your device settings',
               isSelected: currentTheme == 'system',
               onTap: () {
                 ref.read(settingsProvider.notifier).setThemeMode('system');
@@ -89,7 +91,9 @@ class ThemeSelectionSheet extends ConsumerWidget {
             _ThemeOptionTile(
               icon: Icons.light_mode_rounded,
               title: isBn ? 'লাইট মোড' : 'Light Mode',
-              subtitle: isBn ? 'দিনের বেলার জন্য উজ্জ্বল ব্যাকগ্রাউন্ড' : 'Bright and clear display',
+              subtitle: isBn
+                  ? 'দিনের বেলার জন্য উজ্জ্বল ব্যাকগ্রাউন্ড'
+                  : 'Bright and clear display',
               isSelected: currentTheme == 'light',
               onTap: () {
                 ref.read(settingsProvider.notifier).setThemeMode('light');
@@ -102,7 +106,9 @@ class ThemeSelectionSheet extends ConsumerWidget {
             _ThemeOptionTile(
               icon: Icons.dark_mode_rounded,
               title: isBn ? 'ডার্ক মোড' : 'Dark Mode',
-              subtitle: isBn ? 'রাতের বেলায় চোখের স্বস্তিদায়ক ব্যাকগ্রাউন্ড' : 'Reduced glare in low-light environments',
+              subtitle: isBn
+                  ? 'রাতের বেলায় চোখের স্বস্তিদায়ক ব্যাকগ্রাউন্ড'
+                  : 'Reduced glare in low-light environments',
               isSelected: currentTheme == 'dark',
               onTap: () {
                 ref.read(settingsProvider.notifier).setThemeMode('dark');
@@ -183,4 +189,3 @@ class _ThemeOptionTile extends StatelessWidget {
     );
   }
 }
-

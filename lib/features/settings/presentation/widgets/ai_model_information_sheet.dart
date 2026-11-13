@@ -58,7 +58,8 @@ class AiModelInformationSheet extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: AppColors.secondaryContainer.withValues(alpha: 0.6),
+                      color:
+                          AppColors.secondaryContainer.withValues(alpha: 0.6),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: const Icon(
@@ -73,7 +74,9 @@ class AiModelInformationSheet extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          isBn ? 'অফলাইন এআই মডেল তথ্য' : 'Offline AI Model Information',
+                          isBn
+                              ? 'অফলাইন এআই মডেল তথ্য'
+                              : 'Offline AI Model Information',
                           style: const TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w800,
@@ -81,7 +84,9 @@ class AiModelInformationSheet extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          isBn ? 'অন-ডিভাইস নিউরাল নেটওয়ার্ক' : 'On-Device Neural Network Engine',
+                          isBn
+                              ? 'অন-ডিভাইস নিউরাল নেটওয়ার্ক'
+                              : 'On-Device Neural Network Engine',
                           style: const TextStyle(
                             fontSize: 12,
                             color: AppColors.secondaryText,
@@ -101,7 +106,8 @@ class AiModelInformationSheet extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(color: AppColors.borderGreen),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Column(
                   children: [
                     _buildSpecRow(
@@ -140,7 +146,8 @@ class AiModelInformationSheet extends StatelessWidget {
                     ),
                     const Divider(color: Color(0xFFE2EDE4), height: 1),
                     _buildSpecRow(
-                      label: isBn ? 'রোগ ও স্বাস্থ্য ক্লাস' : 'Pathology Classes',
+                      label:
+                          isBn ? 'রোগ ও স্বাস্থ্য ক্লাস' : 'Pathology Classes',
                       value: isBn
                           ? '১৯টি রোগ ও সুস্থ পাতার ক্যাটাগরি'
                           : '19 verified disease & healthy classes',
@@ -232,7 +239,9 @@ class AiModelInformationSheet extends StatelessWidget {
               style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w700,
-                color: isHighlighted ? AppColors.forestGreen : AppColors.primaryText,
+                color: isHighlighted
+                    ? AppColors.forestGreen
+                    : AppColors.primaryText,
               ),
             ),
           ),
@@ -241,4 +250,3 @@ class AiModelInformationSheet extends StatelessWidget {
     );
   }
 }
-

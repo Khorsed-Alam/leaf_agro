@@ -55,4 +55,3 @@ class SettingsCardGroup extends StatelessWidget {
     );
   }
 }
-
