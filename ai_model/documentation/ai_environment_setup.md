@@ -171,3 +171,4 @@ If you work with Jupyter notebooks in VS Code or JupyterLab:
 python -m ipykernel install --user --name agricare-ai --display-name "AgriCare AI (.venv)"
 ```
 In Jupyter or VS Code, select the kernel named **"AgriCare AI (.venv)"** to run notebooks using your isolated virtual environment.
+

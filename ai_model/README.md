@@ -88,3 +88,4 @@ All dataset loaders enforce the official MobileNetV2 preprocessing contract:
 * **Data Type:** `tf.float32`
 * **Pixel Range:** $[0.0, 255.0]$ (Feeding into internal model `layers.Rescaling(1/127.5, offset=-1.0)`)
 * **Augmentation:** Applied **strictly** during training. Validation and test streams serve unaugmented, authentic leaf images.
+

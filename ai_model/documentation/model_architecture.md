@@ -190,3 +190,4 @@ In **Phase 38 (Model Training & Fine-Tuning)**:
 1. Stage A will train the classifier head using `sparse_categorical_crossentropy` and early stopping on validation loss.
 2. Stage B will load the best Stage A checkpoint, unfreeze layers $\ge 100$, and fine-tune with `lr = 1e-5`.
 3. Model checkpoints will be saved to `ai_model/models/best_model.keras`.
+

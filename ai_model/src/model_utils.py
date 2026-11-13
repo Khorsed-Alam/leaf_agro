@@ -10,6 +10,7 @@ Responsibilities:
 - Generating reports/architecture_validation.json
 """
 
+import datetime
 import json
 import os
 import shutil
@@ -236,7 +237,7 @@ def run_architecture_validation(
     I. Model summary test
     """
     results: Dict[str, Any] = {
-        "timestamp": tf.timestamp().numpy().tolist(),
+        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "phase": "Phase 37 — MobileNetV2 Transfer Learning Model Architecture",
         "tests": {},
         "summary": {

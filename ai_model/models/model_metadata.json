@@ -2,15 +2,30 @@
   "model_name": "AgriCare AI Leaf Disease Detector",
   "model_version": "1.0.0",
   "architecture": "MobileNetV2",
+  "selected_stage": "Stage B (Fine-Tuning)",
+  "selected_checkpoint": "stage_b_best.keras",
+  "best_validation_loss": 0.8588,
+  "best_validation_accuracy": 0.8571,
   "input_width": 224,
   "input_height": 224,
   "input_channels": 3,
   "color_order": "RGB",
-  "input_normalization": "mobilenet_v2_minus1_to_plus1",
+  "input_dtype": "float32",
+  "input_pixel_range": [
+    0.0,
+    255.0
+  ],
+  "input_normalization": "mobilenet_v2_internal_rescaling",
   "output_activation": "softmax",
   "labels_file": "labels.json",
-  "supported_crops": ["Rice", "Potato", "Tomato", "Mango", "Jute"],
+  "supported_crops": [
+    "Rice",
+    "Potato",
+    "Tomato",
+    "Mango",
+    "Jute"
+  ],
   "num_classes": 19,
-  "target_platform": "Android (TensorFlow Lite)"
+  "target_platform": "Android (TensorFlow Lite)",
+  "training_timestamp": "2026-11-13T15:52:01.520638+00:00"
 }
-

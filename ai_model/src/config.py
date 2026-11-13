@@ -95,7 +95,7 @@ AUG_TRANSLATION_WIDTH = 0.05    # +/- 5% horizontal shift
 AUG_BRIGHTNESS_FACTOR = 0.10    # +/- 10% brightness variation
 AUG_CONTRAST_FACTOR = 0.10      # +/- 10% contrast variation
 
-# Model Hyperparameters & Architecture Configuration (Phase 37)
+# Model Hyperparameters & Architecture Configuration (Phase 37 & 38)
 BACKBONE = "MobileNetV2"
 WEIGHTS = "imagenet"
 DROPOUT_RATE = 0.3
@@ -104,9 +104,16 @@ INITIAL_LEARNING_RATE = LEARNING_RATE
 FINE_TUNE_LEARNING_RATE = 0.00001
 FINE_TUNE_AT_LAYER = 100
 
-INITIAL_EPOCHS = 20
-FINE_TUNE_EPOCHS = 15
-TOTAL_EPOCHS = INITIAL_EPOCHS + FINE_TUNE_EPOCHS
+STAGE_A_EPOCHS = int(os.environ.get("AGRICARE_STAGE_A_EPOCHS", 15))
+STAGE_B_EPOCHS = int(os.environ.get("AGRICARE_STAGE_B_EPOCHS", 10))
+INITIAL_EPOCHS = STAGE_A_EPOCHS
+FINE_TUNE_EPOCHS = STAGE_B_EPOCHS
+TOTAL_EPOCHS = STAGE_A_EPOCHS + STAGE_B_EPOCHS
+
+EARLY_STOPPING_PATIENCE = 5
+REDUCE_LR_PATIENCE = 3
+REDUCE_LR_FACTOR = 0.5
+MIN_LR = 1e-6
 
 # Model File Names & Artifact Paths
 KERAS_MODEL_NAME = "best_model.keras"
@@ -119,6 +126,24 @@ MODEL_METADATA_PATH = MODELS_DIR / "model_metadata.json"
 MODEL_ARCHITECTURE_PATH = MODELS_DIR / "model_architecture.json"
 ARCHITECTURE_VALIDATION_PATH = REPORTS_DIR / "architecture_validation.json"
 MODEL_SUMMARY_PATH = REPORTS_DIR / "model_summary.txt"
+
+# Phase 38 Training Artifacts & Paths
+CHECKPOINTS_DIR = MODELS_DIR / "checkpoints"
+STAGE_A_CHECKPOINT_PATH = CHECKPOINTS_DIR / "stage_a_best.keras"
+STAGE_B_CHECKPOINT_PATH = CHECKPOINTS_DIR / "stage_b_best.keras"
+BEST_MODEL_PATH = MODELS_DIR / KERAS_MODEL_NAME
+
+TRAINING_HISTORY_PATH = REPORTS_DIR / "training_history.csv"
+STAGE_A_HISTORY_PATH = REPORTS_DIR / "stage_a_history.csv"
+STAGE_B_HISTORY_PATH = REPORTS_DIR / "stage_b_history.csv"
+TRAINING_CONFIG_PATH = REPORTS_DIR / "training_config.json"
+TRAINING_REPORT_PATH = REPORTS_DIR / "training_report.md"
+
+PLOTS_DIR = REPORTS_DIR / "plots"
+ACCURACY_PLOT_PATH = PLOTS_DIR / "accuracy.png"
+LOSS_PLOT_PATH = PLOTS_DIR / "loss.png"
+LR_PLOT_PATH = PLOTS_DIR / "learning_rate.png"
+TENSORBOARD_LOGS_DIR = BASE_DIR / "logs" / "tensorboard"
 
 # Verified Default Class List (Fallback baseline matching Phase 32 standardization)
 DEFAULT_CLASSES: List[str] = [

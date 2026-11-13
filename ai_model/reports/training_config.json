@@ -1,0 +1,22 @@
+{
+  "pipeline_name": "AgriCare AI Two-Stage Transfer Learning",
+  "timestamp": "2026-11-13T15:52:02.214902+00:00",
+  "total_duration_sec": 39.08,
+  "batch_size": 16,
+  "random_seed": 42,
+  "num_classes": 19,
+  "stage_a_configured_epochs": 15,
+  "stage_b_configured_epochs": 10,
+  "stage_a_actual_epochs": 15,
+  "stage_b_actual_epochs": 10,
+  "stage_a_learning_rate": 0.001,
+  "stage_b_learning_rate": 1e-05,
+  "fine_tune_at_layer": 100,
+  "optimizer": "Adam",
+  "loss": "sparse_categorical_crossentropy",
+  "selected_stage": "Stage B (Fine-Tuning)",
+  "best_val_loss": 0.8588,
+  "best_val_accuracy": 0.8571,
+  "active_classes_count": 9,
+  "zero_sample_classes_count": 10
+}

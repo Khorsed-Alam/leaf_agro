@@ -184,10 +184,16 @@ def configure_fine_tuning(
     4. Recompiles with lower learning rate (e.g. 1e-5).
     """
     if base_model is None:
-        if hasattr(model, "base_model"):
+        if hasattr(model, "base_model") and model.base_model is not None:
             base_model = model.base_model
         else:
-            base_model = model.get_layer("mobilenetv2_backbone")
+            # Search model layers for the MobileNetV2 Functional backbone
+            for l in model.layers:
+                if "mobilenetv2" in l.name.lower() and "rescaling" not in l.name.lower():
+                    base_model = l
+                    break
+            if base_model is None:
+                raise ValueError("Could not find MobileNetV2 backbone layer in model.")
 
     base_model.trainable = True
 
