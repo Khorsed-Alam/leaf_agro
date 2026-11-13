@@ -74,3 +74,4 @@ graph TB
 - **StorageService**: Coordinates local image caching in application documents directory (`path_provider`) and initiates background uploads to Supabase storage bucket `plant-images`.
 - **ScanRepo (HistoryRepository)**: Manages dual-write logic: saves detection records immediately to local SQLite for instant retrieval, and synchronizes asynchronously with Supabase `disease_scans` table.
 - **ObsRepo (ObservationRepository)**: Tracks subjective recovery milestones in `plant_observations` without altering original diagnostic records.
+

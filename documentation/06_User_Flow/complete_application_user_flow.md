@@ -3,6 +3,11 @@
 ## 1. Master Application Flowchart
 The following diagram details the end-to-end navigational paths, decision forks, and screen transitions across all 31 screens in AgriCare AI.
 
+![AgriCare AI Master Flowchart Screens 00 to 30](../images/agricare_ai_user_flow_00_30.png)
+
+### Architectural Flow Graph
+
+
 ```mermaid
 graph TD
     %% Module 1: Initialization & Authentication
@@ -160,3 +165,4 @@ graph TD
 | **28** | Help & FAQ Screen | `/help` | 4 quick photo guides, 12 searchable FAQs, support options. |
 | **29** | Feedback Screen | `/feedback` | 5-star rating, category picker, character-counted comments. |
 | **30** | About Application Screen | `/about` | Academic capstone details, tech stack, disclaimers. |
+

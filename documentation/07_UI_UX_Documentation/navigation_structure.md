@@ -3,6 +3,8 @@
 ## 1. Declarative Routing Architecture
 AgriCare AI utilizes `go_router` 14.x for centralized declarative routing. All screen paths, path parameters (`:id`), and query parameters (`?scanId=...`) are mapped directly in `lib/core/router/app_router.dart`.
 
+![AgriCare AI Complete Flowchart](../images/agricare_ai_user_flow_00_30.png)
+
 ```mermaid
 graph TD
     ROOT[/splash] --> ONB[/onboarding]
@@ -59,3 +61,4 @@ graph TD
   - `/search?q=...`: Optional search query string.
 - **Deep Linking**: All routes are structured to support Android deep links (e.g., `agricare://leafagro/diseases/101`).
 - **Error Page**: Unknown routes are caught by GoRouter's `errorBuilder` and redirected gracefully to `/home`.
+

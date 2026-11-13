@@ -10,3 +10,4 @@
 | **"App says 'Storage full' when taking photos"** | Your phone has insufficient free disk storage. | Go to Settings > Storage & Cache inside the app, and tap "Clear Temporary Cache" to free up storage space. |
 | **"Bengali characters appear broken or distorted"** | Missing Unicode Bengali rendering on very old Android versions. | Ensure the app is updated to version 1.0.0+1, which bundles the Google Fonts `Noto Sans Bengali` font directly in the application. |
 | **"Forgot password email didn't arrive"** | Email sent to spam folder or email typed incorrectly. | Check your Spam/Junk folder in your email app. Ensure you entered the exact email address used during registration. |
+

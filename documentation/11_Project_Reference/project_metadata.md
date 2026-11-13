@@ -16,3 +16,4 @@ Verified against `lib/core/config/academic_project_config.dart`:
 | **Primary Deployment** | Android APK / Android App Bundle (`.aab`) |
 | **Supported Languages**| English (`en`), Bengali (`bn`) |
 | **Repository Root** | `F:\leaf_agro` |
+

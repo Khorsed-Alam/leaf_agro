@@ -19,3 +19,4 @@ Unit tests in AgriCare AI isolate pure Dart logic and business rules from the Fl
    - `CropRepository`: Validates local seed catalog extraction when offline.
    - `ObservationRepository`: Validates condition label enum constraints (`better`, `worse`, etc.).
    - `FeedbackRepository`: Validates payload construction and rating boundaries ($1 \le \text{rating} \le 5$).
+

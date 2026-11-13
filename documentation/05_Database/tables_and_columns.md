@@ -67,3 +67,4 @@ Longitudinal recovery tracking entries for Screen 21.
 - `image_path` (TEXT, NULLABLE): Optional follow-up photo path.
 - `next_inspection_date` (TIMESTAMPTZ, NULLABLE): Scheduled follow-up inspection date.
 - `created_at` / `updated_at` (TIMESTAMPTZ, NOT NULL, DEFAULT now()).
+

@@ -111,9 +111,18 @@ documentation/
 
 ---
 
+## Master Application Flowchart (Screens 00 to 30)
+
+![AgriCare AI Master Flowchart](images/agricare_ai_user_flow_00_30.png)
+
+*The complete user flow diagram covers all 31 operational screens across 7 core functional modules from initialization to post-recovery follow-ups and support.*
+
+---
+
 ## Key Highlights
 - **100% Verified Ground Truth**: Zero fabricated metrics or unsupported academic affiliations.
 - **Complete Screen Coverage**: Documents all 31 screens from Screen 00 (Splash Resolver) through Screen 30 (About Application).
 - **Offline ML Pipeline**: Fully documents on-device MobileNetV2 $224 \times 224$ TensorFlow Lite inference.
 - **Enterprise Relational Backend**: Full documentation of Supabase PostgreSQL schema, Row Level Security, indexes, triggers, and migrations 001–006.
 - **250+ Passing Tests**: 100% test pass rate across the comprehensive automated test suite.
+

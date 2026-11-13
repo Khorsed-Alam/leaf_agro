@@ -67,3 +67,4 @@ sequenceDiagram
 - **Headers**: `Authorization: Bearer <USER_JWT>`
 - **Success Response (204 No Content)**
 - **Note**: Triggers cascading deletion of associated `treatment_history` and `plant_observations`.
+

@@ -97,3 +97,4 @@ class TFLiteService {
 - **Inference Time**: 80ms to 140ms on standard ARM64 devices (e.g., MediaTek Helio G85, Qualcomm Snapdragon 680).
 - **RAM Overhead**: ~18MB allocated during peak tensor execution.
 - **Model Storage Footprint**: ~14MB uncompressed in assets.
+

@@ -64,3 +64,4 @@ graph TD
 - `lib/core/theme/app_theme.dart`: Centralized theme tokens, seed colors, typography, card shapes.
 - `lib/core/localization/`: Internationalization service supporting English (`en`) and Bengali (`bn`).
 - `lib/core/services/tflite_service.dart`: Low-level image tensor manipulation and native C++ TFLite model execution.
+

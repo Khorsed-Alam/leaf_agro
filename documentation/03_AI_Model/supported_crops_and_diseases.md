@@ -119,3 +119,4 @@ graph TD
     - *Symptoms*: Sunken, reddish-brown necrotic spots on leaf margins and veins that tear easily.
 19. **`Jute___healthy` (সুস্থ পাটের পাতা)**
     - Serrated, bright green ovate leaves without blemishes.
+

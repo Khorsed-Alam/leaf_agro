@@ -41,3 +41,4 @@ sequenceDiagram
 - **No Automatic Recovery**: Screen 21 never assumes or displays that a plant has recovered purely due to elapsed days.
 - **Independent Record**: Observations are stored in `plant_observations` without altering the historical baseline in `disease_scans`.
 - **Re-Scan CTA**: A prominent button on both Screen 21 and Screen 23 allows farmers to initiate a genuine new scan to verify plant health.
+

@@ -37,3 +37,4 @@ AgriCare AI only displays authentic notifications triggered by real application 
 - Observation checkpoint reminders for treated plants.
 - Account updates and verified agronomic alerts.
 Fabricated or simulated marketing notifications are strictly prohibited.
+

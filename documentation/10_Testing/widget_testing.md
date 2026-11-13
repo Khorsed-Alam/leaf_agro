@@ -18,3 +18,4 @@ The test suite includes dedicated widget test suites across the application:
 - `test/global_search_screen_test.dart`: Tests fuzzy keyword querying and result cards.
 - `test/treatment_screen_test.dart`: Tests tabbed cultural, organic, and chemical remedy layouts in English and Bangla.
 - `test/solutions_screen_test.dart`: Verifies registered product tables and active ingredient listings.
+

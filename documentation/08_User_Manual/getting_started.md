@@ -16,3 +16,4 @@ When you open AgriCare AI for the first time:
 2. **Onboarding Carousel (Screen 02)**: You can swipe through three helpful introduction screens explaining how to scan leaves, apply remedies, and track recovery.
 3. **Choose Language**: You can select English or বাংলা immediately or at any time in Settings.
 4. **Login or Register**: You can create a new account or log in with your existing credentials.
+

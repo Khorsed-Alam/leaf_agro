@@ -25,3 +25,4 @@ Before submitting a pull request (PR):
 2. Run `flutter test` and confirm **all 250+ automated tests pass**.
 3. Verify dual-language compatibility in both English and Bengali.
 4. Update or add relevant documentation in `documentation/`.
+

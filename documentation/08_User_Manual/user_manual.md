@@ -34,3 +34,4 @@ graph LR
 - **Scientifically Verified Remedies**: Step-by-step cultural sanitation, biological treatments, and exact chemical dosages.
 - **Observation Tracking**: Record how your plants respond to treatment over time.
 - **Dual Language**: Easily switch between English and বাংলা at any time.
+

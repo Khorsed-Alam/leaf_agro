@@ -44,3 +44,4 @@
 - **Screen 28 (Help & FAQ)**: 4 visual photography guides ("Clear Leaf Photos", "Understanding Confidence", "Offline Mode", "Safe Treatment"), 12 categorized searchable FAQs, contact support bottom sheet.
 - **Screen 29 (Feedback)**: 5-star interactive rating, 5 feedback categories, 2,000-character multiline text area with counter, optional photo picker, safe submission.
 - **Screen 30 (About Application)**: University final-year capstone banner, Department of CSE & Faculty of Engineering metadata, verified tech stack, 5 model-trained crops list, in-app Privacy Policy & Terms viewer, academic disclaimer.
+

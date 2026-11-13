@@ -72,3 +72,4 @@ graph LR
 - **Endpoint**: `GET /rest/v1/crops?id=eq.{crop_id}&select=*,disease_catalog(*)`
 - **Headers**: `apikey: <ANON_KEY>`
 - **Success Response (200 OK)**: Returns the selected crop combined with its nested array of verified diseases.
+

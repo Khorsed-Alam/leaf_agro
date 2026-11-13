@@ -64,3 +64,4 @@ graph TD
 - **Project Stage**: Final-Year Academic Capstone Project (Undergraduate Thesis)
 - **Model Version**: 1.0.0
 - **App Version**: 1.0.0+1
+

@@ -23,3 +23,4 @@ graph LR
    - Logging an observation ('Better') and confirming the entry appends to the timeline.
 3. **Dynamic Locale Switching**:
    - Selecting Bangla on `LanguageScreen` and verifying that all dashboard widgets, navigation titles, and diagnosis results switch to Bengali script without restarting the app.
+

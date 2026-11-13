@@ -83,3 +83,4 @@ sequenceDiagram
 - **Endpoint**: `POST /auth/v1/logout`
 - **Headers**: `Authorization: Bearer <TOKEN>`
 - **Success Response (204 No Content)**
+

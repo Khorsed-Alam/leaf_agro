@@ -46,3 +46,4 @@ graph TD
 ### E. Feedback & Notifications
 - **Feedback Insert**: `auth.uid() = user_id`
 - **Notifications Read / Update**: `auth.uid() = user_id`
+

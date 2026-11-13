@@ -24,3 +24,4 @@ graph TD
 To support rural agricultural reality:
 1. **Local SQLite Cache**: Stores local copies of the crop catalog, 19 disease profiles, local treatment guidelines, and the farmer's recent scans.
 2. **Cloud PostgreSQL**: Acts as the authoritative source of truth when internet connectivity is active, synchronizing historical scans and backup observations.
+

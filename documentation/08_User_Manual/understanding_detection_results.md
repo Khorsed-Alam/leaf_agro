@@ -26,3 +26,4 @@ graph TD
 - **Low Severity**: Early localized spots. Cultural care and bio-fungicides can quickly stop the infection.
 - **Moderate Severity**: Lesions are spreading across several leaves. Apply targeted organic or chemical treatments promptly.
 - **High / Critical Severity**: Extensive blight or leaf withering. Urgent chemical intervention is recommended to prevent field-wide yield collapse.
+

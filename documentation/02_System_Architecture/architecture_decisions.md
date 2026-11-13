@@ -46,3 +46,4 @@
 - **Decision**: Implement Screen 21 (Recovery & Follow-up) as an observational journal (`plant_observations`) with an explicit "Scan Again" CTA, forbidding any automated calculation of disease eradication.
 - **Consequences**:
   - *Positive*: Upholds academic integrity; protects farmers from premature cessation of necessary plant care.
+

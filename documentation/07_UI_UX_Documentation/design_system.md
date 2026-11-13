@@ -41,3 +41,4 @@ Typography is calibrated for dual-language legibility:
 - **Corner Radius**: Standardized 16 dp for cards, 12 dp for text fields, and 28 dp for pill buttons.
 - **Elevation**: Subtle Material 3 tonal elevation (0 to 3 dp) with soft ambient drop shadows.
 - **Touch Targets**: Minimum 48x48 dp touch target boundary across all interactive elements.
+

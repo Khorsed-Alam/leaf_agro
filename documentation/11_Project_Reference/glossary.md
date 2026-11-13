@@ -20,3 +20,4 @@
 - **Active Ingredient (a.i.)**: The specific chemical or biological compound in a commercial pesticide product that kills or inhibits the target pathogen (e.g., Mancozeb, Copper Oxychloride).
 - **Pre-Harvest Interval (PHI)**: The mandatory minimum number of days that must elapse between the last pesticide application and the harvesting of crops for consumption.
 - **Integrated Pest Management (IPM)**: An ecosystem-based agricultural strategy that combines cultural, biological, and targeted chemical tactics to manage plant pests and diseases sustainably.
+

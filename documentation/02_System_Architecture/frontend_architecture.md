@@ -88,3 +88,4 @@ The app incorporates Google Fonts `Noto Sans Bengali` to guarantee typographic a
 - Real-time language switching without restart via `settingsProvider`.
 - Automatic numerals translation (e.g., converting ASCII digits `0-9` to Bengali numerals `০-৯` where appropriate).
 - High visual contrast compliant with WCAG 2.1 AA accessibility guidelines.
+

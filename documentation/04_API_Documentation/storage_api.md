@@ -46,3 +46,4 @@ Images are publicly accessible via the CDN URL pattern:
 
 ### C. Safe Upload & Orphan Cleanup Pattern
 The application implements an orphan cleanup pattern: if database record creation fails after an image is uploaded to the storage bucket, the newly uploaded image is automatically deleted from storage to prevent orphaned disk leaks.
+

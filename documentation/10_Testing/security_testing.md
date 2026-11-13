@@ -23,3 +23,4 @@ graph TD
    - Sensitive session tokens in `SharedPreferences` are cleared completely upon tapping "Log Out".
 4. **Input Sanitization**:
    - User inputs in search fields, feedback forms, and recovery notes are sanitized against SQL injection and cross-site scripting (XSS).
+

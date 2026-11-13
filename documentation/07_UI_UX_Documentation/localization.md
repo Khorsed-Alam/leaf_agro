@@ -36,3 +36,4 @@ graph TD
 | `scan_again` | Scan Plant Again | পুনরায় পাতা স্ক্যান করুন |
 | `condition_better` | Condition Improved | অবস্থার উন্নতি হয়েছে |
 | `condition_worse` | Condition Worsened | অবস্থার অবনতি হয়েছে |
+

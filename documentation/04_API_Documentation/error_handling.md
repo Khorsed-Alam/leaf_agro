@@ -37,3 +37,4 @@ graph TD
 | `42501` (RLS Violation) | 403 | `PermissionDeniedException`| "You do not have permission to access this record." | "এই তথ্য দেখার অনুমতি আপনার নেই।" |
 | `SocketException` | N/A | `OfflineException` | "You are offline. Results saved locally." | "আপনি অফলাইনে আছেন। ফলাফল ডিভাইসে সংরক্ষিত হয়েছে।" |
 | `storage_quota_exceeded`| 413 | `FileTooLargeException` | "Image size exceeds 10MB limit." | "ছবির সাইজ ১০ মেগাবাইটের বেশি হতে পারবে না।" |
+

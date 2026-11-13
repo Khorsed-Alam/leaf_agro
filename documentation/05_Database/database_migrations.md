@@ -35,3 +35,4 @@ supabase db push
 supabase migration up
 ```
 All migration files are written to be idempotent using `IF NOT EXISTS`, `IF EXISTS`, and safe constraint drops.
+

@@ -27,3 +27,4 @@ Ensure the following three buckets are created and set to **Public**:
 - `farmer-avatars` (Max size: 5MB)
 - `disease-assets` (Max size: 10MB)
 Verify that the storage policies in `004_storage_policies.sql` are active.
+

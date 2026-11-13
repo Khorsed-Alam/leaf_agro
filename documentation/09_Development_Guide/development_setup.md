@@ -32,3 +32,4 @@ To set up and contribute to the AgriCare AI codebase, install:
    ```bash
    flutter test
    ```
+

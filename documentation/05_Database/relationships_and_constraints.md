@@ -41,3 +41,4 @@ graph TD
 - `recommendations_type_check`: `recommendation_type IN ('treatment', 'prevention', 'care')`
 - `plant_observations_condition_check`: `condition_label IN ('better', 'no_change', 'worse', 'not_sure')`
 - `feedback_rating_check`: `rating BETWEEN 1 AND 5`
+

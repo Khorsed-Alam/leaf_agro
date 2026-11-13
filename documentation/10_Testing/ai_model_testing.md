@@ -17,3 +17,4 @@ The on-device machine learning pipeline undergoes dedicated automated testing to
    - Verifies that the sum of output class probabilities equals $1.0 \pm 0.001$.
 4. **Offline Resilience**:
    - Asserts that inference completes without throwing network exceptions when cellular and Wi-Fi adapters are disabled.
+

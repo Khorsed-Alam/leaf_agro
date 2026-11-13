@@ -32,3 +32,4 @@ graph TD
    - Farm work can make smartphone camera lenses dusty or smudged. Wipe your camera lens clean before snapping photos.
 5. **Distance**:
    - Keep your camera between 15 and 25 cm away. Do not hold the phone so close that the lens cannot focus.
+

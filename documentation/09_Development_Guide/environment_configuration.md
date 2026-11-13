@@ -23,3 +23,4 @@ flutter run \
 ```
 
 Or configure a local `.env` configuration file loaded via `flutter_dotenv` during local staging builds.
+

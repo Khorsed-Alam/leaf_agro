@@ -25,3 +25,4 @@ Your feedback helps agricultural researchers improve the application:
 4. Type your observations or suggestions in the text area (up to 2,000 characters).
 5. Optionally attach a photo of the affected plant.
 6. Tap **"Submit Feedback"**.
+

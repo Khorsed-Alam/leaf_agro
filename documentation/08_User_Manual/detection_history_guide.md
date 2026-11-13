@@ -33,3 +33,4 @@ After applying remedies, monitoring your plant's progress is simple:
 4. Type your observation notes (e.g., "Sprayed Mancozeb on Monday. No new spots observed.").
 5. Tap **"Save Checkpoint"**.
 6. When you are ready for a definitive check, tap **"Scan Plant Again"** to take a fresh photo.
+

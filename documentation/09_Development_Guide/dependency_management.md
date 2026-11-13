@@ -28,3 +28,4 @@ All dependencies are explicitly locked in `pubspec.yaml` and verified to run wit
 - `build_runner`: `^2.4.12` (Code generation orchestrator).
 - `freezed`: `^2.5.7` (Freezed code generator).
 - `json_serializable`: `^6.8.0` (JSON serializer code generator).
+

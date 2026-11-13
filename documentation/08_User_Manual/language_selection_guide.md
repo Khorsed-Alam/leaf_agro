@@ -17,3 +17,4 @@ graph LR
    - **বাংলা** (Standard Bengali formatted with authentic Noto Sans Bengali typography).
 4. Tap **"Save"** or **"সংরক্ষণ করুন"**.
 5. The application instantly refreshes its layout and text without needing to restart.
+

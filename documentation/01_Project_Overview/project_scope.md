@@ -64,3 +64,4 @@ To ensure academic honesty and technical viability, the following capabilities a
 - **Automated Chemical Dispensing**: Hardware IoT integrations for automated sprayers or drone piloting.
 - **Automated Recovery Guarantees**: Inferring plant cure based purely on elapsed calendar time without an active visual re-scan.
 - **Commercial Payment Gateway**: Processing direct online sales of agrochemicals or fertilizers within the application.
+

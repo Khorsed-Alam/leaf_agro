@@ -43,3 +43,4 @@ Prefer: return=representation
 | **Notifications API** | `/rest/v1/notifications` | `GET`, `PATCH` | Read notification alerts and mark records as read. |
 | **Feedback API** | `/rest/v1/feedback` | `POST` | Submit 5-star user ratings and feedback messages. |
 | **Storage API** | `/storage/v1/object` | `POST /plant-images`, `GET /plant-images` | Store and retrieve leaf photographs in encrypted cloud buckets. |
+

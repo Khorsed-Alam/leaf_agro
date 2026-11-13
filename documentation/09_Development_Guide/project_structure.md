@@ -46,3 +46,4 @@ leaf_agro/
 ├── test/                      # Comprehensive test suite (Unit, Widget, Riverpod tests)
 └── pubspec.yaml               # Project dependencies and asset declarations
 ```
+

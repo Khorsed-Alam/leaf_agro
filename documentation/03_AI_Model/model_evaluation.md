@@ -33,3 +33,4 @@ Foliar computer vision models encounter recognizable classification ambiguities 
 - **Rice Brown Spot vs. Bacterial Leaf Blight**: Bacterial blight causes longitudinal marginal striping, whereas brown spot manifests as scattered oval lesions with yellow halos.
 
 When model output confidence falls between $0.50$ and $0.70$, the UI prompts the farmer with a gentle recommendation to capture another photo with cleaner focus or closer framing.
+

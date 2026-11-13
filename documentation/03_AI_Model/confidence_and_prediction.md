@@ -39,3 +39,4 @@ Severity is evaluated by combining model confidence, predicted pathology charact
 - **Low Severity**: Early localized spots affecting less than 10% of leaf surface. Cultural prevention and organic remedies prioritized.
 - **Moderate Severity**: Expanding lesions across 10% to 35% of leaf area. Integrated pest management (IPM) combining organic and targeted chemical treatments.
 - **High / Critical Severity**: Extensive necrosis, wilting, or vascular blackening exceeding 35% of leaf blade. Immediate chemical intervention recommended to protect field yield.
+

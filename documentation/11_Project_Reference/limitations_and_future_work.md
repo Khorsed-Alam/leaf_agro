@@ -21,3 +21,4 @@
   Integrate an offline or low-bandwidth voice-enabled agricultural assistant allowing farmers to speak in regional Bengali dialects.
 - **Hyperlocal Weather-Driven Epidemic Forecasting**:
   Correlate meteorological humidity and temperature data from the Bangladesh Meteorological Department (BMD) to issue early-warning alerts for late blight in potatoes.
+

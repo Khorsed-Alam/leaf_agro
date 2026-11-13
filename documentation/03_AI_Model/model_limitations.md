@@ -40,3 +40,4 @@ graph TD
    AgriCare AI serves as an agronomic decision-support assistant. In high-risk, catastrophic blight outbreaks, farmers are advised to cross-examine in-app suggestions with the Department of Agricultural Extension (DAE) or Upazila Agriculture Officers.
 2. **Strict Adherence to Chemical Safety**:
    Farmers must always read manufacturer labels, observe Pre-Harvest Intervals (PHI), and use personal protective equipment (PPE) before spraying fungicides or pesticides.
+

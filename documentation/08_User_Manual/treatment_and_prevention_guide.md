@@ -37,3 +37,4 @@ Registered fungicides and bactericides for severe outbreaks:
 1. **Wear Protective Gear**: Always wear a face mask, eye goggles, and rubber gloves when handling and spraying chemicals.
 2. **Pre-Harvest Intervals (PHI)**: Do not harvest crops for consumption within 7 to 14 days of spraying chemical pesticides.
 3. **Proper Disposal**: Wash spray tanks away from ponds, canals, and livestock drinking water sources.
+

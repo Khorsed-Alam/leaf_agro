@@ -52,3 +52,4 @@ graph LR
 | **Cold Startup Time** | $< 2.0$ seconds to interactive dashboard | Android Vitals cold start profiling |
 | **Database Security** | Zero unauthorized data access across users | Supabase Row Level Security (RLS) policies |
 | **Localization Parity** | 100% parity across all 31 screens | Automated string matching and widget tests |
+

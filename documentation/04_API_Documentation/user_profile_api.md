@@ -55,3 +55,4 @@ graph LR
 ```
 - **Success Response (200 OK)**: Returns the updated JSON profile record.
 - **Error Response (403 Forbidden)**: If a client attempts to alter the `role` field from `'farmer'` to `'admin'`, the `trg_prevent_role_escalation` trigger aborts the transaction with `Role escalation is not permitted`.
+

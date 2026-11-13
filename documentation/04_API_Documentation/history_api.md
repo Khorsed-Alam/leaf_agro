@@ -69,3 +69,4 @@ graph TD
 ```
 - **Allowed `condition_label` Values**: `'better'`, `'no_change'`, `'worse'`, `'not_sure'`.
 - **Success Response (201 Created)**: Returns the persisted observation entry.
+

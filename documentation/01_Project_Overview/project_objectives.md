@@ -57,3 +57,4 @@ mindmap
    Provide 100% bilingual parity across all UI strings, button labels, diagnostic descriptions, and push notifications using Google Fonts `Noto Sans Bengali`.
 2. **Accessible Form Factors**:
    Incorporate high-touch targets (minimum 48x48 dp), high-contrast Material 3 surfaces, and iconography designed for users with varied literacy levels.
+

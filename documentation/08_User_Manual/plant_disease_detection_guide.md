@@ -28,3 +28,4 @@ graph LR
 5. **View Results (Screen 16)**:
    - The app will display the detected plant disease name, the confidence score percentage, and the severity level.
    - Tap **"View Treatments"** to access verified remedies immediately.
+

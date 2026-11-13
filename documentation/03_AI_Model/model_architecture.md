@@ -52,3 +52,4 @@ This reduces computational parameters by approximately $8 \times$ to $9 \times$ 
   - DataType: `Float32`
   - Dimensions: `[1, 19]`
   - Probability Sum: $\sum_{i=0}^{18} p_i = 1.0$
+

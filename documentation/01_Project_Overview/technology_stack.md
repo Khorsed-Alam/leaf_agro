@@ -82,3 +82,4 @@ graph TD
 - **Testing Engine**: `flutter_test` (Unit, Widget, and Riverpod integration tests).
 - **Code Generation**: `build_runner` (`^2.4.12`), `freezed` (`^2.5.7`), `json_serializable` (`^6.8.0`).
 - **Static Analysis**: `flutter_lints` (`^4.0.0`) configured with strict analysis rules.
+

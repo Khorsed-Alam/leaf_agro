@@ -35,3 +35,4 @@ keyAlias=upload
 storeFile=../upload-keystore.jks
 ```
 Ensure your `android/app/build.gradle` file references this keystore configuration for release builds.
+

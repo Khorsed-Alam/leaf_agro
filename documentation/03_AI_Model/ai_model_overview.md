@@ -42,3 +42,4 @@ The model is specifically trained on five economically critical crops cultivated
 3. **Tomato (টমেটো)**: High-value commercial vegetable crop vulnerable to multiple bacterial and fungal pathogens.
 4. **Mango (আম)**: Crucial horticultural crop in Rajshahi, Chapainawabganj, and Dinajpur divisions.
 5. **Jute (পাট)**: Historic golden fiber crop of Bangladesh, susceptible to stem rot and anthracnose.
+

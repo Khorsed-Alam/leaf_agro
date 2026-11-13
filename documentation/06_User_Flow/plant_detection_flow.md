@@ -43,3 +43,4 @@ sequenceDiagram
 - **Blur Detection Warning**: On Screen 14, if the captured image exhibits low edge variance, an advisory banner encourages the user to retake.
 - **Low Confidence Threshold**: On Screen 16, if confidence is $< 70\%$, a warning card suggests capturing a second photograph under indirect sunlight.
 - **Save to History**: Detections are stored immediately in local SQLite and synchronized to Supabase `disease_scans` when online.
+

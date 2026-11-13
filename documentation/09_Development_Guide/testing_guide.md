@@ -23,3 +23,4 @@ flutter test test/notifications_screen_test.dart
 - **Mock SharedPreferences**: State tests initialize mock key-value storage via `SharedPreferences.setMockInitialValues({})`.
 - **Golden & Image Mocking**: Tests render synthetic 1x1 PNG byte arrays with `Image.memory` to verify image attachment cards without relying on disk filesystem reads.
 - **Zero Real Network Calls**: All tests run completely offline and independent of live Supabase network servers.
+

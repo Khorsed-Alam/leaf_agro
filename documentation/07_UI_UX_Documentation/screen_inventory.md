@@ -37,3 +37,4 @@ The following inventory details all 31 screens in AgriCare AI, their file locati
 | **28** | Help & FAQ Screen | `/help` | `lib/features/help/presentation/help_screen.dart` | **Completed** | 4 visual quick guides, 12 searchable FAQs, contact support bottom sheet. |
 | **29** | Feedback Screen | `/feedback` | `lib/features/feedback/presentation/feedback_screen.dart` | **Completed** | 5-star rating, 5 categories, 2,000-char feedback, photo upload. |
 | **30** | About Application Screen | `/about` | `lib/features/about/presentation/about_screen.dart` | **Completed** | Academic capstone details, tech stack, 5 verified crops, legal modal. |
+

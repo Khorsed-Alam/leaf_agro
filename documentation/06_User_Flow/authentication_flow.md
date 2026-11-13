@@ -45,3 +45,4 @@ sequenceDiagram
 - **Password**: Minimum 8 characters; requires at least one numeral and one special character.
 - **District Picker**: Displays searchable list of the 64 administrative districts of Bangladesh.
 - **Terms Agreement**: Requires explicit checkbox agreement to privacy terms prior to registration.
+

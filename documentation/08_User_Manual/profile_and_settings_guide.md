@@ -18,3 +18,4 @@ In the Settings screen, you can manage your preferences:
 - **Storage & Cache**: View cached image storage and clear local temporary files to free up phone storage.
 - **Privacy Policy & Terms**: Read the verified terms of service and data privacy commitments.
 - **Log Out**: Safely sign out of your account with a confirmation prompt.
+

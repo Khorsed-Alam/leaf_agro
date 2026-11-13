@@ -17,3 +17,4 @@
 - **PostgreSQL 15 Manual**: [https://www.postgresql.org/docs/15/](https://www.postgresql.org/docs/15/)
 - **Riverpod State Management**: [https://riverpod.dev](https://riverpod.dev)
 - **Google Fonts Noto Sans Bengali**: [https://fonts.google.com/specimen/Noto+Sans+Bengali](https://fonts.google.com/specimen/Noto+Sans+Bengali)
+

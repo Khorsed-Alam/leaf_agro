@@ -65,3 +65,4 @@ graph TB
 - The client app never possesses elevated database credentials.
 - All database operations are mediated via Supabase PostgreSQL Row Level Security (RLS) policies locked to the authenticated user's JWT `auth.uid()`.
 - Client role escalation is prevented at the database trigger layer (`prevent_role_escalation` trigger).
+

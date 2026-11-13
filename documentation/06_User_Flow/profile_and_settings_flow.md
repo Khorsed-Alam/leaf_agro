@@ -27,3 +27,4 @@ When a farmer selects English or বাংলা on Screen 26:
 2. The change persists to `SharedPreferences` under key `app_locale`.
 3. The UI rebuilds immediately without requiring an application restart.
 4. All Bengali text renders through Google Fonts `Noto Sans Bengali`.
+

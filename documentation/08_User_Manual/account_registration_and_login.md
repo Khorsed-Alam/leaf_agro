@@ -24,3 +24,4 @@ If you forget your password:
 1. Tap **"Forgot Password?"** on the Login screen.
 2. Enter your registered email address.
 3. Check your email inbox for the reset link and follow the on-screen instructions to set a new password.
+

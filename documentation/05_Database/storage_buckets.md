@@ -34,3 +34,4 @@ graph TD
 - **Public**: `true`
 - **Access**: Read-only for general clients; uploads restricted to `service_role`.
 - **Contents**: High-definition reference images of diseased leaves, crop icons, and agronomic diagrams.
+

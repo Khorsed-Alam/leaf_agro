@@ -3,6 +3,9 @@
 ## 1. User Journey Architecture
 AgriCare AI provides a frictionless user journey tailored for farmers and agricultural workers. The interface structure spans 31 distinct screens (Screens 00 to 30) connected through intuitive routing paths.
 
+![AgriCare AI Complete Flowchart](../images/agricare_ai_user_flow_00_30.png)
+
+
 ```mermaid
 graph TD
     INIT[App Launch: Screen 00/01] --> AUTH{Authenticated?}
@@ -28,3 +31,4 @@ graph TD
 5. **Recovery & History Audit (21–23)**: Longitudinal observation logging, condition checklists ('Better', 'No Change', 'Worse'), scan filtering, and historical record re-inspection.
 6. **Account & Customization (24–26)**: Farmer profile stats, app settings, offline cache clearing, and instant English/Bangla language switching.
 7. **Support & Governance (27–30)**: Activity notification center, searchable FAQ support hub, 5-star feedback submission, and academic capstone project disclosures.
+

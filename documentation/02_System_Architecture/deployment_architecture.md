@@ -50,3 +50,4 @@ graph LR
   - PostgreSQL 15 instance with automatic daily backups and Point-In-Time-Recovery (PITR).
   - High availability multi-AZ storage.
   - S3-compatible cloud object storage with auto-scaling bandwidth.
+

@@ -29,3 +29,4 @@ Smartphones capture photos with diverse EXIF orientations and color models (e.g.
 - **EXIF Auto-Orientation**: The `image` package inspects EXIF metadata tags and rotates the bitmap so the leaf remains upright before bilinear resizing.
 - **Alpha Channel Removal**: If an RGBA image is chosen from the device gallery, the 4th alpha channel is discarded to preserve the pure 3-channel RGB matrix.
 - **Aspect Ratio Handling**: Resizing preserves leaf pathology spots through bilinear interpolation.
+

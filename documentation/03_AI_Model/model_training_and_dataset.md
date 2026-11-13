@@ -48,3 +48,4 @@ To combat field variances such as erratic sunlight, shadow cast, and camera sens
 - **Random Rotation ($\pm 30^{\circ}$)**: Compensates for arbitrary smartphone holding angles.
 - **Color Jitter (Brightness $\pm 0.2$, Contrast $\pm 0.2$)**: Emulates morning, midday, and overcast field illumination.
 - **Random Zoom & Crop ($0.8 \times$ to $1.2 \times$)**: Reflects differing farmer photographing distances.
+
