@@ -98,3 +98,4 @@ class NoMatchingResultsView extends StatelessWidget {
     );
   }
 }
+

@@ -82,3 +82,4 @@ class HistoryFilterState {
     return const HistoryFilterState();
   }
 }
+

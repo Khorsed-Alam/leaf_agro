@@ -101,3 +101,4 @@ class EmptyHistoryView extends StatelessWidget {
     );
   }
 }
+

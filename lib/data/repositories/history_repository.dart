@@ -33,5 +33,17 @@ class HistoryRepository {
 
     return await _localDataSource.getLocalPredictions();
   }
+
+  Future<void> deletePrediction(String id, String userId) async {
+    // 1. Delete locally from SQLite
+    await _localDataSource.deleteLocalPrediction(id);
+
+    // 2. Delete remotely from Supabase if authenticated
+    try {
+      if (userId != 'guest') {
+        await _remoteDataSource.deletePredictionHistory(id);
+      }
+    } catch (_) {}
+  }
 }
 

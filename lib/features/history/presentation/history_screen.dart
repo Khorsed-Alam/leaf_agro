@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/crop_model.dart';
 import '../../../data/models/prediction_history_model.dart';
-import '../../../data/models/prediction_model.dart';
 import '../../../providers/crop_provider.dart';
 import '../../../providers/history_provider.dart';
 import '../../../providers/settings_provider.dart';
@@ -178,32 +177,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
   }
 
   void _handleCardTap(PredictionHistoryModel scan) {
-    final parts = scan.predictedClass.split('___');
-    final cropName = parts[0];
-    final diseaseName =
-        parts.length > 1 ? parts[1].replaceAll('_', ' ') : 'Healthy';
-
-    final prediction = PredictionModel(
-      className: scan.predictedClass,
-      confidence: scan.confidence,
-      cropName: cropName,
-      diseaseNameEn: diseaseName,
-      diseaseNameBn: diseaseName,
-      predictedAt: scan.createdAt,
-      modelVersion: scan.modelVersion,
-    );
-
-    try {
-      context.push(
-        '/detect/result',
-        extra: {
-          'prediction': prediction,
-          'imagePath': scan.imagePath,
-        },
-      );
-    } catch (_) {
-      context.push('/history/${scan.id}');
-    }
+    context.push('/history/${scan.id}');
   }
 
   @override

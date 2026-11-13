@@ -167,6 +167,22 @@ class SqliteDataSource {
     );
   }
 
+  Future<void> deleteLocalPrediction(String id) async {
+    if (kIsWeb) {
+      _inMemoryWebCache.removeWhere((e) => e.id == id);
+      return;
+    }
+
+    final db = await database;
+    if (db == null) return;
+
+    await db.delete(
+      'local_prediction_history',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
   // ── Plant Observation Methods ──────────────────────────────────────────────
 
   Future<void> saveLocalObservation(PlantObservationModel model) async {

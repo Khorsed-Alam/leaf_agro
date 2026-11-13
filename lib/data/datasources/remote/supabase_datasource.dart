@@ -99,6 +99,13 @@ class SupabaseDataSource {
     return (response as List).map((row) => PredictionHistoryModel.fromJson(row)).toList();
   }
 
+  Future<void> deletePredictionHistory(String id) async {
+    await _client
+        .from(ApiConstants.tablePredictionHistory)
+        .delete()
+        .eq('id', id);
+  }
+
   Future<String?> uploadLeafImage(String userId, String scanId, File imageFile) async {
     final path = '$userId/$scanId.jpg';
     await _client.storage.from(ApiConstants.bucketPlantImages).upload(

@@ -39,6 +39,14 @@ class HistoryNotifier extends AsyncNotifier<List<PredictionHistoryModel>> {
     state = await AsyncValue.guard(loadHistory);
   }
 
+  Future<void> deleteScanRecord(String id) async {
+    final repo = ref.read(historyRepositoryProvider);
+    final user = Supabase.instance.client.auth.currentUser;
+    final userId = user?.id ?? 'guest';
+    await repo.deletePrediction(id, userId);
+    state = await AsyncValue.guard(loadHistory);
+  }
+
   Future<void> refresh() async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(loadHistory);
