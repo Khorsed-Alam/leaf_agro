@@ -1,0 +1,11 @@
+{
+  "rgb_conversion": "PASSED",
+  "image_dimensions": "PASSED",
+  "data_type": "PASSED",
+  "pixel_range": "PASSED",
+  "label_alignment": "PASSED",
+  "reproducibility": "PASSED",
+  "augmentation_policy": "PASSED",
+  "normalization_count": "PASSED: Exactly 1 step inside model graph",
+  "serialization": "PASSED"
+}

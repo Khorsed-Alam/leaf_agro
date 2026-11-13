@@ -1,0 +1,72 @@
+{
+  "project": "AgriCare AI",
+  "phase": 34,
+  "phase_name": "Image Preprocessing, Normalization & Data Augmentation",
+  "preprocessing_version": "1.0.0",
+  "image_size": [
+    224,
+    224
+  ],
+  "channels": 3,
+  "color_mode": "RGB",
+  "data_type": "float32",
+  "external_pixel_range": [
+    0.0,
+    255.0
+  ],
+  "normalization_method": "tf.keras.applications.mobilenet_v2.preprocess_input",
+  "normalization_formula": "(x / 127.5) - 1.0",
+  "normalization_location": "inside_model_graph",
+  "normalization_layer": "tf.keras.layers.Rescaling(scale=1.0/127.5, offset=-1.0)",
+  "normalization_count": 1,
+  "augmentation_policy": "training_only",
+  "dataset_split_performed": false,
+  "model_training_performed": false,
+  "source_dataset": "phase_33_approved_images",
+  "class_mapping_source": "phase_32_verified_class_mapping",
+  "tensorflow_version": "2.22.0-rc0",
+  "keras_version": "3.16.0.dev2026111303",
+  "python_version": "3.14.6",
+  "resizing_interpolation": "bilinear",
+  "image_decoding_method": "PIL_and_tf.io.decode_image",
+  "batch_size": 32,
+  "random_seed": 42,
+  "augmentation_parameters": {
+    "horizontal_flip": true,
+    "rotation_factor": 0.03,
+    "zoom_range": [
+      -0.1,
+      0.1
+    ],
+    "translation_height": 0.05,
+    "translation_width": 0.05,
+    "brightness_factor": 0.1,
+    "contrast_factor": 0.1
+  },
+  "approved_source_image_count": 90,
+  "successfully_processed_image_count": 90,
+  "failed_image_count": 0,
+  "class_count": 19,
+  "per_class_image_counts": {
+    "Rice___Bacterial_leaf_blight": 0,
+    "Rice___Brown_spot": 0,
+    "Rice___Leaf_smut": 0,
+    "Rice___healthy": 0,
+    "Potato___Early_blight": 10,
+    "Potato___Late_blight": 10,
+    "Potato___healthy": 10,
+    "Tomato___Bacterial_spot": 10,
+    "Tomato___Early_blight": 10,
+    "Tomato___Late_blight": 10,
+    "Tomato___Leaf_Mold": 10,
+    "Tomato___Septoria_leaf_spot": 10,
+    "Tomato___healthy": 10,
+    "Mango___Anthracnose": 0,
+    "Mango___Bacterial_canker": 0,
+    "Mango___healthy": 0,
+    "Jute___Stem_rot": 0,
+    "Jute___Anthracnose": 0,
+    "Jute___healthy": 0
+  },
+  "processing_timestamp": "2026-11-13T15:05:19.612143+00:00"
+}

@@ -139,3 +139,4 @@ def validate_pipeline():
 if __name__ == "__main__":
     success = validate_pipeline()
     sys.exit(0 if success else 1)
+
