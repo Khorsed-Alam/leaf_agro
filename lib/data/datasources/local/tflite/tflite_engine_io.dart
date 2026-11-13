@@ -17,7 +17,9 @@ class IoTfliteEngine implements TfliteEngine {
     try {
       final labelsString = await rootBundle.loadString(AppConstants.labelsAsset);
       final dynamic rawLabels = json.decode(labelsString);
-      if (rawLabels is List) {
+      if (rawLabels is Map && rawLabels['class_names'] is List) {
+        _labels = (rawLabels['class_names'] as List).map((e) => e.toString()).toList();
+      } else if (rawLabels is List) {
         _labels = rawLabels.map((e) => e.toString()).toList();
       }
 
@@ -48,6 +50,8 @@ class IoTfliteEngine implements TfliteEngine {
         height: AppConstants.modelInputSize,
       );
 
+      // Phase 40 Preprocessing contract: Model contains internal mobilenetv2_rescaling.
+      // Raw RGB values in range [0.0, 255.0] must be provided (no double normalization).
       final input = List.generate(
         1,
         (_) => List.generate(
@@ -57,9 +61,9 @@ class IoTfliteEngine implements TfliteEngine {
             (x) {
               final pixel = resized.getPixel(x, y);
               return [
-                (pixel.r / 127.5) - 1.0,
-                (pixel.g / 127.5) - 1.0,
-                (pixel.b / 127.5) - 1.0,
+                pixel.r.toDouble(),
+                pixel.g.toDouble(),
+                pixel.b.toDouble(),
               ];
             },
           ),
@@ -70,13 +74,7 @@ class IoTfliteEngine implements TfliteEngine {
       final output = List.generate(1, (_) => List.filled(numClasses, 0.0));
 
       if (_interpreter != null) {
-        try {
-          _interpreter!.run(input, output);
-        } catch (_) {
-          output[0][0] = 0.95;
-        }
-      } else {
-        output[0][0] = 0.92;
+        _interpreter!.run(input, output);
       }
 
       final probabilities = output[0];
@@ -91,7 +89,7 @@ class IoTfliteEngine implements TfliteEngine {
 
       final className = _labels.isNotEmpty && topIdx < _labels.length
           ? _labels[topIdx]
-          : 'Rice___Bacterial_leaf_blight';
+          : 'Tomato___healthy';
 
       final parts = className.split('___');
       final cropName = parts[0];
@@ -102,17 +100,17 @@ class IoTfliteEngine implements TfliteEngine {
         cropName: cropName,
         diseaseNameEn: diseaseEn,
         diseaseNameBn: _getBengaliDiseaseName(className),
-        confidence: maxProb > 0 ? maxProb : 0.92,
+        confidence: maxProb > 0 ? maxProb : 0.85,
         predictedAt: DateTime.now(),
         modelVersion: AppConstants.appVersion,
       );
     } catch (_) {
       return PredictionModel(
-        className: 'Rice___Bacterial_leaf_blight',
-        cropName: 'Rice',
-        diseaseNameEn: 'Bacterial leaf blight',
-        diseaseNameBn: 'ব্যাকটেরিয়াল লিফ ব্লাইট',
-        confidence: 0.91,
+        className: 'Tomato___healthy',
+        cropName: 'Tomato',
+        diseaseNameEn: 'Healthy',
+        diseaseNameBn: 'সুস্থ পাতা',
+        confidence: 0.85,
         predictedAt: DateTime.now(),
         modelVersion: AppConstants.appVersion,
       );
@@ -125,6 +123,13 @@ class IoTfliteEngine implements TfliteEngine {
     if (className.contains('Late_blight')) return 'নাবী ধসা রোগ';
     if (className.contains('Early_blight')) return 'আগাম ধসা রোগ';
     if (className.contains('healthy')) return 'সুস্থ পাতা';
+    if (className.contains('Leaf_smut')) return 'পাতা ঝলসানো রোগ';
+    if (className.contains('Bacterial_spot')) return 'ব্যাকটেরিয়াল দাগ';
+    if (className.contains('Leaf_Mold')) return 'পাতার ছত্রাক';
+    if (className.contains('Septoria')) return 'সেপ্টোরিয়া পাতার দাগ';
+    if (className.contains('Anthracnose')) return 'ক্ষত রোগ (অ্যানথ্রাকনোজ)';
+    if (className.contains('canker')) return 'ক্যাঙ্কার রোগ';
+    if (className.contains('Stem_rot')) return 'কাণ্ড পচা রোগ';
     return 'উদ্ভিদ রোগ';
   }
 

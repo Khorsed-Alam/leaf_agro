@@ -86,3 +86,4 @@ All deployment artifacts are automatically copied into the Flutter application's
 - `assets/models/plant_disease_model_fp16.tflite` (Float16 candidate model)
 - `assets/models/labels.json` (19 verified class names matching output neurons)
 - `assets/models/model_metadata.json` (Complete technical specification)
+
