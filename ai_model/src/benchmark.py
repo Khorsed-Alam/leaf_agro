@@ -151,3 +151,4 @@ def benchmark_inference(
             "TFLite models with FP16/INT8 quantization typically execute significantly faster and with <15MB RAM footprint on modern mobile devices."
         ]
     }
+

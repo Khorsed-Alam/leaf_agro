@@ -1,0 +1,5 @@
+model_format,filename,size_bytes,size_mb,size_reduction_vs_keras_pct,precision,deployment_role
+Keras Full Model (Stage B),best_model.keras,24644940,23.5,0.0,Float32 weights + optimizer + architecture graph,Training & Fine-Tuning Source Checkpoint
+TFLite Float32 (Primary),plant_disease_model.tflite,9000436,8.58,63.48,Full 32-bit Float,Primary Android Production Target
+TFLite Float16 (Quantized),plant_disease_model_fp16.tflite,4582628,4.37,81.41,16-bit Float Weights,High-Performance GPU Candidate
+TFLite INT8 (Quantized),plant_disease_model_int8.tflite,2761136,2.63,88.8,8-bit Integer Weights,Ultra-Low Memory Edge Candidate

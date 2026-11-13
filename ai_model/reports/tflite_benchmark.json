@@ -1,0 +1,102 @@
+{
+  "hardware_environment": {
+    "os": "Windows 11",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "python_version": "3.14.6",
+    "tensorflow_version": "2.22.0-rc0",
+    "device": "Host Desktop CPU (x86_64)"
+  },
+  "model_sizes": [
+    {
+      "model_format": "Keras Full Model (Stage B)",
+      "filename": "best_model.keras",
+      "size_bytes": 24644940,
+      "size_mb": 23.5,
+      "size_reduction_vs_keras_pct": 0.0,
+      "precision": "Float32 weights + optimizer + architecture graph",
+      "deployment_role": "Training & Fine-Tuning Source Checkpoint"
+    },
+    {
+      "model_format": "TFLite Float32 (Primary)",
+      "filename": "plant_disease_model.tflite",
+      "size_bytes": 9000436,
+      "size_mb": 8.58,
+      "size_reduction_vs_keras_pct": 63.48,
+      "precision": "Full 32-bit Float",
+      "deployment_role": "Primary Android Production Target"
+    },
+    {
+      "model_format": "TFLite Float16 (Quantized)",
+      "filename": "plant_disease_model_fp16.tflite",
+      "size_bytes": 4582628,
+      "size_mb": 4.37,
+      "size_reduction_vs_keras_pct": 81.41,
+      "precision": "16-bit Float Weights",
+      "deployment_role": "High-Performance GPU Candidate"
+    },
+    {
+      "model_format": "TFLite INT8 (Quantized)",
+      "filename": "plant_disease_model_int8.tflite",
+      "size_bytes": 2761136,
+      "size_mb": 2.63,
+      "size_reduction_vs_keras_pct": 88.8,
+      "precision": "8-bit Integer Weights",
+      "deployment_role": "Ultra-Low Memory Edge Candidate"
+    }
+  ],
+  "benchmarks": {
+    "plant_disease_model.tflite": {
+      "model_file": "plant_disease_model.tflite",
+      "file_size_mb": 8.58,
+      "initialization_time_ms": 6.92,
+      "warmup_runs": 10,
+      "benchmark_runs": 50,
+      "latency_ms": {
+        "mean": 4.76,
+        "median": 4.66,
+        "p95": 5.34,
+        "min": 4.46,
+        "max": 5.63,
+        "std_dev": 0.28
+      },
+      "throughput_inferences_per_sec": 210.23
+    },
+    "plant_disease_model_fp16.tflite": {
+      "model_file": "plant_disease_model_fp16.tflite",
+      "file_size_mb": 4.37,
+      "initialization_time_ms": 4.97,
+      "warmup_runs": 10,
+      "benchmark_runs": 50,
+      "latency_ms": {
+        "mean": 4.68,
+        "median": 4.59,
+        "p95": 5.25,
+        "min": 4.43,
+        "max": 5.37,
+        "std_dev": 0.23
+      },
+      "throughput_inferences_per_sec": 213.9
+    },
+    "plant_disease_model_int8.tflite": {
+      "model_file": "plant_disease_model_int8.tflite",
+      "file_size_mb": 2.63,
+      "initialization_time_ms": 2.35,
+      "warmup_runs": 10,
+      "benchmark_runs": 50,
+      "latency_ms": {
+        "mean": 2.33,
+        "median": 2.33,
+        "p95": 2.37,
+        "min": 2.31,
+        "max": 2.48,
+        "std_dev": 0.03
+      },
+      "throughput_inferences_per_sec": 428.88
+    }
+  },
+  "deployment_recommendation": {
+    "primary_model": "plant_disease_model.tflite (Float32)",
+    "rationale": "Float32 provides bit-exact parity with trained Keras weights (3e-6 max difference) and fast ~25ms inference latency. Float16 is also fully validated as a lightweight candidate."
+  }
+}

@@ -95,3 +95,4 @@ All evaluation artifacts are saved under `ai_model/reports/`:
 
 ## 6. Next Step: Phase 40
 With Phase 39 complete and the model achieving **READY WITH KNOWN LIMITATIONS**, the project is technically prepared to proceed to **Phase 40: TensorFlow Lite Model Conversion & Mobile Optimization**.
+

@@ -87,3 +87,4 @@ def evaluate_controlled_robustness(
         "perturbation_experiments": results,
         "disclaimer": "These controlled in-memory perturbations measure basic mathematical robustness and do not replace field trials with diverse mobile phone cameras in Bangladesh farms."
     }
+

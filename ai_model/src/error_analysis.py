@@ -150,3 +150,4 @@ def summarize_error_patterns(error_df: pd.DataFrame) -> Dict[str, Any]:
         "disease_mistaken_for_healthy_count": disease_to_healthy,
         "healthy_mistaken_for_disease_count": healthy_to_disease,
     }
+
