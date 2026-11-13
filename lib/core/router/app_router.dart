@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import '../../data/models/prediction_model.dart';
 
 import '../../features/splash/presentation/splash_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
@@ -117,7 +118,21 @@ final appRouter = GoRouter(
         ),
         GoRoute(
           path: 'result',
-          builder: (context, state) => const DetectionResultScreen(),
+          builder: (context, state) {
+            PredictionModel? prediction;
+            String? imagePath;
+            if (state.extra is PredictionModel) {
+              prediction = state.extra as PredictionModel;
+            } else if (state.extra is Map<String, dynamic>) {
+              final map = state.extra as Map<String, dynamic>;
+              prediction = map['prediction'] as PredictionModel?;
+              imagePath = map['imagePath'] as String?;
+            }
+            return DetectionResultScreen(
+              initialPrediction: prediction,
+              initialImagePath: imagePath,
+            );
+          },
         ),
       ],
     ),
