@@ -160,6 +160,8 @@ flowchart TB
 
 ### A. Authentication Flow Diagram (Screens 00–05)
 
+![Authentication Flow (Screens 00–05)](images/agricare_ai_auth_flow_00_05.png)
+
 ```mermaid
 flowchart TD
     S00([Screen 00: App Initialization & Route Resolver]) --> CheckSession{Check Session & Onboarding}
@@ -197,6 +199,8 @@ flowchart TD
 
 ### B. Dashboard & Crop Discovery Flow Diagram (Screens 06–10)
 
+![Dashboard & Crop Discovery Flow (Screens 06–10)](images/agricare_ai_discovery_flow_06_10.png)
+
 ```mermaid
 flowchart TD
     S06[Screen 06: Main Home Dashboard] --> DashAction{Dashboard Navigation}
@@ -231,6 +235,8 @@ flowchart TD
 ---
 
 ### C. AI Detection Workflow Flow Diagram (Screens 11–16)
+
+![AI Detection Workflow (Screens 11–16)](images/agricare_ai_detection_flow_11_16.png)
 
 ```mermaid
 flowchart TD
@@ -280,6 +286,8 @@ flowchart TD
 ---
 
 ### D. Disease Management & Agronomic Guidance Flow Diagram (Screens 17–20)
+
+![Disease Management Flow (Screens 17–20)](images/agricare_ai_management_flow_17_20.png)
 
 ```mermaid
 flowchart TD
@@ -375,3 +383,4 @@ flowchart TD
 3. **Offline Guarantee:**
    - On-device edge neural network: `MobileNetV2` quantized `.tflite` model (Rice, Potato, Tomato, Mango, Jute).
    - Local fallback catalog: `AiCropCatalog` provides full offline agronomic and pathology encyclopedia even without internet connectivity in rural fields.
+
