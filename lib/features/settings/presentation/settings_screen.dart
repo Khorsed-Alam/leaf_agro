@@ -245,12 +245,24 @@ class SettingsScreen extends ConsumerWidget {
                     subtitle: isBn
                         ? 'অ্যাপ্লিকেশন ব্যবহারের নির্দেশিকা'
                         : 'Read the application terms',
-                    showDivider: false,
                     onTap: () => LegalDocumentDialog.show(
                       context,
                       type: LegalDocumentType.termsAndConditions,
                       isBn: isBn,
                     ),
+                  ),
+                  SettingsListTile(
+                    icon: Icons.info_outline_rounded,
+                    title: isBn ? 'অ্যাপ পরিচিতি' : 'About Application',
+                    subtitle: isBn
+                        ? 'প্রকল্পের বিবরণ, প্রযুক্তি ও সংস্করণ'
+                        : 'Project overview, tech stack, and version',
+                    showDivider: false,
+                    onTap: () {
+                      try {
+                        context.push('/about');
+                      } catch (_) {}
+                    },
                   ),
                 ],
               ),

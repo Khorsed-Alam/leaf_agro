@@ -1,46 +1,70 @@
 import 'package:flutter/material.dart';
-import '../../../core/theme/app_colors.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AboutScreen extends StatelessWidget {
+import '../../../core/theme/app_colors.dart';
+import '../../../providers/settings_provider.dart';
+import 'widgets/about_header.dart';
+import 'widgets/academic_team_card.dart';
+import 'widgets/ai_model_info_card.dart';
+import 'widgets/brand_hero_card.dart';
+import 'widgets/legal_section_card.dart';
+import 'widgets/project_overview_card.dart';
+import 'widgets/supported_crops_section.dart';
+import 'widgets/tech_stack_section.dart';
+
+/// Screen 30: About Application Screen — AgriCare AI (LeafAgro)
+class AboutScreen extends ConsumerWidget {
   const AboutScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(settingsProvider);
+    final isBn = settings.language == 'bn';
+
     return Scaffold(
-      appBar: AppBar(title: const Text('About AgriCare AI')),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(Icons.eco_rounded, size: 64, color: AppColors.primary),
-            SizedBox(height: 16),
-            Text(
-              'AgriCare AI',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-            ),
-            Text(
-              'Version 1.0.0 (Final Year Project Edition)',
-              style: TextStyle(color: AppColors.onSurfaceVariant, fontSize: 13),
-            ),
-            SizedBox(height: 24),
-            Text(
-              'AgriCare AI is an intelligent agricultural decision-support application created to assist smallholder farmers, agronomists, and field extension officers across Bangladesh.\n\n'
-              'Powered by an edge-quantized MobileNetV2 deep neural network and cloud PostgreSQL database, the system identifies 19 disease and healthy classes across Rice, Potato, Tomato, Mango, and Jute crops without requiring persistent cellular connectivity.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14, height: 1.6),
-            ),
-            SizedBox(height: 32),
-            Divider(),
-            SizedBox(height: 16),
-            Text(
-              'Developed for Agricultural Research & Food Security',
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13, color: AppColors.primary),
-            ),
-          ],
+      backgroundColor: AppColors.background,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // 1. Back button & About Header
+              AboutHeader(isBn: isBn),
+              const SizedBox(height: 16),
+
+              // 2. Branding Hero Card
+              BrandHeroCard(isBn: isBn),
+              const SizedBox(height: 16),
+
+              // 3. Academic Project Overview
+              ProjectOverviewCard(isBn: isBn),
+              const SizedBox(height: 16),
+
+              // 4. Technology Stack
+              TechStackSection(isBn: isBn),
+              const SizedBox(height: 16),
+
+              // 5. Supported Crops
+              SupportedCropsSection(isBn: isBn),
+              const SizedBox(height: 16),
+
+              // 6. AI Model Information
+              AiModelInfoCard(isBn: isBn),
+              const SizedBox(height: 16),
+
+              // 7. Academic Team & Build Details
+              AcademicTeamCard(isBn: isBn),
+              const SizedBox(height: 16),
+
+              // 8. Legal Links & Academic Notice
+              LegalSectionCard(isBn: isBn),
+              const SizedBox(height: 24),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
