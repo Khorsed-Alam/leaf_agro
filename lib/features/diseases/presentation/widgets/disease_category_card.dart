@@ -24,8 +24,12 @@ class DiseaseCategoryCard extends StatelessWidget {
         : (isBn ? 'ফসল' : 'Crop');
 
     final symptomText = isBn
-        ? (disease.symptomsBn.isNotEmpty ? disease.symptomsBn : disease.symptomsEn)
-        : (disease.symptomsEn.isNotEmpty ? disease.symptomsEn : disease.symptomsBn);
+        ? (disease.symptomsBn.isNotEmpty
+            ? disease.symptomsBn
+            : disease.symptomsEn)
+        : (disease.symptomsEn.isNotEmpty
+            ? disease.symptomsEn
+            : disease.symptomsBn);
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
@@ -72,12 +76,14 @@ class DiseaseCategoryCard extends StatelessWidget {
                       Row(
                         children: [
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2.5),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 2.5),
                             decoration: BoxDecoration(
                               color: AppColors.softNaturalGreen,
                               borderRadius: BorderRadius.circular(8),
                               border: Border.all(
-                                color: AppColors.freshGreen.withValues(alpha: 0.3),
+                                color:
+                                    AppColors.freshGreen.withValues(alpha: 0.3),
                               ),
                             ),
                             child: Text(
@@ -91,7 +97,8 @@ class DiseaseCategoryCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 6),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2.5),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 7, vertical: 2.5),
                             decoration: BoxDecoration(
                               color: badgeBg,
                               borderRadius: BorderRadius.circular(8),
@@ -212,7 +219,9 @@ class DiseaseCategoryCard extends StatelessWidget {
         child: Icon(
           disease.isHealthy ? Icons.eco_rounded : Icons.coronavirus_outlined,
           size: 26,
-          color: disease.isHealthy ? AppColors.forestGreen : const Color(0xFFDC2626),
+          color: disease.isHealthy
+              ? AppColors.forestGreen
+              : const Color(0xFFDC2626),
         ),
       ),
     );
@@ -248,4 +257,3 @@ class DiseaseCategoryCard extends StatelessWidget {
     );
   }
 }
-

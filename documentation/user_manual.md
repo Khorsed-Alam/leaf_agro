@@ -296,6 +296,32 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
 8. **Legal & Agronomic Disclaimer (`DetectionDisclaimer`):**
    - Prominent cautionary notice reminding farmers that AI assessments are advisory estimates and should be confirmed by local Upazila agricultural extension officers when severe.
 
+### Screen 17: Disease Details Screen (Botanical Profile & Field Education)
+1. **Header Navigation (`DiseaseDetailHeader`):**
+   - Clean top bar displaying the disease title, back navigation arrow returning to previous screen (`context.pop()` or `/diseases`), and AgriCare AI badge.
+2. **Hero Section & Verified Visuals (`DiseaseHeroSection`):**
+   - Prominent disease headline in English and Bengali.
+   - Host crop tag (e.g., *Rice (ধান)*) with crop icon.
+   - Status badge (*Infected* vs. *Healthy Plant*).
+   - Rounded disease photography container preserving proper aspect ratio (`BoxFit.cover`), with neutral agricultural fallback when image is unavailable.
+   - **Sample Content Banner:** Visibly labels test/demo records with *"Sample Information – For Demonstration Only"*; strictly omitted from verified production records.
+3. **Overview & Host Impact (`DiseaseOverviewCard`):**
+   - Simple, farmer-friendly summary explaining the pathogen, affected plant parts, and yield implications in everyday language.
+4. **Common Symptoms Checklist (`DiseaseSymptomsCard`):**
+   - Structured checklist of symptoms formatted from verified database records with thematic icons.
+   - Friendly unavailable state if no symptoms are listed.
+5. **Visible Signs on Leaves (`DiseaseVisibleSignsCard`):**
+   - Field scouting markers to help farmers inspect their plants (e.g. water-soaked margins, concentric ring target-boards, chlorotic halos, or fuzzy downy mold).
+6. **Possible Causes & Vectors (`DiseaseCausesCard`):**
+   - Explains the underlying organism (fungus, bacteria, oomycete) and environmental contributing factors (humidity, rain, fog, soil moisture).
+7. **Disease Severity & Literary Risk (`DiseaseSeverityCard`):**
+   - Displays general botanical severity only when supported, accompanied by a prominent notice clarifying that this is literature risk classification, not an individual plant assessment.
+8. **Action Navigation Buttons (`DiseaseActionButtons`):**
+   - **Treatment Recommendations:** Direct route to verified recovery and pesticide guidelines (`/recommendations/:id`).
+   - **Prevention Tips & Care:** Direct route to agronomic field care and sanitation protocols (`/prevention/:id`).
+9. **Related Crop Diseases (`RelatedDiseasesSection`):**
+   - Horizontal browsing cards showing other verified diseases affecting the same crop for quick cross-comparison.
+
 ---
 
 ## 🇧🇩 বাংলা ব্যবহারিক নির্দেশিকা (কৃষক ও মাঠ কর্মকর্তাদের জন্য)
@@ -569,6 +595,32 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - উজ্জ্বল সবুজ বাটন (`#22C55E`), যা বর্তমান সেশন রিসেট করে সরাসরি ডিটেকশন স্টার্ট স্ক্রিনে (`/detect`) ফিরিয়ে নিয়ে যায়।
 ৮. **আইনি ও কৃষি বিষয়ক পরামর্শ ডিসক্লেইমার (`DetectionDisclaimer`):**
    - সতর্কবার্তা: *"AI-এর ফলাফল একটি আনুমানিক বিশ্লেষণ। গুরুতর সমস্যায় নিকটস্থ উপজেলা কৃষি কর্মকর্তার পরামর্শ নিন।"*
+
+### স্ক্রিন ১৭: রোগের বিস্তারিত তথ্য স্ক্রিন (উদ্ভিদ বিজ্ঞান ও মাঠ নির্দেশিকা)
+১. **হেডার ও নেভিগেশন (`DiseaseDetailHeader`):**
+   - পরিষ্কার শীর্ষ বার, যাতে রোগের নাম, পূর্ববর্তী স্ক্রিনে ফেরার ব্যাক অ্যারো বাটন এবং AgriCare AI ট্যাগ রয়েছে।
+২. **হিরো কার্ড ও আসল ছবি (`DiseaseHeroSection`):**
+   - বাংলা ও ইংরেজিতে রোগের প্রধান শিরোনাম।
+   - আক্রান্ত ফসলের ব্যাজ (যেমন: *ধান / Rice*)।
+   - উদ্ভিদের স্বাস্থ্য অবস্থা (*রোগাক্রান্ত* বনাম *সুস্থ উদ্ভিদ*)।
+   - রোগাক্রান্ত পাতার পরিষ্কার ছবি যা নিখুঁত অনুপাত বজায় রেখে প্রদর্শিত হয়, এবং ছবি অনুপস্থিত থাকলে নিরাপদ প্রতীকী চিত্র প্রদর্শন।
+   - **নমুনা তথ্য ব্যানার:** পরীক্ষামূলক বা ডেমো রেকর্ডের ক্ষেত্রে *"নমুনা তথ্য – শুধুমাত্র প্রদর্শনের জন্য"* ব্যানার সুস্পষ্টভাবে প্রদর্শিত হয়; আসল ডাটাবেজ রেকর্ডে এটি প্রদর্শিত হয় না।
+৩. **পরিচিতি ও বিবরণ (`DiseaseOverviewCard`):**
+   - সহজ ও কৃষক-বান্ধব ভাষায় রোগের পরিচিতি, আক্রান্ত ফসলের ক্ষতি এবং সাধারণ ফলন হ্রাসের প্রভাব।
+৪. **সাধারণ লক্ষণসমূহ (`DiseaseSymptomsCard`):**
+   - ডাটাবেজে লিপিবদ্ধ যাচাইকৃত লক্ষণের তালিকাভিত্তিক চেকলিস্ট।
+   - তথ্য অনুপস্থিত থাকলে বন্ধুত্বপূর্ণ বিকল্প বার্তা।
+৫. **পাতার দৃশ্যমান লক্ষণ (`DiseaseVisibleSignsCard`):**
+   - মাঠে দাঁড়িয়ে পাতা পরিদর্শনের দৃশ্যমান রূপরেখা (যেমন: ঢেউ খেলানো কিনারার দাগ, টার্গেট বোর্ডের মতো রিং, হলুদ বলয়, অথবা পাতার নিচে তুলার মতো সাদা ছত্রাক)।
+৬. **সম্ভাব্য কারণ ও জীবাণু (`DiseaseCausesCard`):**
+   - রোগের জন্য দায়ী অণুজীব (ছত্রাক, ব্যাকটেরিয়া, বা পরিবেশগত কারণ) এবং অনুকূল আবহাওয়া (কুয়াশা, অতিরিক্ত আর্দ্রতা, সেচের পানি ইত্যাদি) সম্পর্কিত বিবরণ।
+৭. **রোগের তীব্রতা ও ঝুঁকি (`DiseaseSeverityCard`):**
+   - বই বা লিটারেচার অনুযায়ী রোগের সাধারণ ঝুঁকি প্রদর্শন (যদি সমর্থিত হয়), সাথে স্পষ্ট বার্তা যে এটি সাধারণ জাতগত ঝুঁকি, নির্দিষ্ট গাছের প্রত্যক্ষ ডায়াগনোসিস নয়।
+৮. **চিকিৎসা ও প্রতিরোধ অ্যাকশন (`DiseaseActionButtons`):**
+   - **চিকিৎসা পরামর্শ বাটন:** অনুমোদিত বালাইনাশক ও জৈব সমাধান পেজে সরাসরি গমন (`/recommendations/:id`)।
+   - **প্রতিরোধ টিপস বাটন:** মাঠের পরিচর্যা ও রোগ প্রতিরোধমূলক ব্যবস্থা পেজে গমন (`/prevention/:id`)।
+৯. **একই ফসলের অন্যান্য রোগ (`RelatedDiseasesSection`):**
+   - সংশ্লিষ্ট একই ফসলের অন্যান্য রোগ সহজে অনুভূমিকভাবে ব্রাউজ করে তথ্য জানার সুবিধা।
 
 ---
 

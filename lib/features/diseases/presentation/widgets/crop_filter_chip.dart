@@ -57,7 +57,9 @@ class CropFilterChip extends StatelessWidget {
                   Icon(
                     icon,
                     size: 15,
-                    color: isSelected ? AppColors.limeGreen : AppColors.forestGreen,
+                    color: isSelected
+                        ? AppColors.limeGreen
+                        : AppColors.forestGreen,
                   ),
                   const SizedBox(width: 5),
                 ],
@@ -78,4 +80,3 @@ class CropFilterChip extends StatelessWidget {
     );
   }
 }
-

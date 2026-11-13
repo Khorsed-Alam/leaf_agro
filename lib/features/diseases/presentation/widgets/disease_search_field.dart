@@ -41,7 +41,9 @@ class DiseaseSearchField extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
           decoration: InputDecoration(
-            hintText: isBn ? 'রোগের নাম বা লক্ষণ দিয়ে খুঁজুন...' : 'Search diseases or symptoms...',
+            hintText: isBn
+                ? 'রোগের নাম বা লক্ষণ দিয়ে খুঁজুন...'
+                : 'Search diseases or symptoms...',
             hintStyle: const TextStyle(
               fontSize: 13,
               color: AppColors.secondaryText,
@@ -53,16 +55,17 @@ class DiseaseSearchField extends StatelessWidget {
             ),
             suffixIcon: controller.text.isNotEmpty
                 ? IconButton(
-                    icon: const Icon(Icons.close_rounded, size: 18, color: AppColors.secondaryText),
+                    icon: const Icon(Icons.close_rounded,
+                        size: 18, color: AppColors.secondaryText),
                     onPressed: onClear,
                   )
                 : null,
             border: InputBorder.none,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           ),
         ),
       ),
     );
   }
 }
-

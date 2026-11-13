@@ -10,6 +10,7 @@ class DiseaseModel {
   final String causesBn;
   final bool isHealthy;
   final String? imageUrl;
+  final bool isSample;
 
   const DiseaseModel({
     required this.id,
@@ -23,6 +24,7 @@ class DiseaseModel {
     required this.causesBn,
     this.isHealthy = false,
     this.imageUrl,
+    this.isSample = false,
   });
 
   factory DiseaseModel.fromJson(Map<String, dynamic> json) {
@@ -38,6 +40,7 @@ class DiseaseModel {
       causesBn: (json['causes_bn'] as String?) ?? '',
       isHealthy: (json['is_healthy'] as bool?) ?? false,
       imageUrl: json['image_url'] as String?,
+      isSample: (json['is_sample'] as bool?) ?? false,
     );
   }
 
@@ -54,6 +57,7 @@ class DiseaseModel {
       'causes_bn': causesBn,
       'is_healthy': isHealthy,
       'image_url': imageUrl,
+      'is_sample': isSample,
     };
   }
 
@@ -69,6 +73,7 @@ class DiseaseModel {
     String? causesBn,
     bool? isHealthy,
     String? imageUrl,
+    bool? isSample,
   }) {
     return DiseaseModel(
       id: id ?? this.id,
@@ -82,6 +87,7 @@ class DiseaseModel {
       causesBn: causesBn ?? this.causesBn,
       isHealthy: isHealthy ?? this.isHealthy,
       imageUrl: imageUrl ?? this.imageUrl,
+      isSample: isSample ?? this.isSample,
     );
   }
 

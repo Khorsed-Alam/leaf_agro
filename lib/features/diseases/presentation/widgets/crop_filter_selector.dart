@@ -48,4 +48,3 @@ class CropFilterSelector extends StatelessWidget {
     );
   }
 }
-

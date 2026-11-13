@@ -78,8 +78,10 @@ class DiseaseEmptyState extends StatelessWidget {
                 label: Text(actionText),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: AppColors.forestGreen,
-                  side: const BorderSide(color: AppColors.freshGreen, width: 1.2),
-                  padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                  side:
+                      const BorderSide(color: AppColors.freshGreen, width: 1.2),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -123,4 +125,3 @@ class DiseaseEmptyState extends StatelessWidget {
     }
   }
 }
-

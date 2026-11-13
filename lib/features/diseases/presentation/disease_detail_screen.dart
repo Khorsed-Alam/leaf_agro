@@ -1,123 +1,221 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../data/models/disease_model.dart';
+import '../../../providers/crop_provider.dart';
 import '../../../providers/disease_provider.dart';
-import '../../../shared/widgets/status_badge.dart';
+import '../../../providers/settings_provider.dart';
+import 'widgets/details/disease_action_buttons.dart';
+import 'widgets/details/disease_causes_card.dart';
+import 'widgets/details/disease_detail_header.dart';
+import 'widgets/details/disease_detail_skeleton.dart';
+import 'widgets/details/disease_hero_section.dart';
+import 'widgets/details/disease_not_found_view.dart';
+import 'widgets/details/disease_overview_card.dart';
+import 'widgets/details/disease_severity_card.dart';
+import 'widgets/details/disease_symptoms_card.dart';
+import 'widgets/details/disease_visible_signs_card.dart';
+import 'widgets/details/related_diseases_section.dart';
 
-class DiseaseDetailScreen extends ConsumerWidget {
+/// Screen 17 – Disease Details Screen
+/// Educational disease information page providing verified botanical profiles,
+/// field symptoms, visible foliar signs, pathogen causes, and direct routing
+/// to verified treatment and prevention guidance.
+class DiseaseDetailScreen extends ConsumerStatefulWidget {
   final int diseaseId;
-  const DiseaseDetailScreen({super.key, required this.diseaseId});
+  final bool isSample;
+  final DiseaseModel? initialDisease;
+
+  const DiseaseDetailScreen({
+    super.key,
+    required this.diseaseId,
+    this.isSample = false,
+    this.initialDisease,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final diseaseAsync = ref.watch(diseaseByIdProvider(diseaseId));
-    final recsAsync = ref.watch(recommendationsByDiseaseProvider(diseaseId));
+  ConsumerState<DiseaseDetailScreen> createState() =>
+      _DiseaseDetailScreenState();
+}
+
+class _DiseaseDetailScreenState extends ConsumerState<DiseaseDetailScreen> {
+  @override
+  Widget build(BuildContext context) {
+    final isBn = ref.watch(settingsProvider).language == 'bn';
+
+    // If an initial disease model is passed directly, use it; otherwise fetch from provider
+    if (widget.initialDisease != null) {
+      return _buildContent(widget.initialDisease!, isBn);
+    }
+
+    final diseaseAsync = ref.watch(diseaseByIdProvider(widget.diseaseId));
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Disease Details')),
+      backgroundColor: AppColors.background,
+      appBar: DiseaseDetailHeader(
+        title: isBn ? 'রোগের বিস্তারিত' : 'Disease Details',
+        isBn: isBn,
+      ),
       body: diseaseAsync.when(
         data: (disease) {
-          if (disease == null) return const Center(child: Text('Disease record not found'));
+          if (disease == null) {
+            return DiseaseNotFoundView(isBn: isBn);
+          }
+          return _buildContent(disease, isBn);
+        },
+        loading: () => const DiseaseDetailSkeleton(),
+        error: (err, _) => _buildErrorView(isBn, err.toString()),
+      ),
+    );
+  }
 
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
+  Widget _buildContent(DiseaseModel disease, bool isBn) {
+    final cropAsync = ref.watch(cropByIdProvider(disease.cropId));
+    final crop = cropAsync.valueOrNull;
+
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      appBar: DiseaseDetailHeader(
+        title: isBn ? disease.diseaseNameBn : disease.diseaseNameEn,
+        isBn: isBn,
+      ),
+      body: SafeArea(
+        child: RefreshIndicator(
+          color: AppColors.forestGreen,
+          onRefresh: () async {
+            ref.invalidate(diseaseByIdProvider(widget.diseaseId));
+            ref.invalidate(cropByIdProvider(disease.cropId));
+          },
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        disease.diseaseNameEn,
-                        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    StatusBadge(
-                      label: disease.isHealthy ? 'Healthy' : 'Infected',
-                      isHealthy: disease.isHealthy,
-                    ),
-                  ],
-                ),
-                Text(
-                  disease.diseaseNameBn,
-                  style: const TextStyle(fontSize: 16, color: AppColors.onSurfaceVariant),
-                ),
-                const SizedBox(height: 16),
-                const Divider(),
-                const SizedBox(height: 12),
-                const Text('Symptoms', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
-                const SizedBox(height: 6),
-                Text(disease.symptomsEn.isNotEmpty ? disease.symptomsEn : 'No symptom record available.'),
-                if (disease.symptomsBn.isNotEmpty) ...[
-                  const SizedBox(height: 4),
-                  Text(disease.symptomsBn, style: const TextStyle(color: AppColors.onSurfaceVariant)),
-                ],
-                const SizedBox(height: 16),
-                const Text('Causes', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
-                const SizedBox(height: 6),
-                Text(disease.causesEn.isNotEmpty ? disease.causesEn : 'No causal agent record available.'),
-                if (disease.causesBn.isNotEmpty) ...[
-                  const SizedBox(height: 4),
-                  Text(disease.causesBn, style: const TextStyle(color: AppColors.onSurfaceVariant)),
-                ],
-                const SizedBox(height: 24),
-                const Text('Verified Solutions', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
                 const SizedBox(height: 8),
-                recsAsync.when(
-                  data: (recs) {
-                    if (recs.isEmpty) return const Text('No recommendations available.');
-                    return ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: recs.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 8),
-                      itemBuilder: (context, idx) {
-                        final r = recs[idx];
-                        return Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(
-                                      r.recommendationType == 'treatment'
-                                          ? Icons.medical_services_outlined
-                                          : Icons.shield_outlined,
-                                      color: AppColors.primary,
-                                      size: 18,
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      r.titleEn,
-                                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 6),
-                                Text(r.contentEn, style: const TextStyle(fontSize: 13)),
-                                const SizedBox(height: 4),
-                                Text(r.contentBn, style: const TextStyle(fontSize: 13, color: AppColors.onSurfaceVariant)),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  loading: () => const Center(child: CircularProgressIndicator()),
-                  error: (e, _) => Text('Error loading recommendations: $e'),
+
+                // 1. Hero Card: Headline, Crop Pill, Image, Sample Content Banner
+                DiseaseHeroSection(
+                  disease: disease,
+                  crop: crop,
+                  isBn: isBn,
+                  isSample: widget.isSample || disease.isSample,
                 ),
+
+                // 2. Action Buttons: Treatment and Prevention Navigation
+                DiseaseActionButtons(
+                  disease: disease,
+                  isBn: isBn,
+                ),
+
+                // 3. Overview Card: Simple explanation of disease & plant impact
+                DiseaseOverviewCard(
+                  disease: disease,
+                  crop: crop,
+                  isBn: isBn,
+                ),
+
+                // 4. Common Symptoms Card: Structured checklist from verified data
+                DiseaseSymptomsCard(
+                  disease: disease,
+                  isBn: isBn,
+                ),
+
+                // 5. Visible Signs on Leaves: Foliar warning signs for field scouting
+                DiseaseVisibleSignsCard(
+                  disease: disease,
+                  isBn: isBn,
+                ),
+
+                // 6. Possible Causes: Pathogen organism & favorable environmental conditions
+                DiseaseCausesCard(
+                  disease: disease,
+                  isBn: isBn,
+                ),
+
+                // 7. Disease Severity: Literature risk classification when supported
+                DiseaseSeverityCard(
+                  disease: disease,
+                  isBn: isBn,
+                ),
+
+                // 8. Related Diseases: Other catalogued diseases affecting this crop
+                RelatedDiseasesSection(
+                  currentDisease: disease,
+                  isBn: isBn,
+                ),
+
+                const SizedBox(height: 36),
               ],
             ),
-          );
-        },
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text('Error: $e')),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildErrorView(bool isBn, String error) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFEF2F2),
+                shape: BoxShape.circle,
+                border: Border.all(color: const Color(0xFFFCA5A5)),
+              ),
+              child: const Icon(
+                Icons.wifi_off_rounded,
+                size: 48,
+                color: Color(0xFFDC2626),
+              ),
+            ),
+            const SizedBox(height: 18),
+            Text(
+              isBn
+                  ? 'তথ্য লোড করা সম্ভব হয়নি'
+                  : 'Unable to Load Disease Information',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+                color: AppColors.primaryText,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              isBn
+                  ? 'নেটওয়ার্ক সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।'
+                  : 'Please check your connection and try again.',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 13.5,
+                color: AppColors.secondaryText,
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.forestGreen,
+                foregroundColor: Colors.white,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+              ),
+              icon: const Icon(Icons.refresh_rounded, size: 18),
+              label: Text(isBn ? 'পুনরায় চেষ্টা করুন' : 'Retry'),
+              onPressed: () {
+                ref.invalidate(diseaseByIdProvider(widget.diseaseId));
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-

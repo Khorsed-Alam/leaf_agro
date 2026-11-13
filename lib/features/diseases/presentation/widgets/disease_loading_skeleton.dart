@@ -107,4 +107,3 @@ class _DiseaseLoadingSkeletonState extends State<DiseaseLoadingSkeleton>
     );
   }
 }
-

@@ -30,7 +30,8 @@ class DiseaseScreenHeader extends StatelessWidget {
                     border: Border.all(color: AppColors.border),
                   ),
                   child: IconButton(
-                    icon: const Icon(Icons.arrow_back, color: AppColors.primaryText, size: 20),
+                    icon: const Icon(Icons.arrow_back,
+                        color: AppColors.primaryText, size: 20),
                     onPressed: () {
                       if (context.canPop()) {
                         context.pop();
@@ -74,4 +75,3 @@ class DiseaseScreenHeader extends StatelessWidget {
     );
   }
 }
-
