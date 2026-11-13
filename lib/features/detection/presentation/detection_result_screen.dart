@@ -1,175 +1,241 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/prediction_history_model.dart';
+import '../../../data/models/prediction_model.dart';
+import '../../../providers/crop_provider.dart';
 import '../../../providers/detection_provider.dart';
 import '../../../providers/history_provider.dart';
-import '../../../shared/widgets/custom_button.dart';
-import '../../../shared/widgets/leaf_image_view.dart';
-import '../../../shared/widgets/status_badge.dart';
+import '../../../providers/settings_provider.dart';
+import 'widgets/result/ai_prediction_card.dart';
+import 'widgets/result/detection_disclaimer.dart';
+import 'widgets/result/detection_result_header.dart';
+import 'widgets/result/disease_actions_section.dart';
+import 'widgets/result/healthy_actions_section.dart';
+import 'widgets/result/result_error_view.dart';
+import 'widgets/result/result_image_card.dart';
+import 'widgets/result/save_result_button.dart';
+import 'widgets/result/scan_another_button.dart';
 
-class DetectionResultScreen extends ConsumerWidget {
-  const DetectionResultScreen({super.key});
+/// Screen 16 – AI Detection Result Screen for AgriCare AI (LeafAgro)
+/// Displays the genuine AI diagnosis, confidence score, certainty distinction,
+/// crop-specific treatment/prevention recommendations, and scan log saving.
+class DetectionResultScreen extends ConsumerStatefulWidget {
+  final PredictionModel? initialPrediction;
+  final String? initialImagePath;
+
+  const DetectionResultScreen({
+    super.key,
+    this.initialPrediction,
+    this.initialImagePath,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(detectionProvider);
-    final prediction = state.prediction;
+  ConsumerState<DetectionResultScreen> createState() =>
+      _DetectionResultScreenState();
+}
+
+class _DetectionResultScreenState extends ConsumerState<DetectionResultScreen> {
+  SaveState _saveState = SaveState.initial;
+
+  Future<void> _handleSaveResult(
+    PredictionModel prediction,
+    String? imagePath,
+    int? diseaseId,
+  ) async {
+    if (_saveState == SaveState.saving || _saveState == SaveState.saved) return;
+
+    final isBn = ref.read(settingsProvider).language == 'bn';
+
+    setState(() {
+      _saveState = SaveState.saving;
+    });
+
+    try {
+      String userId = 'guest';
+      try {
+        final currentUser = Supabase.instance.client.auth.currentUser;
+        if (currentUser != null && currentUser.id.isNotEmpty) {
+          userId = currentUser.id;
+        }
+      } catch (_) {}
+
+      final historyRecord = PredictionHistoryModel(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        userId: userId,
+        diseaseId: diseaseId,
+        predictedClass: prediction.className,
+        confidence: prediction.confidence,
+        imagePath: imagePath,
+        modelVersion: prediction.modelVersion,
+        createdAt: DateTime.now(),
+        syncStatus: 'pending',
+      );
+
+      await ref.read(historyProvider.notifier).addScanRecord(historyRecord);
+
+      if (!mounted) return;
+
+      setState(() {
+        _saveState = SaveState.saved;
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            isBn
+                ? 'ফলাফল সফলভাবে ফিল্ড হিস্ট্রিতে সংরক্ষিত হয়েছে!'
+                : 'Diagnosis successfully saved to field history!',
+            style: const TextStyle(fontWeight: FontWeight.w600),
+          ),
+          backgroundColor: AppColors.forestGreen,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _saveState = SaveState.error;
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            isBn
+                ? 'সংরক্ষণ ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।'
+                : 'Failed to save result. Please try again.',
+            style: const TextStyle(fontWeight: FontWeight.w600),
+          ),
+          backgroundColor: AppColors.error,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      );
+    }
+  }
+
+  void _handleScanAnother() {
+    ref.read(detectionProvider.notifier).reset();
+    try {
+      context.go('/detect');
+    } catch (_) {
+      Navigator.of(context).maybePop();
+    }
+  }
+
+  void _handleReturnHome() {
+    try {
+      context.go('/home');
+    } catch (_) {
+      Navigator.of(context).maybePop();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isBn = ref.watch(settingsProvider).language == 'bn';
+    final detectionState = ref.watch(detectionProvider);
+    final selectedCrop = ref.watch(selectedCropProvider);
+
+    final prediction = widget.initialPrediction ?? detectionState.prediction;
+    final imagePath = widget.initialImagePath ?? detectionState.imagePath;
+
+    // Determine crop name
+    final cropName = selectedCrop != null
+        ? (isBn ? selectedCrop.nameBn : selectedCrop.nameEn)
+        : (prediction?.cropName.isNotEmpty == true
+            ? prediction?.cropName
+            : null);
 
     if (prediction == null) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Result')),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(state.errorMessage ?? 'Diagnosis failed.'),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () => context.go('/home'),
-                child: const Text('Return Home'),
-              ),
-            ],
+        backgroundColor: AppColors.background,
+        body: SafeArea(
+          child: ResultErrorView(
+            errorMessage: detectionState.errorMessage,
+            onScanAnother: _handleScanAnother,
+            onReturnHome: _handleReturnHome,
+            isBn: isBn,
           ),
         ),
       );
     }
 
     final isHealthy = prediction.isHealthy;
-    final confidencePct = (prediction.confidence * 100).toStringAsFixed(1);
+    final diseaseDetails = detectionState.diseaseDetails;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Diagnosis Result'),
-        leading: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () => context.go('/home'),
-        ),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (state.imagePath != null)
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: LeafImageView(
-                  imagePath: state.imagePath!,
-                  height: 220,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+      backgroundColor: AppColors.background,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.only(bottom: 24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // 1. Screen Header (Heading, Subtitle, Exit Button)
+              DetectionResultHeader(
+                isBn: isBn,
+                onClose: _handleReturnHome,
+              ),
+
+              // 2. Uploaded Leaf Image Card with Status Badge Overlay
+              if (imagePath != null && imagePath.isNotEmpty)
+                ResultImageCard(
+                  imagePath: imagePath,
+                  cropName: cropName,
+                  isHealthy: isHealthy,
+                  isBn: isBn,
                 ),
+
+              // 3. Main AI Prediction Card (Disease Name, Confidence %, Certainty note, Summary)
+              AiPredictionCard(
+                prediction: prediction,
+                diseaseDescription: isBn
+                    ? diseaseDetails?.symptomsBn
+                    : diseaseDetails?.symptomsEn,
+                isBn: isBn,
               ),
-            const SizedBox(height: 20),
 
-            // Diagnostic Header Card
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: AppColors.surfaceContainerLowest,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppColors.border),
+              // 4. Result-Specific Actions
+              if (isHealthy)
+                HealthyActionsSection(isBn: isBn)
+              else
+                DiseaseActionsSection(
+                  diseaseId: diseaseDetails?.id,
+                  isBn: isBn,
+                ),
+
+              const SizedBox(height: 6),
+
+              // 5. Save Result Action Button
+              SaveResultButton(
+                onSave: () => _handleSaveResult(
+                  prediction,
+                  imagePath,
+                  diseaseDetails?.id,
+                ),
+                state: _saveState,
+                isBn: isBn,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        prediction.cropName,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.primary,
-                        ),
-                      ),
-                      StatusBadge(
-                        label: isHealthy ? 'Healthy Plant' : 'Disease Detected',
-                        isHealthy: isHealthy,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    prediction.diseaseNameEn,
-                    style: const TextStyle(
-                        fontSize: 22, fontWeight: FontWeight.w700),
-                  ),
-                  Text(
-                    prediction.diseaseNameBn,
-                    style: const TextStyle(
-                        fontSize: 16, color: AppColors.onSurfaceVariant),
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('Confidence Level',
-                          style: TextStyle(fontSize: 14)),
-                      Text('$confidencePct%',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 16)),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  LinearProgressIndicator(
-                    value: prediction.confidence,
-                    backgroundColor: AppColors.surfaceContainer,
-                    color: isHealthy ? AppColors.secondary : AppColors.primary,
-                    minHeight: 8,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                ],
+
+              // 6. Scan Another Plant Action Button
+              ScanAnotherButton(
+                onScanAnother: _handleScanAnother,
+                isBn: isBn,
               ),
-            ),
 
-            const SizedBox(height: 20),
-
-            // Action Buttons
-            CustomButton(
-              text: 'Save Diagnosis to Field Log',
-              icon: Icons.bookmark_added_outlined,
-              onPressed: () async {
-                final historyRecord = PredictionHistoryModel(
-                  id: DateTime.now().millisecondsSinceEpoch.toString(),
-                  userId: 'guest',
-                  diseaseId: state.diseaseDetails?.id,
-                  predictedClass: prediction.className,
-                  confidence: prediction.confidence,
-                  imagePath: state.imagePath,
-                  modelVersion: prediction.modelVersion,
-                  createdAt: DateTime.now(),
-                  syncStatus: 'pending',
-                );
-
-                await ref
-                    .read(historyProvider.notifier)
-                    .addScanRecord(historyRecord);
-                if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('Saved to offline field history!')),
-                  );
-                  context.go('/history');
-                }
-              },
-            ),
-
-            const SizedBox(height: 12),
-
-            if (state.diseaseDetails != null) ...[
-              CustomButton(
-                text: 'View Treatment & Prevention Guide',
-                icon: Icons.healing_outlined,
-                isOutlined: true,
-                onPressed: () => context
-                    .push('/recommendations/${state.diseaseDetails!.id}'),
-              ),
+              // 7. Trustworthy AI Disclaimer
+              DetectionDisclaimer(isBn: isBn),
             ],
-          ],
+          ),
         ),
       ),
     );

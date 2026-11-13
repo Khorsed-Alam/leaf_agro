@@ -261,6 +261,41 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
 5. **Seamless Success Navigation:**
    - On completion with valid pathology prediction, stops animation and transitions to **Screen 16: Diagnosis Result Screen** (`/detect/result`).
 
+### Screen 16: AI Detection Result Screen (Diagnostic Findings & Advisory)
+1. **Header Navigation (`DetectionResultHeader`):**
+   - Displays screen title *"Analysis Result"* / *"বিশ্লেষণ ফলাফল"* with supportive subtitle.
+   - Close (`X`) button in the top corner for fast, safe return to Home Dashboard (`/home`).
+2. **Result Image Card (`ResultImageCard`):**
+   - High-fidelity container displaying the examined leaf image with preserved original aspect ratio (`BoxFit.contain`).
+   - Floating diagnostic badge overlaid directly on the image indicating quick health status.
+   - Bottom crop identifier banner (e.g., *"Target Crop: Rice (ধান)"*).
+3. **Prediction Status Badge (`PredictionStatusBadge`):**
+   - **Healthy State:** Soft emerald badge (`#DCFCE7`), dark green border (`#16A34A`), checkmark icon, and *"Healthy Plant"* label.
+   - **Disease Detected:** Amber alert badge (`#FEF3C7`), amber border (`#D97706`), warning icon, and *"Disease Detected"* label.
+4. **AI Prediction Card (`AIPredictionCard`):**
+   - Primary diagnostic headline: Genuine predicted disease name in English and Bengali (or *"Healthy Plant / সুস্থ গাছ"*).
+   - Exact numerical confidence score (e.g., *"94.2% Confidence"*).
+   - Horizontal match strength progress bar matching model confidence.
+   - **Confidence vs. Certainty Distinction Note:** Reassuring explanation clarifying that confidence reflects pattern matching strength from training data, not absolute laboratory certainty.
+   - Verified summary: Sourced directly from local disease catalog symptoms; zero fabricated content.
+5. **Contextual Action Sections:**
+   - **When Disease Detected (`DiseaseActionsSection`):**
+     - **Treatment Recommendations:** Direct navigation to verified cultural and chemical treatment guidance (`/recommendations/:id`).
+     - **View Disease Details:** In-depth biological profile, pathogen lifecycle, and field symptoms (`/diseases/:id`).
+     - **Prevention Tips:** Preventive practices and field sanitation guidelines (`/prevention/:id`).
+   - **When Healthy (`HealthyActionsSection`):**
+     - Reassuring confirmation card: *"Your plant looks healthy!"*
+     - Best-practice crop care, optimal irrigation, and seasonal maintenance advice.
+     - Strictly omits pesticide and chemical treatment suggestions.
+6. **Save Result to History (`SaveResultButton`):**
+   - Stores image path, prediction label, confidence, crop metadata, and timestamp into local SQLite cache and syncs with Supabase.
+   - Interactive state machine: *Initial* ("Save Result") → *Saving* (loader) → *Saved* ("Saved to History" with check icon, disabled) → *Error* (retry prompt).
+7. **Scan Another Plant (`ScanAnotherButton`):**
+   - Full-width Fresh Green (`#22C55E`) primary CTA.
+   - Clears active detection session and returns user to Detection Start Screen (`/detect`).
+8. **Legal & Agronomic Disclaimer (`DetectionDisclaimer`):**
+   - Prominent cautionary notice reminding farmers that AI assessments are advisory estimates and should be confirmed by local Upazila agricultural extension officers when severe.
+
 ---
 
 ## 🇧🇩 বাংলা ব্যবহারিক নির্দেশিকা (কৃষক ও মাঠ কর্মকর্তাদের জন্য)
@@ -501,6 +536,39 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
      - **অন্য ছবি পছন্দ করুন (Choose Another Image)** বাটন চেপে পূর্বের প্রিভিউ পেজে ফিরে যাওয়া।
 ৫. **সফল পরবর্তী ধাপ:**
    - AI রোগ শনাক্তকরণ সফল হলে স্বয়ংক্রিয়ভাবে **স্ক্রিন ১৬: রোগ নির্ণয় ফলাফল স্ক্রিন** (`/detect/result`)-এ নিয়ে যায়।
+
+### স্ক্রিন ১৬: AI রোগ নির্ণয় ফলাফল স্ক্রিন (ফলাফল ও পরামর্শ)
+১. **হেডার ও নেভিগেশন (`DetectionResultHeader`):**
+   - স্ক্রিনের মূল শিরোনাম *"বিশ্লেষণ ফলাফল"* এবং প্রয়োজনীয় বিবরণ।
+   - ডান কোণায় ক্লোজ বাটন (`X`) চেপে সরাসরি মূল ড্যাশবোর্ডে (`/home`) ফেরত যাওয়ার সুবিধা।
+২. **পাতার ছবি ও ফলাফল প্রিভিউ (`ResultImageCard`):**
+   - পরীক্ষিত পাতার ছবিটি কোনো রূপ কাটাছেঁড়া ছাড়াই অবিকল অনুপাত (`BoxFit.contain`)-এ প্রদর্শন।
+   - ছবির উপর ভাসমান দ্রুত স্ট্যাটাস ব্যাজ এবং নিচে ফসলের নাম ব্যানার (যেমন: *"ফসলের ধরন: ধান"* )।
+৩. **রোগ নির্ণয় অবস্থা ব্যাজ (`PredictionStatusBadge`):**
+   - **সুস্থ গাছ:** হালকা সবুজ ব্যাকগ্রাউন্ড (`#DCFCE7`), গাঢ় সবুজ বর্ডার (`#16A34A`), টিক আইকন এবং *"সুস্থ গাছ"* লেখা।
+   - **রোগাক্রান্ত গাছ:** হালকা হলুদ ব্যাকগ্রাউন্ড (`#FEF3C7`), বাদামী/হলুদ বর্ডার (`#D97706`), সতর্কতা আইকন এবং *"রোগ শনাক্ত হয়েছে"* লেখা।
+৪. **AI ফলাফল কার্ড (`AIPredictionCard`):**
+   - আসল রোগের নাম বাংলা ও ইংরেজিতে (যেমন: *"ব্যাকটেরিয়াল লিফ ব্লাইট / Bacterial Leaf Blight"* অথবা সুস্থ থাকলে *"সুস্থ গাছ / Healthy Plant"* )।
+   - সঠিক ও সত্য কনফিডেন্স স্কোর (যেমন: *"৯৪.২% কনফিডেন্স"* )।
+   - অনুভূমিক প্রোগ্রেস বার।
+   - **কনফিডেন্স ও নিশ্চিততার পার্থক্য নোট:** কৃষকদের জানানো যে এই শতকরা হার হলো পূর্বে শেখা লক্ষণের সাথে ছবির মিলের মাত্রা, কোনো ল্যাবরেটরি নিশ্চয়তা নয়।
+   - যাচাইকৃত লক্ষণের সংক্ষিপ্ত বিবরণ (ডাটাবেজের সংরক্ষিত লক্ষণ থেকে, কোনো কাল্পনিক তথ্য নেই)।
+৫. **অবস্থানুযায়ী অ্যাকশন ও পরামর্শ:**
+   - **রোগ শনাক্ত হলে (`DiseaseActionsSection`):**
+     - **চিকিৎসা পরামর্শ (`/recommendations/:id`):** অনুমোদিত ও নিরাপদ জৈব ও রাসায়নিক দমন ব্যবস্থা।
+     - **রোগের বিস্তারিত তথ্য (`/diseases/:id`):** রোগের লক্ষণ ও কারণের বিস্তারিত ডাটাবেজ তথ্য।
+     - **প্রতিরোধ টিপস (`/prevention/:id`):** ভবিষ্যতে এই রোগ প্রতিরোধের কৃষি উপায়।
+   - **সুস্থ গাছ হলে (`HealthyActionsSection`):**
+     - আশ্বস্তকারী কার্ড: *"আপনার গাছ সুস্থ রয়েছে!"*
+     - ফসলের সাধারণ পরিচর্যা ও জলবায়ু উপযোগী নিয়মিত পরামর্শ।
+     - সুস্থ গাছে কোনো অপ্রয়োজনীয় বালাইনাশক স্প্রে করার পরামর্শ সম্পূর্ণ নিষিদ্ধ।
+৬. **ফলাফল সংরক্ষণ (`SaveResultButton`):**
+   - অফলাইন SQLite ডাটাবেজ এবং Supabase ক্লাউডে স্ক্যানের ছবি ও ফলাফল সংরক্ষণ।
+   - পরিষ্কার স্ট্যাটাস পরিবর্তন: *সংরক্ষণ করুন* → *সংরক্ষণ হচ্ছে...* → *সংরক্ষিত হয়েছে* (টিক চিহ্ন সহ নিষ্ক্রিয় বাটন)।
+৭. **নতুন গাছ স্ক্যান করুন (`ScanAnotherButton`):**
+   - উজ্জ্বল সবুজ বাটন (`#22C55E`), যা বর্তমান সেশন রিসেট করে সরাসরি ডিটেকশন স্টার্ট স্ক্রিনে (`/detect`) ফিরিয়ে নিয়ে যায়।
+৮. **আইনি ও কৃষি বিষয়ক পরামর্শ ডিসক্লেইমার (`DetectionDisclaimer`):**
+   - সতর্কবার্তা: *"AI-এর ফলাফল একটি আনুমানিক বিশ্লেষণ। গুরুতর সমস্যায় নিকটস্থ উপজেলা কৃষি কর্মকর্তার পরামর্শ নিন।"*
 
 ---
 
