@@ -7,6 +7,7 @@ class ApiConstants {
   static const String tablePredictionHistory = 'prediction_history';
   static const String tableFeedback = 'feedback';
   static const String tableNotifications = 'notifications';
+  static const String tablePlantObservations = 'plant_observations';
 
   // Supabase Storage Bucket Names
   static const String bucketPlantImages = 'plant-images';

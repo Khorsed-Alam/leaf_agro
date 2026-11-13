@@ -77,11 +77,24 @@ class HistoryDetailScreen extends ConsumerWidget {
                 Text('Model Version: ${scan.modelVersion}'),
                 Text('Sync Status: ${scan.syncStatus.toUpperCase()}'),
                 const SizedBox(height: 24),
-                if (scan.diseaseId != null)
-                  ElevatedButton(
-                    onPressed: () => context.push('/recommendations/${scan.diseaseId}'),
-                    child: const Text('View Recommended Treatment & Care'),
+                if (scan.diseaseId != null) ...[
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () => context.push('/recommendations/${scan.diseaseId}'),
+                      child: const Text('View Recommended Treatment & Care'),
+                    ),
                   ),
+                  const SizedBox(height: 10),
+                ],
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    onPressed: () => context.push('/recovery/${scan.id}'),
+                    icon: const Icon(Icons.track_changes_rounded),
+                    label: const Text('Plant Recovery & Follow-up Log'),
+                  ),
+                ),
               ],
             ),
           );

@@ -5,6 +5,7 @@ import '../../models/crop_model.dart';
 import '../../models/disease_model.dart';
 import '../../models/recommendation_model.dart';
 import '../../models/prediction_history_model.dart';
+import '../../models/plant_observation_model.dart';
 import '../../models/user_profile_model.dart';
 
 class SupabaseDataSource {
@@ -106,6 +107,40 @@ class SupabaseDataSource {
           fileOptions: const FileOptions(contentType: 'image/jpeg', upsert: true),
         );
     return _client.storage.from(ApiConstants.bucketPlantImages).getPublicUrl(path);
+  }
+
+  // ── Plant Observations ─────────────────────────────────────────────────────
+
+  Future<void> syncObservation(PlantObservationModel model) async {
+    await _client
+        .from(ApiConstants.tablePlantObservations)
+        .upsert(model.toJson());
+  }
+
+  Future<List<PlantObservationModel>> getObservationsForScan(
+      String scanId) async {
+    final response = await _client
+        .from(ApiConstants.tablePlantObservations)
+        .select()
+        .eq('scan_id', scanId)
+        .order('created_at', ascending: false);
+
+    return (response as List)
+        .map((row) => PlantObservationModel.fromJson(row))
+        .toList();
+  }
+
+  Future<List<PlantObservationModel>> getUserObservations(
+      String userId) async {
+    final response = await _client
+        .from(ApiConstants.tablePlantObservations)
+        .select()
+        .eq('user_id', userId)
+        .order('created_at', ascending: false);
+
+    return (response as List)
+        .map((row) => PlantObservationModel.fromJson(row))
+        .toList();
   }
 }
 

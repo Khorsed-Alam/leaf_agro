@@ -118,6 +118,35 @@ class DiseaseActionsSection extends StatelessWidget {
               ),
             ],
           ),
+
+          const SizedBox(height: 10),
+
+          // 3. Plant Recovery & Follow-up Log
+          SizedBox(
+            height: 44,
+            child: TextButton.icon(
+              onPressed: () {
+                try {
+                  context.push('/recovery');
+                } catch (_) {}
+              },
+              icon: const Icon(Icons.track_changes_rounded, size: 18),
+              label: Text(
+                isBn ? 'পুনরুদ্ধার ও ফলো-আপ ট্র্যাকার' : 'Plant Recovery & Follow-up',
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.forestGreen,
+                ),
+              ),
+              style: TextButton.styleFrom(
+                backgroundColor: AppColors.freshGreen.withValues(alpha: 0.1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

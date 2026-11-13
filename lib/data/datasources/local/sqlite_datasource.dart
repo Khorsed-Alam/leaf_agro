@@ -2,10 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' as p;
 import '../../models/prediction_history_model.dart';
+import '../../models/plant_observation_model.dart';
 
 class SqliteDataSource {
   Database? _db;
   final List<PredictionHistoryModel> _inMemoryWebCache = [];
+  final List<PlantObservationModel> _inMemoryObservationWebCache = [];
 
   Future<Database?> get database async {
     if (kIsWeb) return null;
@@ -22,7 +24,7 @@ class SqliteDataSource {
 
       return await openDatabase(
         path,
-        version: 1,
+        version: 2,
         onCreate: (db, version) async {
           await db.execute('''
             CREATE TABLE local_prediction_history (
@@ -37,6 +39,38 @@ class SqliteDataSource {
               sync_status TEXT NOT NULL
             )
           ''');
+          await db.execute('''
+            CREATE TABLE IF NOT EXISTS local_plant_observations (
+              id TEXT PRIMARY KEY,
+              scan_id TEXT NOT NULL,
+              user_id TEXT NOT NULL,
+              crop_name TEXT,
+              condition_label TEXT NOT NULL,
+              notes TEXT NOT NULL,
+              image_path TEXT,
+              next_inspection_date TEXT,
+              created_at TEXT NOT NULL,
+              sync_status TEXT NOT NULL
+            )
+          ''');
+        },
+        onUpgrade: (db, oldVersion, newVersion) async {
+          if (oldVersion < 2) {
+            await db.execute('''
+              CREATE TABLE IF NOT EXISTS local_plant_observations (
+                id TEXT PRIMARY KEY,
+                scan_id TEXT NOT NULL,
+                user_id TEXT NOT NULL,
+                crop_name TEXT,
+                condition_label TEXT NOT NULL,
+                notes TEXT NOT NULL,
+                image_path TEXT,
+                next_inspection_date TEXT,
+                created_at TEXT NOT NULL,
+                sync_status TEXT NOT NULL
+              )
+            ''');
+          }
         },
       );
     } catch (_) {
@@ -127,6 +161,107 @@ class SqliteDataSource {
 
     await db.update(
       'local_prediction_history',
+      {'sync_status': 'synced'},
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
+  // ── Plant Observation Methods ──────────────────────────────────────────────
+
+  Future<void> saveLocalObservation(PlantObservationModel model) async {
+    if (kIsWeb) {
+      _inMemoryObservationWebCache.removeWhere((e) => e.id == model.id);
+      _inMemoryObservationWebCache.insert(0, model);
+      return;
+    }
+
+    final db = await database;
+    if (db == null) return;
+
+    await db.insert(
+      'local_plant_observations',
+      {
+        'id': model.id,
+        'scan_id': model.scanId,
+        'user_id': model.userId,
+        'crop_name': model.cropName,
+        'condition_label': model.conditionLabel.key,
+        'notes': model.notes,
+        'image_path': model.imagePath,
+        'next_inspection_date': model.nextInspectionDate?.toIso8601String(),
+        'created_at': model.createdAt.toIso8601String(),
+        'sync_status': model.syncStatus,
+      },
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  Future<List<PlantObservationModel>> getLocalObservationsForScan(
+      String scanId) async {
+    if (kIsWeb) {
+      return _inMemoryObservationWebCache
+          .where((e) => e.scanId == scanId)
+          .toList()
+        ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+    }
+
+    final db = await database;
+    if (db == null) return [];
+
+    final results = await db.query(
+      'local_plant_observations',
+      where: 'scan_id = ?',
+      whereArgs: [scanId],
+      orderBy: 'created_at DESC',
+    );
+    return results.map((row) => PlantObservationModel.fromJson(row)).toList();
+  }
+
+  Future<List<PlantObservationModel>> getAllLocalObservations(
+      String userId) async {
+    if (kIsWeb) {
+      return _inMemoryObservationWebCache
+          .where((e) => userId == 'guest' || e.userId == userId)
+          .toList()
+        ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+    }
+
+    final db = await database;
+    if (db == null) return [];
+
+    final results = userId == 'guest'
+        ? await db.query(
+            'local_plant_observations',
+            orderBy: 'created_at DESC',
+          )
+        : await db.query(
+            'local_plant_observations',
+            where: 'user_id = ?',
+            whereArgs: [userId],
+            orderBy: 'created_at DESC',
+          );
+    return results.map((row) => PlantObservationModel.fromJson(row)).toList();
+  }
+
+  Future<void> markObservationAsSynced(String id) async {
+    if (kIsWeb) {
+      final index =
+          _inMemoryObservationWebCache.indexWhere((e) => e.id == id);
+      if (index != -1) {
+        final existing = _inMemoryObservationWebCache[index];
+        _inMemoryObservationWebCache[index] = existing.copyWith(
+          syncStatus: 'synced',
+        );
+      }
+      return;
+    }
+
+    final db = await database;
+    if (db == null) return;
+
+    await db.update(
+      'local_plant_observations',
       {'sync_status': 'synced'},
       where: 'id = ?',
       whereArgs: [id],

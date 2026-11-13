@@ -21,6 +21,7 @@ import '../../features/detection/presentation/detection_result_screen.dart';
 import '../../features/recommendations/presentation/treatment_screen.dart';
 import '../../features/recommendations/presentation/prevention_screen.dart';
 import '../../features/recommendations/presentation/solutions_screen.dart';
+import '../../features/recovery/presentation/recovery_screen.dart';
 import '../../features/history/presentation/history_screen.dart';
 import '../../features/history/presentation/history_detail_screen.dart';
 import '../../features/history/presentation/filter_search_screen.dart';
@@ -200,6 +201,22 @@ final appRouter = GoRouter(
           redirect: (context, state) {
             final id = state.pathParameters['id'];
             return '/solutions/$id';
+          },
+        ),
+      ],
+    ),
+    GoRoute(
+      path: '/recovery',
+      builder: (context, state) {
+        final scanId = state.uri.queryParameters['scanId'];
+        return RecoveryScreen(scanId: scanId);
+      },
+      routes: [
+        GoRoute(
+          path: ':id',
+          builder: (context, state) {
+            final id = state.pathParameters['id'];
+            return RecoveryScreen(scanId: id);
           },
         ),
       ],

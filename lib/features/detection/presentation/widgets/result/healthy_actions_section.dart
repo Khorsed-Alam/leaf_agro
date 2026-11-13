@@ -110,6 +110,37 @@ class HealthyActionsSection extends StatelessWidget {
               ),
             ),
           ),
+
+          const SizedBox(height: 10),
+
+          // Follow-up & Plant Care Tracking
+          SizedBox(
+            height: 44,
+            child: TextButton.icon(
+              onPressed: () {
+                try {
+                  context.push('/recovery');
+                } catch (_) {}
+              },
+              icon: const Icon(Icons.track_changes_rounded, size: 18),
+              label: Text(
+                isBn
+                    ? 'ফলো-আপ ও যত্ন পর্যবেক্ষণ'
+                    : 'Follow-up & Plant Monitoring',
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.forestGreen,
+                ),
+              ),
+              style: TextButton.styleFrom(
+                backgroundColor: AppColors.freshGreen.withValues(alpha: 0.1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
