@@ -105,3 +105,4 @@ Audited via `ai_model/src/validate_splits.py` across all 90 records:
 ### Documented Limitations & Safeguards
 1. **Sample Size:** 90 approved images across 9 active classes provide an ideal pilot testbed for benchmarking MobileNetV2 training scripts, loss convergence, and Android TFLite pipeline testing. Full production training will require incorporating the remaining Bangladeshi field archives once extracted.
 2. **Group Independence Guarantee:** Verified against all known specimen tags, SHA-256 hashes, and perceptual hashes.
+

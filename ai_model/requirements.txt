@@ -1,12 +1,31 @@
-tensorflow>=2.15.0
-keras>=3.0.0
-numpy>=1.24.3
-pandas>=2.1.0
-scikit-learn>=1.3.0
-matplotlib>=3.8.0
-seaborn>=0.13.0
-pillow>=10.1.0
-tflite-runtime>=2.14.0
-tqdm>=4.66.1
-jupyter>=1.0.0
+# AgriCare AI — Machine Learning Environment Requirements
+# Verified on Windows 11 (64-bit) with Python 3.14.6
+# Phase 36: Environment Setup & Infrastructure Configuration
 
+# Deep Learning Framework
+tensorflow==2.22.0rc0
+keras-nightly==3.16.0.dev2026111303
+
+# Core Numerical & Data Processing
+numpy==2.5.3
+pandas==3.0.5
+scipy==1.18.1
+
+# Computer Vision & Image Processing
+pillow==13.0.0
+opencv-python==5.0.0.93
+imagehash==4.3.2
+PyWavelets==1.10.0
+
+# Evaluation, Statistics & Visualization
+scikit-learn==1.9.1
+matplotlib==3.11.2
+seaborn==0.13.2
+
+# Progress & Configuration Utilities
+tqdm==4.70.1
+PyYAML==6.0.3
+
+# Interactive Notebook Development & Jupyter Kernel
+ipykernel==7.4.0
+ipython==9.18.1
