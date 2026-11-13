@@ -86,3 +86,4 @@ class DetectionScreenHeader extends StatelessWidget {
     );
   }
 }
+

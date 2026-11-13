@@ -232,7 +232,13 @@ class _DetectionStartScreenState extends ConsumerState<DetectionStartScreen> {
                 isLoading: _isPickingImage && _activeSource == ImageSource.camera,
                 onTap: _isPickingImage
                     ? null
-                    : () => _handlePickImage(ImageSource.camera),
+                    : () {
+                        if (widget.imagePicker != null) {
+                          _handlePickImage(ImageSource.camera);
+                        } else {
+                          context.push('/detect/camera');
+                        }
+                      },
                 isBn: isBn,
               ),
 

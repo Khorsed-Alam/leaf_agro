@@ -163,7 +163,29 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
 5. **On-Device Offline Availability Indicator:**
    - Informational status pill confirming offline edge model availability on the device.
 6. **Next Step:**
-   - Proceeds seamlessly to **Screen 12: Image Preview Screen** (`/detect/preview`) for leaf confirmation before running AI neural network inference.
+   - Tap **Take Photo** to open the live **Screen 12: Camera Capture Screen** (`/detect/camera`), or **Choose from Gallery** to select an existing leaf photo, proceeding smoothly to `/detect/preview`.
+
+### Screen 12: Camera Capture Screen (Live Viewfinder)
+1. **Full-Screen Live Viewfinder:**
+   - Real-time live camera feed utilizing the device's rear primary lens by default.
+   - Clean aspect-ratio preserving display with dark cinematic background (`#000000`).
+2. **Top Control Bar:**
+   - **Close Button (Left):** Circular translucent button (`Icons.close_rounded`) that safely closes the camera session and returns to the previous screen.
+   - **Active Crop Context (Center):** Displays a green badge with the currently selected crop (e.g., *Rice (ধান)*) confirming the diagnosis target.
+   - **Flash Toggle (Right):** Cycles between *Off*, *Torch/On*, and *Auto* with clear icon indicators (`Icons.flash_off_rounded`, `Icons.flash_on_rounded`, `Icons.flash_auto_rounded`). Automatically disables when flash hardware is unsupported.
+3. **Leaf Positioning Guide (Reticle):**
+   - High-contrast rounded rectangle frame with Fresh Green (`#22C55E`) corner brackets framing the leaf specimen.
+   - Subtle leaf watermark in the center.
+   - Instruction Banner: *"Place the leaf inside the frame"* and *"Hold steady & avoid glare / heavy shadow"*.
+4. **Bottom Control Bar:**
+   - **Gallery Shortcut (Left):** One-tap button (`Icons.photo_library_rounded`) allowing farmers to switch directly to device gallery image selection without leaving the camera flow.
+   - **Shutter Capture Button (Center):** Ergonomic 80px circular button with white outer ring and Fresh Green gradient inner button. Prevents double-tap submissions and presents a white progress spinner while validating captured photos.
+   - **Camera Switch (Right):** One-tap button (`Icons.flip_camera_ios_rounded`) to flip between rear and front-facing cameras when multiple lenses are available.
+5. **Hardware & Permission Handling:**
+   - Graceful camera permission dialog with direct retry, settings navigation, and gallery fallback.
+   - Hardware sensor timeout and error recovery states with clear farmer instructions.
+6. **Next Step:**
+   - After image capture and validation, smoothly routes to **Screen 13: Image Confirmation & Preview Screen** (`/detect/preview`).
 
 ---
 
@@ -309,7 +331,29 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
 ৫. **অফলাইন AI স্ট্যাটাস ব্যাজ:**
    - ডিভাইসেই সম্পূর্ণ ইন্টারনেট ছাড়া রোগ নির্ণয় কার্যকর থাকার নিশ্চয়তা।
 ৬. **পরবর্তী ধাপ:**
-   - ছবি নির্বাচনের পর স্বয়ংক্রিয়ভাবে **স্ক্রিন ১২: ছবি প্রিভিউ স্ক্রিন** (`/detect/preview`)-এ নিয়ে যাবে।
+   - **ছবি তুলুন** বাটনে চাপ দিয়ে **স্ক্রিন ১২: ক্যামেরা ক্যাপচার স্ক্রিন** (`/detect/camera`)-এ প্রবেশ করুন অথবা **গ্যালারি** থেকে পাতা নির্বাচন করে সরাসরি `/detect/preview` পেজে যান।
+
+### স্ক্রিন ১২: ক্যামেরা ক্যাপচার স্ক্রিন (লাইভ ভিউফাইন্ডার)
+১. **ফুল-স্ক্রিন লাইভ ক্যামেরা ভিউফাইন্ডার:**
+   - ডিফল্টভাবে ফোনের ব্যাক বা প্রধান ক্যামেরা ব্যবহার করে সরাসরি লাইভ প্রিভিউ প্রদান করে।
+   - সঠিক অ্যাসপেক্ট রেশিও এবং মাঠে রোদে ব্যবহারের উপযোগী ডার্ক ব্যাকগ্রাউন্ড (`#000000`)।
+২. **টপ কন্ট্রোল বার:**
+   - **বাতিল বাটন (বাম):** ক্যামেরা সেশন বন্ধ করে পূর্বের স্ক্রিনে ফেরার জন্য ক্রস বাটন (`Icons.close_rounded`)।
+   - **নির্বাচিত ফসল নির্দেশক (মাঝখান):** বর্তমানে নির্বাচিত ফসলের ব্যাজ (যেমন: *ধান (Rice)*) প্রদর্শন করে।
+   - **ফ্ল্যাশ কন্ট্রোল (ডান):** ফ্ল্যাশ বন্ধ (Off), টর্চ চালু (Torch), ও অটো (Auto) মোডে চক্রাকারে পরিবর্তনের বাটন। ফ্ল্যাশ হার্ডওয়্যার না থাকলে স্বয়ংক্রিয়ভাবে অক্ষম হয়ে যায়।
+৩. **পাতা স্থাপনের নির্দেশিকা ফ্রেম (Viewfinder Reticle):**
+   - সবুজ কর্নার অ্যাকসেন্ট সহ গোল কোণাকৃতির ভিউফাইন্ডার রেটিকল।
+   - মাঝখানে সূক্ষ্ম পাতার জলছাপ।
+   - কৃষকের জন্য পরিষ্কার নির্দেশনা: *"পাতার অংশটি ফ্রেমের ভেতরে রাখুন"* এবং *"হাত স্থির রাখুন এবং ঝাপসা বা আলো এড়ান"*।
+৪. **বটম কন্ট্রোল বার:**
+   - **গ্যালারি শর্টকাট (বাম):** সরাসরি গ্যালারি থেকে ছবি বেছে নেওয়ার জন্য বাটন।
+   - **ক্যাপচার বাটন (মাঝখান):** ৮০ পিক্সেলের বড় বৃত্তাকার শাটার বাটন (সাদা রিং ও সতেজ সবুজ কোর)। ডাবল-ট্যাপ প্রতিরোধ ও স্পষ্ট লোডিং স্পিনার।
+   - **ক্যামেরা পরিবর্তন (ডান):** ফ্রন্ট ও ব্যাক ক্যামেরার মধ্যে পরিবর্তন করার বাটন।
+৫. **অনুমতি ও হার্ডওয়্যার নিয়ন্ত্রণ:**
+   - ক্যামেরা পারমিশন না থাকলে বন্ধুত্বপূর্ণ বার্তা, সেটিংস খোলার অপশন এবং গ্যালারি বিকল্প।
+   - হার্ডওয়্যার সংযোগে সমস্যা হলে স্পষ্ট ত্রুটি বার্তা ও পুনরায় চেষ্টার বাটন।
+৬. **পরবর্তী ধাপ:**
+   - ছবি তোলার পর স্বয়ংক্রিয়ভাবে **স্ক্রিন ১৩: ছবি নিশ্চিতকরণ ও প্রিভিউ** (`/detect/preview`) পেজে নিয়ে যায়।
 
 ---
 
