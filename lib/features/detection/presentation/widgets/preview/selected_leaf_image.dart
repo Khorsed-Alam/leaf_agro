@@ -38,7 +38,9 @@ class SelectedLeafImage extends StatelessWidget {
         color: Colors.black.withValues(alpha: 0.04),
         borderRadius: BorderRadius.circular(22),
         border: Border.all(
-          color: isFileOk ? AppColors.freshGreen.withValues(alpha: 0.8) : Colors.red.shade300,
+          color: isFileOk
+              ? AppColors.freshGreen.withValues(alpha: 0.8)
+              : Colors.red.shade300,
           width: 2,
         ),
         boxShadow: [
@@ -68,7 +70,8 @@ class SelectedLeafImage extends StatelessWidget {
                     top: 12,
                     right: 12,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
                       decoration: BoxDecoration(
                         color: Colors.black.withValues(alpha: 0.65),
                         borderRadius: BorderRadius.circular(20),

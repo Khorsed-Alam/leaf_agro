@@ -29,7 +29,8 @@ class GalleryUploadScreen extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<GalleryUploadScreen> createState() => _GalleryUploadScreenState();
+  ConsumerState<GalleryUploadScreen> createState() =>
+      _GalleryUploadScreenState();
 }
 
 class _GalleryUploadScreenState extends ConsumerState<GalleryUploadScreen> {
@@ -46,7 +47,8 @@ class _GalleryUploadScreenState extends ConsumerState<GalleryUploadScreen> {
     super.initState();
     _picker = widget.imagePicker ?? ImagePicker();
 
-    if (widget.initialImagePath != null && widget.initialImagePath!.isNotEmpty) {
+    if (widget.initialImagePath != null &&
+        widget.initialImagePath!.isNotEmpty) {
       _processImageFile(widget.initialImagePath!);
     }
   }
@@ -303,4 +305,3 @@ class _GalleryUploadScreenState extends ConsumerState<GalleryUploadScreen> {
     );
   }
 }
-

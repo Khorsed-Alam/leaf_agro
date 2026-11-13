@@ -80,7 +80,9 @@ class LeafPositioningGuide extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    isBn ? 'পাতার অংশটি ফ্রেমের ভেতরে রাখুন' : 'Place the leaf inside the frame',
+                    isBn
+                        ? 'পাতার অংশটি ফ্রেমের ভেতরে রাখুন'
+                        : 'Place the leaf inside the frame',
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.white,
@@ -177,4 +179,3 @@ class _CornerAccentsPainter extends CustomPainter {
         oldDelegate.radius != radius;
   }
 }
-

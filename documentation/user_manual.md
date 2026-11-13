@@ -237,7 +237,29 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - Prominent, full-width bottom button: **Analyze Leaf with AI** with sparkle icon.
    - Disabled if image is corrupted or missing.
    - During analysis, shows a progress spinner and prevents duplicate tap requests.
-   - Executes offline TFLite inference and routes smoothly to **Screen 15: Diagnosis Result Screen** (`/detect/result`).
+   - Executes offline TFLite inference and routes smoothly to **Screen 15: AI Analysis Screen** (`/detect/analyzing`).
+
+### Screen 15: AI Analysis Screen (Neural Network Inference)
+1. **Uncluttered Branding Header (`AnalyzingHeader`):**
+   - Clean top bar displaying the green AgriCare AI leaf icon and title, omitting back navigation to prevent accidental cancellation during active inference.
+2. **Selected Plant Leaf Photograph & AI Scanning Visualization (`ScanningImageView`):**
+   - High-fidelity container displaying the actual leaf image with original aspect ratio intact (`BoxFit.contain`).
+   - Four glowing Fresh Green (`#22C55E`) corner brackets framing the leaf.
+   - Smooth animated green laser scanning line with gradient trail sweeping across the leaf surface.
+   - Optional target crop badge (e.g., *Target Crop: Rice (ধান)*).
+3. **Status Feedback (`AnalyzingStatusSection`):**
+   - **Exact Main Heading:** *"Analyzing Your Plant"* / *"আপনার গাছ বিশ্লেষণ করা হচ্ছে"*
+   - **Exact Subtitle:** *"Our AI model is examining the leaf image."* / *"আমাদের AI মডেল পাতার ছবিটি পর্যবেক্ষণ করছে।"*
+   - **Indeterminate Progress Indicator:** Truthful green progress bar (non-fabricated, no fake percentages).
+   - **Status Text:** *"Processing image on your device"* with pulsing green indicator.
+   - **Genuine Offline AI Badge:** *"On-device AI • Offline"* confirming local TFLite edge model computation.
+4. **Resilient Failure & Recovery View (`AnalyzingErrorView`):**
+   - Displayed if neural network computation fails:
+     - Friendly message: *"We couldn't analyze this image. Please try again."*
+     - **Retry Analysis** button to re-trigger local inference.
+     - **Choose Another Image** button returning to Screen 14.
+5. **Seamless Success Navigation:**
+   - On completion with valid pathology prediction, stops animation and transitions to **Screen 16: Diagnosis Result Screen** (`/detect/result`).
 
 ---
 
@@ -458,6 +480,27 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - ছবি নষ্ট থাকলে স্বয়ংক্রিয়ভাবে অক্ষম থাকে।
    - চাপ দিলে স্পিনার সহ লোডিং অবস্থা দেখায় এবং ডাবল-ট্যাপ প্রতিরোধ করে।
    - অফলাইন TFLite নিউরাল নেটওয়ার্কে রোগ নির্ণয় শেষে সরাসরি **রোগ নির্ণয় ফলাফল স্ক্রিন** (`/detect/result`)-এ নিয়ে যায়।
+
+### স্ক্রিন ১৫: AI রোগ বিশ্লেষণ স্ক্রিন (অন-ডিভাইস নিউরাল নেটওয়ার্ক)
+১. **ব্র্যান্ডিং হেডার (`AnalyzingHeader`):**
+   - AgriCare AI লোগো সম্বলিত পরিষ্কার হেডার, যাতে বিশ্লেষণ চলাকালীন ভুল করে কেউ বের হয়ে না যায়।
+২. **পাতার ছবি ও লেজার স্ক্যানিং অ্যানিমেশন (`ScanningImageView`):**
+   - মূল পাতার ছবিটির অনুপাত অবিকল বজায় রেখে চার কোণায় সবুজ রেটিকল ফ্রেম।
+   - পাতার ওপর উপর-নিচ চলাচলকারী সবুজ লেজার স্ক্যানিং রশ্মি ও হালকা আভা।
+   - পূর্বে নির্বাচিত শস্যের ব্যাজ (যেমন: *ফসলের ধরন: ধান*)।
+৩. **স্ট্যাটাস ও প্রোগ্রেস (`AnalyzingStatusSection`):**
+   - **প্রধান শিরোনাম:** *"আপনার গাছ বিশ্লেষণ করা হচ্ছে"*
+   - **উপশিরোনাম:** *"আমাদের AI মডেল পাতার ছবিটি পর্যবেক্ষণ করছে।"*
+   - **প্রোগ্রেস বার:** সত্য ও বাস্তবসম্মত ইনডিটারমিনেট লোডিং বার (কোনো কাল্পনিক শতাংশ নেই)।
+   - **স্ট্যাটাস লেখা:** *"আপনার ডিভাইসেই ছবিটি প্রক্রিয়া করা হচ্ছে"* ও সবুজ পালসিং ডট।
+   - **অফলাইন AI ব্যাজ:** *"অন-ডিভাইস AI • অফলাইন"* যাতে নিশ্চিত হওয়া যায় সম্পূর্ণ প্রসেসিং ডিভাইসেই সম্পন্ন হচ্ছে।
+৪. **ব্যর্থতা ও সমাধান (`AnalyzingErrorView`):**
+   - কোনো কারণে প্রসেসিং ব্যর্থ হলে:
+     - সহজ কৃষক বার্তা: *"আমরা এই ছবিটি বিশ্লেষণ করতে পারিনি। অনুগ্রহ করে আবার চেষ্টা করুন।"*
+     - **পুনরায় চেষ্টা করুন (Retry Analysis)** বাটন।
+     - **অন্য ছবি পছন্দ করুন (Choose Another Image)** বাটন চেপে পূর্বের প্রিভিউ পেজে ফিরে যাওয়া।
+৫. **সফল পরবর্তী ধাপ:**
+   - AI রোগ শনাক্তকরণ সফল হলে স্বয়ংক্রিয়ভাবে **স্ক্রিন ১৬: রোগ নির্ণয় ফলাফল স্ক্রিন** (`/detect/result`)-এ নিয়ে যায়।
 
 ---
 

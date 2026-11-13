@@ -41,7 +41,8 @@ class GallerySelectionCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           onTap: isBusy ? null : onBrowse,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -125,7 +126,9 @@ class GallerySelectionCard extends StatelessWidget {
                         : const Icon(Icons.folder_open_rounded, size: 20),
                     label: Text(
                       isBusy
-                          ? (isBn ? 'গ্যালারি খোলা হচ্ছে...' : 'Opening Gallery...')
+                          ? (isBn
+                              ? 'গ্যালারি খোলা হচ্ছে...'
+                              : 'Opening Gallery...')
                           : (isBn ? 'গ্যালারি ব্রাউজ করুন' : 'Browse Gallery'),
                       style: const TextStyle(
                         fontSize: 15,
@@ -136,7 +139,8 @@ class GallerySelectionCard extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.forestGreen,
                       foregroundColor: Colors.white,
-                      disabledBackgroundColor: AppColors.forestGreen.withValues(alpha: 0.6),
+                      disabledBackgroundColor:
+                          AppColors.forestGreen.withValues(alpha: 0.6),
                       disabledForegroundColor: Colors.white70,
                       elevation: 0,
                       shape: RoundedRectangleBorder(

@@ -31,7 +31,8 @@ class SelectedImagePreviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formattedSize = fileSizeBytes != null ? _formatFileSize(fileSizeBytes!) : null;
+    final formattedSize =
+        fileSizeBytes != null ? _formatFileSize(fileSizeBytes!) : null;
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -67,7 +68,8 @@ class SelectedImagePreviewCard extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
                   color: AppColors.freshGreen.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(20),
@@ -170,7 +172,8 @@ class SelectedImagePreviewCard extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 4),
                                 ConstrainedBox(
-                                  constraints: const BoxConstraints(maxWidth: 160),
+                                  constraints:
+                                      const BoxConstraints(maxWidth: 160),
                                   child: Text(
                                     fileName ?? (isBn ? 'ছবি' : 'Image'),
                                     maxLines: 1,
@@ -187,7 +190,8 @@ class SelectedImagePreviewCard extends StatelessWidget {
                                   Text(
                                     '•  $formattedSize',
                                     style: TextStyle(
-                                      color: Colors.white.withValues(alpha: 0.8),
+                                      color:
+                                          Colors.white.withValues(alpha: 0.8),
                                       fontSize: 11,
                                     ),
                                   ),
@@ -236,4 +240,3 @@ class SelectedImagePreviewCard extends StatelessWidget {
     );
   }
 }
-

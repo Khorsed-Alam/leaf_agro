@@ -95,18 +95,23 @@ class DetectionResultScreen extends ConsumerWidget {
                   const SizedBox(height: 8),
                   Text(
                     prediction.diseaseNameEn,
-                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                    style: const TextStyle(
+                        fontSize: 22, fontWeight: FontWeight.w700),
                   ),
                   Text(
                     prediction.diseaseNameBn,
-                    style: const TextStyle(fontSize: 16, color: AppColors.onSurfaceVariant),
+                    style: const TextStyle(
+                        fontSize: 16, color: AppColors.onSurfaceVariant),
                   ),
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Confidence Level', style: TextStyle(fontSize: 14)),
-                      Text('$confidencePct%', style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+                      const Text('Confidence Level',
+                          style: TextStyle(fontSize: 14)),
+                      Text('$confidencePct%',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 16)),
                     ],
                   ),
                   const SizedBox(height: 8),
@@ -140,10 +145,13 @@ class DetectionResultScreen extends ConsumerWidget {
                   syncStatus: 'pending',
                 );
 
-                await ref.read(historyProvider.notifier).addScanRecord(historyRecord);
+                await ref
+                    .read(historyProvider.notifier)
+                    .addScanRecord(historyRecord);
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Saved to offline field history!')),
+                    const SnackBar(
+                        content: Text('Saved to offline field history!')),
                   );
                   context.go('/history');
                 }
@@ -157,7 +165,8 @@ class DetectionResultScreen extends ConsumerWidget {
                 text: 'View Treatment & Prevention Guide',
                 icon: Icons.healing_outlined,
                 isOutlined: true,
-                onPressed: () => context.push('/recommendations/${state.diseaseDetails!.id}'),
+                onPressed: () => context
+                    .push('/recommendations/${state.diseaseDetails!.id}'),
               ),
             ],
           ],

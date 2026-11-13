@@ -133,4 +133,3 @@ class CameraErrorState extends StatelessWidget {
     );
   }
 }
-

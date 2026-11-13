@@ -70,4 +70,3 @@ class ImageQualityTip extends StatelessWidget {
     );
   }
 }
-

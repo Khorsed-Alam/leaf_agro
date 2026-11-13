@@ -88,4 +88,3 @@ class GalleryContinueButton extends StatelessWidget {
     );
   }
 }
-

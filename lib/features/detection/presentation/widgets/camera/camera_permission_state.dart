@@ -45,7 +45,9 @@ class CameraPermissionState extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              isBn ? 'ক্যামেরা ব্যবহারের অনুমতি প্রয়োজন' : 'Camera Permission Required',
+              isBn
+                  ? 'ক্যামেরা ব্যবহারের অনুমতি প্রয়োজন'
+                  : 'Camera Permission Required',
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.white,
@@ -133,4 +135,3 @@ class CameraPermissionState extends StatelessWidget {
     );
   }
 }
-

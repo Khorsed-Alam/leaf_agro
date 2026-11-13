@@ -59,4 +59,3 @@ class GalleryShortcutButton extends StatelessWidget {
     );
   }
 }
-

@@ -229,7 +229,8 @@ class _DetectionStartScreenState extends ConsumerState<DetectionStartScreen> {
                     : 'Capture a leaf photo using your camera.',
                 icon: Icons.camera_alt_rounded,
                 isPrimary: true,
-                isLoading: _isPickingImage && _activeSource == ImageSource.camera,
+                isLoading:
+                    _isPickingImage && _activeSource == ImageSource.camera,
                 onTap: _isPickingImage
                     ? null
                     : () {
@@ -250,7 +251,8 @@ class _DetectionStartScreenState extends ConsumerState<DetectionStartScreen> {
                     : 'Select an existing leaf photo from your device.',
                 icon: Icons.photo_library_outlined,
                 isPrimary: false,
-                isLoading: _isPickingImage && _activeSource == ImageSource.gallery,
+                isLoading:
+                    _isPickingImage && _activeSource == ImageSource.gallery,
                 onTap: _isPickingImage
                     ? null
                     : () {

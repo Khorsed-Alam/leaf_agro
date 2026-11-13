@@ -33,13 +33,10 @@ class DetectionActionCard extends StatelessWidget {
             width: 1.2,
           );
 
-    final iconBgColor = isPrimary
-        ? AppColors.forestGreen
-        : const Color(0xFFDCFCE7);
+    final iconBgColor =
+        isPrimary ? AppColors.forestGreen : const Color(0xFFDCFCE7);
 
-    final iconColor = isPrimary
-        ? Colors.white
-        : AppColors.forestGreen;
+    final iconColor = isPrimary ? Colors.white : AppColors.forestGreen;
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6.0),
@@ -64,7 +61,8 @@ class DetectionActionCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(18),
           onTap: enabled ? onTap : null,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
             child: Row(
               children: [
                 // Action Icon in Glowing Rounded Circle
@@ -77,7 +75,8 @@ class DetectionActionCard extends StatelessWidget {
                     boxShadow: isPrimary
                         ? [
                             BoxShadow(
-                              color: AppColors.freshGreen.withValues(alpha: 0.35),
+                              color:
+                                  AppColors.freshGreen.withValues(alpha: 0.35),
                               blurRadius: 10,
                               offset: const Offset(0, 2),
                             ),

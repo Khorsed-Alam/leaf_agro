@@ -138,4 +138,3 @@ class GalleryHeader extends StatelessWidget {
     );
   }
 }
-

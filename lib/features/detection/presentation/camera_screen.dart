@@ -230,7 +230,9 @@ class _CameraScreenState extends ConsumerState<CameraScreen>
   Future<void> _handleCapturePhoto() async {
     final isBn = ref.read(settingsProvider).language == 'bn';
 
-    if (_controller == null || !_controller!.value.isInitialized || _isCapturing) {
+    if (_controller == null ||
+        !_controller!.value.isInitialized ||
+        _isCapturing) {
       return;
     }
 
@@ -372,7 +374,9 @@ class _CameraScreenState extends ConsumerState<CameraScreen>
               onClose: _handleClose,
               isBn: isBn,
             )
-          else if (_isInitializing || _controller == null || !_controller!.value.isInitialized)
+          else if (_isInitializing ||
+              _controller == null ||
+              !_controller!.value.isInitialized)
             CameraLoadingState(isBn: isBn)
           else
             _buildCameraPreview(),
@@ -406,13 +410,13 @@ class _CameraScreenState extends ConsumerState<CameraScreen>
             left: 0,
             right: 0,
             child: CameraBottomControls(
-              onCapture: (_controller != null && _controller!.value.isInitialized)
-                  ? _handleCapturePhoto
-                  : null,
+              onCapture:
+                  (_controller != null && _controller!.value.isInitialized)
+                      ? _handleCapturePhoto
+                      : null,
               onOpenGallery: _handleOpenGallery,
-              onSwitchCamera: _availableCameras.length > 1
-                  ? _handleSwitchCamera
-                  : null,
+              onSwitchCamera:
+                  _availableCameras.length > 1 ? _handleSwitchCamera : null,
               isCapturing: _isCapturing,
               hasMultipleCameras: _availableCameras.length > 1,
               isBn: isBn,

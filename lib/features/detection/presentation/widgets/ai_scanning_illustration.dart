@@ -136,7 +136,8 @@ class _AiScanningIllustrationState extends State<AiScanningIllustration>
               Positioned(
                 bottom: 10,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3.5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 3.5),
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.88),
                     borderRadius: BorderRadius.circular(12),
@@ -232,7 +233,8 @@ class _BotanicalLeafPainter extends CustomPainter {
         Color(0xFF14532D),
       ],
       stops: [0.0, 0.35, 0.75, 1.0],
-    ).createShader(Rect.fromCenter(center: Offset.zero, width: width * 2, height: height));
+    ).createShader(
+        Rect.fromCenter(center: Offset.zero, width: width * 2, height: height));
 
     final leafFillPaint = Paint()
       ..shader = leafShader
@@ -258,7 +260,12 @@ class _BotanicalLeafPainter extends CustomPainter {
       ..strokeWidth = 1.3
       ..strokeCap = StrokeCap.round;
 
-    final veinOffsets = [-height * 0.28, -height * 0.10, height * 0.08, height * 0.24];
+    final veinOffsets = [
+      -height * 0.28,
+      -height * 0.10,
+      height * 0.08,
+      height * 0.24
+    ];
     for (int i = 0; i < veinOffsets.length; i++) {
       final y = veinOffsets[i];
       // Right Vein

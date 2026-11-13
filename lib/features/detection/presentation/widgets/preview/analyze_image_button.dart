@@ -18,7 +18,8 @@ class AnalyzeImageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isBusy = state == AnalyzeButtonState.checking || state == AnalyzeButtonState.analyzing;
+    final isBusy = state == AnalyzeButtonState.checking ||
+        state == AnalyzeButtonState.analyzing;
     final isEnabled = onAnalyze != null && !isBusy;
 
     String buttonText() {
@@ -62,7 +63,9 @@ class AnalyzeImageButton extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.forestGreen,
               foregroundColor: Colors.white,
-              disabledBackgroundColor: isBusy ? AppColors.forestGreen.withValues(alpha: 0.7) : Colors.grey.shade300,
+              disabledBackgroundColor: isBusy
+                  ? AppColors.forestGreen.withValues(alpha: 0.7)
+                  : Colors.grey.shade300,
               disabledForegroundColor: Colors.white70,
               elevation: isEnabled ? 2 : 0,
               shape: RoundedRectangleBorder(

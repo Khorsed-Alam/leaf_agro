@@ -77,7 +77,8 @@ class CameraTopControls extends StatelessWidget {
             // Active Crop Indicator (if any)
             if (selectedCropName != null && selectedCropName!.isNotEmpty)
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color: Colors.black.withValues(alpha: 0.55),
                   borderRadius: BorderRadius.circular(20),
@@ -122,4 +123,3 @@ class CameraTopControls extends StatelessWidget {
     );
   }
 }
-
