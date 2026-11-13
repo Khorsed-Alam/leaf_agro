@@ -382,6 +382,48 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - `PreventionSkeleton`: Smooth shimmering skeleton layout while catalog/recommendations load.
    - `PreventionNotFoundView`: Friendly fallback card with one-tap reset button if an invalid crop/disease ID is requested.
 
+### Screen 20: Product & Solution Information Screen (Integrated Disease Management)
+1. **Header Navigation (`SolutionsHeader`):**
+   - Clean top bar displaying the screen title (*"Product & Solution Information"* / *"পণ্য ও সমাধান সংক্রান্ত তথ্য"*), subtitle (*"Explore possible approaches to managing plant diseases safely."*), science/shield icon, back navigation arrow returning to previous screen (`context.pop()`), and LeafAgro branding badge.
+2. **Selected Disease and Crop Summary (`SolutionsDiseaseSummaryCard`):**
+   - Compact summary card identifying the active crop and disease names in English and Bengali.
+   - Preserves botanical avatar/thumbnail.
+   - Displays clear management context overview.
+   - Shows genuine AI confidence percentage only when coming from an active detection record (clearly stated as pattern match, not laboratory certainty).
+   - Omits confidence when opened in catalog mode, avoiding invented certainty.
+   - Horizontal choice-chip switcher allowing farmers to dynamically explore solutions for Rice, Potato, Tomato, Mango, and Jute.
+3. **Biological Management Section (`BiologicalManagementSection`):**
+   - Educational presentation of verified biological control agents and antagonistic microorganisms (e.g., *Pseudomonas fluorescens* / *Bacillus subtilis* for Rice BLB, *Trichoderma harzianum* for Potato/Tomato early blight).
+   - Individual cards detailing the biocontrol agent, practical application timing (seedbed/seed treatment), and strict precautions (preventive nature, storage in cool shade, prohibition of mixing with chemical biocides).
+   - Honest empty state: when no verified biological solution exists for a crop/disease, clearly displays *"No verified biological management information is currently available for this crop and disease."*
+4. **Cultural Management Section (`CulturalManagementSection`):**
+   - Agronomic field practices reducing disease pressure: Field hygiene and sanitation, plant spacing and canopy ventilation, irrigation and drainage management, crop rotation, certified healthy seeds, and safe handling of affected plant material.
+   - Integrates crop-specific care tips from official agricultural research institutes (BRRI, BARI, BJRI, DAE).
+5. **Crop Protection Product Information (`CropProtectionProductsSection`):**
+   - Strictly educational and non-commercial (no shopping cart, no purchase links, no prices, no brand promotions).
+   - 4 neutral principles:
+     1. **Approved Products**: Must be officially registered for the specific crop, target disease, and intended use.
+     2. **Mandatory Product Labels**: Labels carry legal instructions on safety, dosage, and restrictions.
+     3. **Qualified Guidance**: Chemical choices depend on growing stage, weather, and extension advice.
+     4. **Integrated Management (IPM)**: Chemicals are an integrated last line of defense, not a substitute for field hygiene.
+6. **Important Safety Information (`AgriculturalSafetySection`):**
+   - 6 vital safety principles:
+     1. Follow the Product Label
+     2. Use Appropriate Protection (PPE: mask, gloves, protective clothing)
+     3. Protect People and Animals (keep away from children, livestock, food, drinking water)
+     4. Safe Storage and Container Disposal (lock securely, never reuse bottles)
+     5. Observe Harvest and Re-entry Restrictions (Pre-Harvest Interval - PHI)
+     6. Avoid Unapproved Chemical Mixing (never mix chemicals without label permission)
+7. **Agricultural Officer Guidance (`AgriculturalOfficerGuidanceCard`):**
+   - Dedicated highlighted card: *"Need Help Choosing the Right Solution?"*.
+   - Explains that qualified Upazila extension officers provide personalized diagnosis and local regulatory advice.
+   - Prominent CTA Button: **"View Treatment Recommendations"** navigating to Screen 18 (`/recommendations/:diseaseId`).
+8. **Important Regulatory Warning (`RegulatoryWarningCard`):**
+   - Notice reminding farmers that product suitability varies by location and regulations, mandating compliance with approved labels and local authorities.
+9. **Resilient Loading & Fallback:**
+   - `SolutionsSkeleton`: Shimmer placeholder during async data retrieval.
+   - `SolutionsNotFoundView`: Clean error view with one-tap reset to standard crop solutions.
+
 ---
 
 ## 🇧🇩 বাংলা ব্যবহারিক নির্দেশিকা (কৃষক ও মাঠ কর্মকর্তাদের জন্য)
@@ -743,6 +785,46 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
 ৮. **লোড ও ত্রুটি ব্যবস্থাপনা:**
    - `PreventionSkeleton`: ডাটা লোড হওয়ার সময়ে আধুনিক শিমার লোডিং ভিউ।
    - `PreventionNotFoundView`: কোনো ত্রুটি হলে এক ট্যাপে ডিফল্ট ফসলে ফিরে আসার ব্যাক-আপ কার্ড।
+
+### স্ক্রিন ২০: পণ্য ও সমাধান সংক্রান্ত তথ্য স্ক্রিন (সমন্বিত বালাই ও রোগ ব্যবস্থাপনা)
+১. **হেডার ও নেভিগেশন (`SolutionsHeader`):**
+   - পরিষ্কার শীর্ষ বার, স্ক্রিন শিরোনাম (*"পণ্য ও সমাধান সংক্রান্ত তথ্য"* / *"Product & Solution Information"*), উপশিরোনাম (*"নিরাপদে উদ্ভিদের রোগ ব্যবস্থাপনার সম্ভাব্য উপায়গুলো জানুন"*), সায়েন্স আইকন, ব্যাক বাটন এবং LeafAgro ব্র্যান্ডিং।
+২. **নির্বাচিত রোগ ও ফসলের সারাংশ কার্ড (`SolutionsDiseaseSummaryCard`):**
+   - আক্রান্ত ফসল ও রোগের নাম বাংলা ও ইংরেজিতে প্রদর্শন।
+   - ফসলের রঙিন প্রতীকী চিত্র/থাম্বনেইল।
+   - রোগ ব্যবস্থাপনা পরিচিতি ও সংক্ষিপ্ত সারসংক্ষেপ।
+   - শুধুমাত্র আসল স্ক্যান ফলাফল থেকে আসলে AI প্যাটার্ন মিলের শতকরা হার প্রদর্শন; ক্যাটালগ থেকে ব্রাউজ করলে মিথ্যা আত্মবিশ্বাস প্রদর্শন সম্পূর্ণ বর্জন।
+   - ৫টি সমর্থিত ফসলে (ধান, আলু, টমেটো, আম, পাট) সহজে সুইচ করার জন্য অনুভূমিক চিপস বার।
+৩. **জৈবিক ব্যবস্থাপনা (`BiologicalManagementSection`):**
+   - ব্রি ও বারি কর্তৃক স্বীকৃত উপকারী অণুজীব ও জৈব বালাইনাশকের বিবরণ (যেমন: ধানের ব্যাকটেরিয়াল ব্লাইটে সিউডোমোনাস/ব্যাসিলাস, আলু ও টমেটোর ব্লাইট দমনে ট্রাইকোডার্মা)।
+   - প্রতিটি জৈব উপাদানের প্রয়োগের ক্ষেত্র (বীজ বা বীজতলা শোধন), সীমাবদ্ধতা ও সতর্কতা (টিস্যু নষ্ট হয়ে যাওয়ার পর নিরাময় সম্ভব নয়, রাসায়নিক বালাইনাশকের সাথে মেশানো নিষিদ্ধ)।
+   - যেসব রোগ বা ফসলের অনুমোদিত জৈবিক সমাধান নেই, সেখানে সততার সাথে *"এই ফসল ও রোগের জন্য কোনো যাচাইকৃত জৈবিক ব্যবস্থাপনা তথ্য বর্তমানে উপলব্ধ নেই"* বার্তা প্রদর্শন।
+৪. **কৃষিতাত্ত্বিক ব্যবস্থাপনা (`CulturalManagementSection`):**
+   - রাসায়নিক ছাড়া রোগের চাপ কমানোর প্রমাণিত কৃষি চর্চা: আইল ও জমি পরিচ্ছন্ন রাখা, সঠিক দূরত্ব ও বায়ু চলাচল, সুষম সেচ ও নিকাশ নালা, পর্যায়ক্রমিক ফসল চক্র, সুস্থ ও প্রত্যয়িত বীজ এবং আক্রান্ত অংশের নিরাপদ অপসারণ।
+৫. **ফসল সুরক্ষা সামগ্রী সংক্রান্ত নীতিমালা (`CropProtectionProductsSection`):**
+   - সম্পূর্ণ অবাণিজ্যিক ও শিক্ষামূলক (কোনো শপিং কার্ট, কেনাকাটার বাটন, পণ্যের দাম বা ব্র্যান্ড প্রচার নেই)।
+   - ৪টি নিরপেক্ষ মূলনীতি:
+     ১. **অনুমোদিত পণ্য**: সংশ্লিষ্ট ফসল ও রোগের জন্য সরকারিভাবে নিবন্ধিত পণ্যই শুধু ব্যবহার্য।
+     ২. **প্যাকেটের লেবেল ও নির্দেশিকা**: লেবেলের আইনি ও স্বাস্থ্য সুরক্ষা নির্দেশ কঠোরভাবে পালন আবশ্যক।
+     ৩. **যোগ্য কর্মকর্তার পরামর্শ**: উপযুক্ত পণ্য নির্বাচন আবহাওয়া ও অভিজ্ঞদের সিদ্ধান্তের ওপর নির্ভরশীল।
+     ৪. **সমন্বিত বালাই ব্যবস্থাপনা (IPM)**: বালাইনাশক শেষ অবলম্বন, সাধারণ কৃষি পরিচর্যার বিকল্প নয়।
+৬. **গুরুত্বপূর্ণ নিরাপত্তা তথ্য (`AgriculturalSafetySection`):**
+   - ৬টি মৌলিক নিরাপত্তা অনুশাসন:
+     ১. পণ্যের লেবেল অক্ষরে অক্ষরে মেনে চলা
+     ২. ব্যক্তিগত সুরক্ষা সরঞ্জাম (PPE: মাস্ক, গ্লাভস, চশমা) পরিধান
+     ৩. মানুষ, শিশু ও গবাদি পশুকে রাসায়নিক দ্রব্য থেকে নিরাপদ দূরত্বে রাখা
+     ৪. তালাবদ্ধ স্থানে মূল পাত্রে সংরক্ষণ ও খালি পাত্র মাটিতে পুঁতে ফেলা
+     ৫. ফসল তোলার পূর্ববর্তী নির্ধারিত অপেক্ষমাণ সময় (PHI) কঠোরভাবে মানা
+     ৬. অননুমোদিতভাবে একাধিক রাসায়নিক মেশানো থেকে বিরত থাকা
+৭. **উপজেলা কৃষি কর্মকর্তার পরামর্শ (`AgriculturalOfficerGuidanceCard`):**
+   - বিশেষ কার্ড: *"সঠিক সমাধান নির্বাচনে সাহায্য প্রয়োজন?"*।
+   - কৃষি কর্মকর্তার পেশাদার পরামর্শের অপরিহার্যতা তুলে ধরা।
+   - চিকিৎসা পরামর্শ স্ক্রিনে (Screen 18) সহজে যাওয়ার জন্য **"চিকিৎসা সংক্রান্ত পরামর্শ দেখুন"** বাটন।
+৮. **গুরুত্বপূর্ণ আইনি ও সরকারি বিজ্ঞপ্তি (`RegulatoryWarningCard`):**
+   - পণ্যের উপযোগিতা এলাকা ও জাতভেদে পরিবর্তিত হতে পারে উল্লেখ করে সরকারি নিয়মাবলী মেনে চলার আইনি সতর্কবার্তা।
+৯. **লোড ও ত্রুটি ব্যবস্থাপনা:**
+   - `SolutionsSkeleton`: শিমার অ্যানিমেশন সহ লোডিং ভিউ।
+   - `SolutionsNotFoundView`: ভুল তথ্য বা আইডি প্রবেশে নিরাপদ বিকল্প পেজ।
 
 ---
 

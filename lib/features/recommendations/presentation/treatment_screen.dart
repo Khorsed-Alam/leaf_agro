@@ -13,6 +13,7 @@ import 'widgets/detected_disease_summary_card.dart';
 import 'widgets/immediate_actions_card.dart';
 import 'widgets/prevention_nav_button.dart';
 import 'widgets/safe_handling_reminders_card.dart';
+import 'widgets/solutions_nav_button.dart';
 import 'widgets/step_by_step_recommendations_card.dart';
 import 'widgets/treatment_header.dart';
 import 'widgets/treatment_not_found_view.dart';
@@ -161,6 +162,12 @@ class _TreatmentScreenState extends ConsumerState<TreatmentScreen> {
 
                 // 8. Prevention Tips Navigation Button
                 PreventionNavButton(
+                  disease: disease,
+                  isBn: isBn,
+                ),
+
+                // 9. Product & Solution Information Navigation Button (Screen 20)
+                SolutionsNavButton(
                   disease: disease,
                   isBn: isBn,
                 ),

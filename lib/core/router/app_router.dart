@@ -20,6 +20,7 @@ import '../../features/detection/presentation/analyzing_screen.dart';
 import '../../features/detection/presentation/detection_result_screen.dart';
 import '../../features/recommendations/presentation/treatment_screen.dart';
 import '../../features/recommendations/presentation/prevention_screen.dart';
+import '../../features/recommendations/presentation/solutions_screen.dart';
 import '../../features/history/presentation/history_screen.dart';
 import '../../features/history/presentation/history_detail_screen.dart';
 import '../../features/history/presentation/filter_search_screen.dart';
@@ -155,6 +156,55 @@ final appRouter = GoRouter(
       ],
     ),
     GoRoute(
+      path: '/solutions',
+      builder: (context, state) {
+        final cropIdStr = state.uri.queryParameters['cropId'];
+        final cropId = cropIdStr != null ? int.tryParse(cropIdStr) : null;
+        final diseaseIdStr = state.uri.queryParameters['diseaseId'];
+        final diseaseId =
+            diseaseIdStr != null ? int.tryParse(diseaseIdStr) : null;
+        return SolutionsScreen(
+          cropId: cropId,
+          diseaseId: diseaseId,
+        );
+      },
+      routes: [
+        GoRoute(
+          path: ':id',
+          builder: (context, state) {
+            final id = int.tryParse(state.pathParameters['id'] ?? '1') ?? 1;
+            final cropIdStr = state.uri.queryParameters['cropId'];
+            final cropId = cropIdStr != null ? int.tryParse(cropIdStr) : null;
+            return SolutionsScreen(
+              diseaseId: id,
+              cropId: cropId,
+            );
+          },
+        ),
+      ],
+    ),
+    GoRoute(
+      path: '/products',
+      redirect: (context, state) {
+        final cropId = state.uri.queryParameters['cropId'];
+        final diseaseId = state.uri.queryParameters['diseaseId'];
+        final params = <String>[];
+        if (cropId != null) params.add('cropId=$cropId');
+        if (diseaseId != null) params.add('diseaseId=$diseaseId');
+        final query = params.isNotEmpty ? '?${params.join('&')}' : '';
+        return '/solutions$query';
+      },
+      routes: [
+        GoRoute(
+          path: ':id',
+          redirect: (context, state) {
+            final id = state.pathParameters['id'];
+            return '/solutions/$id';
+          },
+        ),
+      ],
+    ),
+    GoRoute(
       path: '/history',
       builder: (context, state) => const HistoryScreen(),
       routes: [
@@ -210,4 +260,3 @@ final appRouter = GoRouter(
     ),
   ],
 );
-
