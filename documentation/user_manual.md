@@ -211,6 +211,34 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - Initially disabled until a valid image is selected; automatically enables with active tactile feedback.
    - Prevents duplicate clicks during preparation.
 
+### Screen 14: Image Preview & Confirmation Screen (Sample Review)
+1. **Screen Header & Navigation:**
+   - Heading: *"Review Your Image"*, Subtitle: *"Ensure the leaf sample is clear before AI diagnosis."*
+   - Accessible circular back button returning smoothly to the previous screen without clearing the selected photo unnecessarily.
+2. **Selected Crop Information (`SelectedCropInfo`):**
+   - Displays a clean green badge with the crop name (e.g., *Selected Crop: Rice (ধান)*) and AI model status tag (*"AI Ready"*).
+   - If no crop was selected, gracefully hides this section without creating empty space.
+3. **Large Selected Leaf Photograph (`SelectedLeafImage`):**
+   - Spacious, high-fidelity image preview container (height 300px) with 20px rounded corners, subtle green selection border, and soft elevation shadow.
+   - Preserves original aspect ratio using `BoxFit.contain` so portrait and landscape photos are never distorted or cropped.
+   - Includes a green verified badge (*"Ready"* / *"নমুনা প্রস্তুত"*).
+   - Handles missing or corrupted files gracefully with clear error guidance.
+4. **Image Quality Status Banner (`ImageQualityStatus`):**
+   - Compact real-time file validation status:
+     - **Image Ready** (*Green*): Verified and ready for neural network inference.
+     - **Image Quality Warning** (*Amber*): File exceeds 15MB, noting preprocessing may take longer.
+     - **Unable to Read Image** (*Red*): File missing or zero bytes, prompting user to choose another image.
+5. **Image Review Guidance (`ImageReviewInstruction`):**
+   - Clear farmer advice: *"Make sure the leaf is clearly visible"* and *"Check that the affected part of the leaf is visible before starting the analysis."*
+6. **Secondary Actions (`ImagePreviewActions`):**
+   - **Retake Photo**: Camera icon button smoothly returning to Screen 12 (Camera Viewfinder) to capture a new leaf photo.
+   - **Change Image**: Gallery icon button opening Screen 13 (Gallery Upload) to pick a different leaf sample.
+7. **Primary Action: Analyze Image Button (`AnalyzeImageButton`):**
+   - Prominent, full-width bottom button: **Analyze Leaf with AI** with sparkle icon.
+   - Disabled if image is corrupted or missing.
+   - During analysis, shows a progress spinner and prevents duplicate tap requests.
+   - Executes offline TFLite inference and routes smoothly to **Screen 15: Diagnosis Result Screen** (`/detect/result`).
+
 ---
 
 ## 🇧🇩 বাংলা ব্যবহারিক নির্দেশিকা (কৃষক ও মাঠ কর্মকর্তাদের জন্য)
@@ -402,6 +430,34 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - স্ক্রিনের নিচে পিন করা বড় বাটন: **এগিয়ে যান**।
    - ছবি নির্বাচিত না হওয়া পর্যন্ত নিষ্ক্রিয় থাকে এবং ছবি নির্বাচনের পর সচল হয়।
    - বাটনে চাপ দিলে সরাসরি **ছবি প্রিভিউ ও নিশ্চিতকরণ স্ক্রিন** (`/detect/preview`)-এ নিয়ে যায়।
+
+### স্ক্রিন ১৪: ছবি প্রিভিউ ও নিশ্চিতকরণ স্ক্রিন (পর্যালোচনা)
+১. **হেডার ও নেভিগেশন:**
+   - শিরোনাম: *"আপনার ছবি পর্যালোচনা করুন"*, উপশিরোনাম: *"AI রোগ নির্ণয় শুরু করার পূর্বে নিশ্চিত করুন যে পাতার নমুনাটি স্পষ্ট।"*
+   - গোল ব্যাক বাটন চেপে ছবি না হারিয়ে পূর্বের স্ক্রিনে নিরাপদে ফিরে যাওয়া যায়।
+২. **নির্বাচিত ফসল তথ্য (`SelectedCropInfo`):**
+   - পূর্বে নির্বাচিত শস্যের নাম (যেমন: *নির্বাচিত ফসল: ধান*) এবং মডেল প্রস্তুত ব্যাজ (*"AI মডেল প্রস্তুত"*) প্রদর্শিত হয়।
+   - কোনো ফসল নির্বাচন না থাকলে এই অংশটি স্বয়ংক্রিয়ভাবে লুকিয়ে থাকে।
+৩. **পাতার বড় ছবি প্রিভিউ (`SelectedLeafImage`):**
+   - ৩০০ পিক্সেল উচ্চতার বড় প্রিভিউ কার্ড (২০ পিক্সেল গোল কোণা, সবুজ বর্ডার ও ছায়া সহ)।
+   - ছবির অনুপাত অবিকল বজায় রেখে (`BoxFit.contain`) ল্যান্ডস্কেপ ও পোর্ট্রেট ছবি নিখুঁতভাবে দেখায়।
+   - উপরে ডানপাশে সবুজ প্রস্তুত ব্যাজ (*"নমুনা প্রস্তুত"* / *"Ready"*)।
+   - ফাইল নষ্ট বা মুছে গেলে স্পষ্ট ত্রুটি বার্তা ও বিকল্প পরামর্শ প্রদর্শন করে।
+৪. **ছবির গুণমান স্ট্যাটাস (`ImageQualityStatus`):**
+   - রিয়েল ফাইল স্ট্যাটাস প্রদর্শন:
+     - **ছবি প্রস্তুত** (*সবুজ*): ছবি সফলভাবে যাচাইকৃত ও AI বিশ্লেষণের জন্য প্রস্তুত।
+     - **ছবির সতর্কতা** (*হলুদ*): ছবির আকার ১৫MB এর বেশি হলে প্রক্রিয়াকরণে অতিরিক্ত সময় লাগার নোটিশ।
+     - **ছবি পড়া যায়নি** (*লাল*): ফাইল অসম্পূর্ণ বা নষ্ট থাকলে নতুন ছবি নির্বাচনের পরামর্শ।
+৫. **পর্যালোচনা নির্দেশনা (`ImageReviewInstruction`):**
+   - কৃষকের জন্য সুস্পষ্ট পরামর্শ: *"পাতার অংশটি স্পষ্টভাবে দেখা যাচ্ছে কিনা নিশ্চিত করুন"* এবং *"রোগ নির্ণয় শুরু করার পূর্বে আক্রান্ত অংশটি দৃশ্যমান কিনা তা দেখে নিন।"*
+6. **সহকারী বাটনসমূহ (`ImagePreviewActions`):**
+   - **আবার তুলুন (Retake Photo):** স্ক্রিন ১২ ক্যামেরা ভিউফাইন্ডার খুলে নতুন ছবি তোলার সুবিধা।
+   - **অন্য ছবি দিন (Change Image):** স্ক্রিন ১৩ গ্যালারি খুলে ডিভাইস থেকে নতুন ছবি পছন্দের সুবিধা।
+৭. **প্রধান বাটন: রোগ বিশ্লেষণ শুরু করুন (`AnalyzeImageButton`):**
+   - নিচে পিন করা বড় আকর্ষণীয় বাটন: **রোগ বিশ্লেষণ করুন (Analyze Leaf with AI)**।
+   - ছবি নষ্ট থাকলে স্বয়ংক্রিয়ভাবে অক্ষম থাকে।
+   - চাপ দিলে স্পিনার সহ লোডিং অবস্থা দেখায় এবং ডাবল-ট্যাপ প্রতিরোধ করে।
+   - অফলাইন TFLite নিউরাল নেটওয়ার্কে রোগ নির্ণয় শেষে সরাসরি **রোগ নির্ণয় ফলাফল স্ক্রিন** (`/detect/result`)-এ নিয়ে যায়।
 
 ---
 
