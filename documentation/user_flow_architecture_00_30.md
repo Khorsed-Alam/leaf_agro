@@ -261,3 +261,4 @@ flowchart TD
    - Returning from treatment or recovery screens returns farmers smoothly to their previous context without resetting the stack.
 3. **Bilingual Localization:**
    - Every screen dynamically adapts to the selected language (`en` or `bn`) via `settingsProvider` without requiring app restarts.
+

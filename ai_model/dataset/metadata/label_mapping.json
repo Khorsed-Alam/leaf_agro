@@ -1,0 +1,509 @@
+{
+  "schema_version": "1.0.0",
+  "project": "AgriCare AI",
+  "description": "Standardized class mapping across datasets, MobileNetV2 labels, and Supabase disease catalog",
+  "total_classes": 19,
+  "supported_crops": [
+    "Rice",
+    "Potato",
+    "Tomato",
+    "Mango",
+    "Jute"
+  ],
+  "classes": [
+    {
+      "class_id": 101,
+      "crop": "Rice",
+      "standardized_identifier": "AGRI_RICE_BACTERIAL_LEAF_BLIGHT",
+      "labels_json_string": "Rice___Bacterial_leaf_blight",
+      "supabase_catalog_class_name": "Rice___Bacterial_leaf_blight",
+      "display_names": {
+        "en": "Bacterial Leaf Blight",
+        "bn": "ব্যাকটেরিয়াল লিফ ব্লাইট (পাতাপোড়া)"
+      },
+      "scientific_metadata": {
+        "disease_name": "Bacterial blight of rice",
+        "pathogen": "Xanthomonas oryzae pv. oryzae",
+        "class_type": "BACTERIAL",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "RiceLeafDiseaseBD",
+          "original_class_name": "Bacterial_leaf_blight",
+          "verification_status": "VERIFIED_EXTERNAL"
+        }
+      ],
+      "model_eligibility": "CONDITIONALLY_APPROVED_PENDING_DOWNLOAD",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 102,
+      "crop": "Rice",
+      "standardized_identifier": "AGRI_RICE_BROWN_SPOT",
+      "labels_json_string": "Rice___Brown_spot",
+      "supabase_catalog_class_name": "Rice___Brown_spot",
+      "display_names": {
+        "en": "Brown Spot",
+        "bn": "বাদামি দাগ রোগ (ব্রাউন স্পট)"
+      },
+      "scientific_metadata": {
+        "disease_name": "Brown spot of rice",
+        "pathogen": "Bipolaris oryzae (teleomorph: Cochliobolus miyabeanus)",
+        "class_type": "FUNGAL",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "RiceLeafDiseaseBD",
+          "original_class_name": "Brown_spot",
+          "verification_status": "VERIFIED_EXTERNAL"
+        }
+      ],
+      "model_eligibility": "CONDITIONALLY_APPROVED_PENDING_DOWNLOAD",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 103,
+      "crop": "Rice",
+      "standardized_identifier": "AGRI_RICE_LEAF_SMUT",
+      "labels_json_string": "Rice___Leaf_smut",
+      "supabase_catalog_class_name": "Rice___Leaf_smut",
+      "display_names": {
+        "en": "Leaf Smut",
+        "bn": "লিফ স্মাট (পাতার ভুষা রোগ)"
+      },
+      "scientific_metadata": {
+        "disease_name": "Leaf smut of rice",
+        "pathogen": "Entyloma oryzae",
+        "class_type": "FUNGAL",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "RiceLeafDiseaseBD",
+          "original_class_name": "Leaf_smut",
+          "verification_status": "VERIFIED_EXTERNAL"
+        }
+      ],
+      "model_eligibility": "CONDITIONALLY_APPROVED_PENDING_DOWNLOAD",
+      "bangladesh_relevance": "HIGH"
+    },
+    {
+      "class_id": 104,
+      "crop": "Rice",
+      "standardized_identifier": "AGRI_RICE_HEALTHY",
+      "labels_json_string": "Rice___Healthy",
+      "supabase_catalog_class_name": "Rice___Healthy",
+      "display_names": {
+        "en": "Healthy Rice Foliage",
+        "bn": "সুস্থ ধান গাছ"
+      },
+      "scientific_metadata": {
+        "disease_name": "Oryza sativa (healthy)",
+        "pathogen": "None",
+        "class_type": "HEALTHY",
+        "is_healthy": true
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "RiceLeafDiseaseBD",
+          "original_class_name": "Healthy",
+          "verification_status": "VERIFIED_EXTERNAL"
+        }
+      ],
+      "model_eligibility": "CONDITIONALLY_APPROVED_PENDING_DOWNLOAD",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 201,
+      "crop": "Potato",
+      "standardized_identifier": "AGRI_POTATO_EARLY_BLIGHT",
+      "labels_json_string": "Potato___Early_blight",
+      "supabase_catalog_class_name": "Potato___Early_blight",
+      "display_names": {
+        "en": "Early Blight",
+        "bn": "আগাম ধসা রোগ (আর্লি ব্লাইট)"
+      },
+      "scientific_metadata": {
+        "disease_name": "Early blight of potato",
+        "pathogen": "Alternaria solani",
+        "class_type": "FUNGAL",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "PlantVillage",
+          "original_class_name": "Potato___Early_blight",
+          "verification_status": "VERIFIED_LOCAL"
+        }
+      ],
+      "model_eligibility": "APPROVED",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 202,
+      "crop": "Potato",
+      "standardized_identifier": "AGRI_POTATO_LATE_BLIGHT",
+      "labels_json_string": "Potato___Late_blight",
+      "supabase_catalog_class_name": "Potato___Late_blight",
+      "display_names": {
+        "en": "Late Blight",
+        "bn": "নাবি ধসা রোগ (লেট ব্লাইট)"
+      },
+      "scientific_metadata": {
+        "disease_name": "Late blight of potato",
+        "pathogen": "Phytophthora infestans",
+        "class_type": "OOMYCETE",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "PlantVillage",
+          "original_class_name": "Potato___Late_blight",
+          "verification_status": "VERIFIED_LOCAL"
+        }
+      ],
+      "model_eligibility": "APPROVED",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 203,
+      "crop": "Potato",
+      "standardized_identifier": "AGRI_POTATO_HEALTHY",
+      "labels_json_string": "Potato___healthy",
+      "supabase_catalog_class_name": "Potato___healthy",
+      "display_names": {
+        "en": "Healthy Potato Foliage",
+        "bn": "সুস্থ আলু গাছ"
+      },
+      "scientific_metadata": {
+        "disease_name": "Solanum tuberosum (healthy)",
+        "pathogen": "None",
+        "class_type": "HEALTHY",
+        "is_healthy": true
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "PlantVillage",
+          "original_class_name": "Potato___healthy",
+          "verification_status": "VERIFIED_LOCAL"
+        }
+      ],
+      "model_eligibility": "APPROVED",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 301,
+      "crop": "Tomato",
+      "standardized_identifier": "AGRI_TOMATO_BACTERIAL_SPOT",
+      "labels_json_string": "Tomato___Bacterial_spot",
+      "supabase_catalog_class_name": "Tomato___Bacterial_spot",
+      "display_names": {
+        "en": "Bacterial Spot",
+        "bn": "ব্যাকটেরিয়াল স্পট (দাগ রোগ)"
+      },
+      "scientific_metadata": {
+        "disease_name": "Bacterial spot of tomato",
+        "pathogen": "Xanthomonas perforans / Xanthomonas euvesicatoria",
+        "class_type": "BACTERIAL",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "PlantVillage",
+          "original_class_name": "Tomato___Bacterial_spot",
+          "verification_status": "VERIFIED_LOCAL"
+        }
+      ],
+      "model_eligibility": "APPROVED",
+      "bangladesh_relevance": "HIGH"
+    },
+    {
+      "class_id": 302,
+      "crop": "Tomato",
+      "standardized_identifier": "AGRI_TOMATO_EARLY_BLIGHT",
+      "labels_json_string": "Tomato___Early_blight",
+      "supabase_catalog_class_name": "Tomato___Early_blight",
+      "display_names": {
+        "en": "Early Blight",
+        "bn": "আগাম ধসা রোগ (টমেটো আর্লি ব্লাইট)"
+      },
+      "scientific_metadata": {
+        "disease_name": "Early blight of tomato",
+        "pathogen": "Alternaria solani",
+        "class_type": "FUNGAL",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "PlantVillage",
+          "original_class_name": "Tomato___Early_blight",
+          "verification_status": "VERIFIED_LOCAL"
+        }
+      ],
+      "model_eligibility": "APPROVED",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 303,
+      "crop": "Tomato",
+      "standardized_identifier": "AGRI_TOMATO_LATE_BLIGHT",
+      "labels_json_string": "Tomato___Late_blight",
+      "supabase_catalog_class_name": "Tomato___Late_blight",
+      "display_names": {
+        "en": "Late Blight",
+        "bn": "নাবি ধসা রোগ (টমেটো লেট ব্লাইট)"
+      },
+      "scientific_metadata": {
+        "disease_name": "Late blight of tomato",
+        "pathogen": "Phytophthora infestans",
+        "class_type": "OOMYCETE",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "PlantVillage",
+          "original_class_name": "Tomato___Late_blight",
+          "verification_status": "VERIFIED_LOCAL"
+        }
+      ],
+      "model_eligibility": "APPROVED",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 304,
+      "crop": "Tomato",
+      "standardized_identifier": "AGRI_TOMATO_LEAF_MOLD",
+      "labels_json_string": "Tomato___Leaf_Mold",
+      "supabase_catalog_class_name": "Tomato___Leaf_Mold",
+      "display_names": {
+        "en": "Leaf Mold",
+        "bn": "লিফ মোল্ড (পাতার ছত্রাক রোগ)"
+      },
+      "scientific_metadata": {
+        "disease_name": "Leaf mold of tomato",
+        "pathogen": "Passalora fulva (syn. Cladosporium fulvum)",
+        "class_type": "FUNGAL",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "PlantVillage",
+          "original_class_name": "Tomato___Leaf_Mold",
+          "verification_status": "VERIFIED_LOCAL"
+        }
+      ],
+      "model_eligibility": "APPROVED",
+      "bangladesh_relevance": "HIGH"
+    },
+    {
+      "class_id": 305,
+      "crop": "Tomato",
+      "standardized_identifier": "AGRI_TOMATO_SEPTORIA_LEAF_SPOT",
+      "labels_json_string": "Tomato___Septoria_leaf_spot",
+      "supabase_catalog_class_name": "Tomato___Septoria_leaf_spot",
+      "display_names": {
+        "en": "Septoria Leaf Spot",
+        "bn": "সেপ্টোরিয়া পাতার দাগ রোগ"
+      },
+      "scientific_metadata": {
+        "disease_name": "Septoria leaf spot of tomato",
+        "pathogen": "Septoria lycopersici",
+        "class_type": "FUNGAL",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "PlantVillage",
+          "original_class_name": "Tomato___Septoria_leaf_spot",
+          "verification_status": "VERIFIED_LOCAL"
+        }
+      ],
+      "model_eligibility": "APPROVED",
+      "bangladesh_relevance": "HIGH"
+    },
+    {
+      "class_id": 306,
+      "crop": "Tomato",
+      "standardized_identifier": "AGRI_TOMATO_HEALTHY",
+      "labels_json_string": "Tomato___healthy",
+      "supabase_catalog_class_name": "Tomato___healthy",
+      "display_names": {
+        "en": "Healthy Tomato Foliage",
+        "bn": "সুস্থ টমেটো গাছ"
+      },
+      "scientific_metadata": {
+        "disease_name": "Solanum lycopersicum (healthy)",
+        "pathogen": "None",
+        "class_type": "HEALTHY",
+        "is_healthy": true
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "PlantVillage",
+          "original_class_name": "Tomato___healthy",
+          "verification_status": "VERIFIED_LOCAL"
+        }
+      ],
+      "model_eligibility": "APPROVED",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 401,
+      "crop": "Mango",
+      "standardized_identifier": "AGRI_MANGO_ANTHRACNOSE",
+      "labels_json_string": "Mango___Anthracnose",
+      "supabase_catalog_class_name": "Mango___Anthracnose",
+      "display_names": {
+        "en": "Anthracnose",
+        "bn": "অ্যানথ্রাকনোজ (দাগ ও পচন রোগ)"
+      },
+      "scientific_metadata": {
+        "disease_name": "Mango anthracnose",
+        "pathogen": "Colletotrichum gloeosporioides",
+        "class_type": "FUNGAL",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "MLD24",
+          "original_class_name": "Anthracnose",
+          "verification_status": "VERIFIED_EXTERNAL"
+        }
+      ],
+      "model_eligibility": "CONDITIONALLY_APPROVED_PENDING_DOWNLOAD",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 402,
+      "crop": "Mango",
+      "standardized_identifier": "AGRI_MANGO_BACTERIAL_CANKER",
+      "labels_json_string": "Mango___Bacterial Canker",
+      "supabase_catalog_class_name": "Mango___Bacterial Canker",
+      "display_names": {
+        "en": "Bacterial Canker",
+        "bn": "ব্যাকটেরিয়াল ক্যাঙ্কার"
+      },
+      "scientific_metadata": {
+        "disease_name": "Bacterial black spot of mango",
+        "pathogen": "Xanthomonas citri pv. mangiferaeindicae",
+        "class_type": "BACTERIAL",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "MLD24",
+          "original_class_name": "Bacterial Canker",
+          "verification_status": "VERIFIED_EXTERNAL"
+        }
+      ],
+      "model_eligibility": "CONDITIONALLY_APPROVED_PENDING_DOWNLOAD",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 403,
+      "crop": "Mango",
+      "standardized_identifier": "AGRI_MANGO_HEALTHY",
+      "labels_json_string": "Mango___Healthy",
+      "supabase_catalog_class_name": "Mango___Healthy",
+      "display_names": {
+        "en": "Healthy Mango Foliage",
+        "bn": "সুস্থ আম গাছ"
+      },
+      "scientific_metadata": {
+        "disease_name": "Mangifera indica (healthy)",
+        "pathogen": "None",
+        "class_type": "HEALTHY",
+        "is_healthy": true
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "MLD24",
+          "original_class_name": "Healthy",
+          "verification_status": "VERIFIED_EXTERNAL"
+        }
+      ],
+      "model_eligibility": "CONDITIONALLY_APPROVED_PENDING_DOWNLOAD",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 501,
+      "crop": "Jute",
+      "standardized_identifier": "AGRI_JUTE_STEM_ROT",
+      "labels_json_string": "Jute___Stem rot",
+      "supabase_catalog_class_name": "Jute___Stem rot",
+      "display_names": {
+        "en": "Stem Rot",
+        "bn": "কান্ড পচা রোগ (স্টেম রট)"
+      },
+      "scientific_metadata": {
+        "disease_name": "Stem rot of jute",
+        "pathogen": "Macrophomina phaseolina",
+        "class_type": "FUNGAL",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "YOLO-JD",
+          "original_class_name": "Stem rot",
+          "verification_status": "VERIFIED_EXTERNAL"
+        }
+      ],
+      "model_eligibility": "CONDITIONALLY_APPROVED_PENDING_DOWNLOAD",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 502,
+      "crop": "Jute",
+      "standardized_identifier": "AGRI_JUTE_ANTHRACNOSE",
+      "labels_json_string": "Jute___Anthracnose",
+      "supabase_catalog_class_name": "Jute___Anthracnose",
+      "display_names": {
+        "en": "Anthracnose",
+        "bn": "অ্যানথ্রাকনোজ (ক্ষত রোগ)"
+      },
+      "scientific_metadata": {
+        "disease_name": "Anthracnose of jute",
+        "pathogen": "Colletotrichum corchori",
+        "class_type": "FUNGAL",
+        "is_healthy": false
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "YOLO-JD",
+          "original_class_name": "Anthracnose",
+          "verification_status": "VERIFIED_EXTERNAL"
+        }
+      ],
+      "model_eligibility": "CONDITIONALLY_APPROVED_PENDING_DOWNLOAD",
+      "bangladesh_relevance": "CRITICAL"
+    },
+    {
+      "class_id": 503,
+      "crop": "Jute",
+      "standardized_identifier": "AGRI_JUTE_HEALTHY",
+      "labels_json_string": "Jute___Healthy",
+      "supabase_catalog_class_name": "Jute___Healthy",
+      "display_names": {
+        "en": "Healthy Jute Foliage",
+        "bn": "সুস্থ পাট গাছ"
+      },
+      "scientific_metadata": {
+        "disease_name": "Corchorus olitorius / capsularis (healthy)",
+        "pathogen": "None",
+        "class_type": "HEALTHY",
+        "is_healthy": true
+      },
+      "source_datasets": [
+        {
+          "dataset_name": "YOLO-JD",
+          "original_class_name": "Healthy",
+          "verification_status": "VERIFIED_EXTERNAL"
+        }
+      ],
+      "model_eligibility": "CONDITIONALLY_APPROVED_PENDING_DOWNLOAD",
+      "bangladesh_relevance": "CRITICAL"
+    }
+  ]
+}

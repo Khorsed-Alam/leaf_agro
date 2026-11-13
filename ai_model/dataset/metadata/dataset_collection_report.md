@@ -174,3 +174,4 @@ Complete manual download guides with official DOIs, direct web pages, extraction
   - Reusable image integrity validation script `validate_dataset_images.py` developed and executed.
   - Step-by-step manual download instructions documented for all Mendeley Data field collections.
   - Strictly zero model training or preprocessing performed.
+

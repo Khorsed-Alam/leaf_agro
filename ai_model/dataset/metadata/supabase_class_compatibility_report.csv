@@ -1,0 +1,20 @@
+class_id,standardized_class_name,disease_catalog_class_name,compatibility_status,existing_catalog_record,enabled_status,recommended_action,notes
+101,AGRI_RICE_BACTERIAL_LEAF_BLIGHT,Rice___Bacterial_leaf_blight,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 101 and assets/models/labels.json index.
+102,AGRI_RICE_BROWN_SPOT,Rice___Brown_spot,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 102 and assets/models/labels.json index.
+103,AGRI_RICE_LEAF_SMUT,Rice___Leaf_smut,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 103 and assets/models/labels.json index.
+104,AGRI_RICE_HEALTHY,Rice___Healthy,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 104 and assets/models/labels.json index.
+201,AGRI_POTATO_EARLY_BLIGHT,Potato___Early_blight,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 201 and assets/models/labels.json index.
+202,AGRI_POTATO_LATE_BLIGHT,Potato___Late_blight,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 202 and assets/models/labels.json index.
+203,AGRI_POTATO_HEALTHY,Potato___healthy,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 203 and assets/models/labels.json index.
+301,AGRI_TOMATO_BACTERIAL_SPOT,Tomato___Bacterial_spot,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 301 and assets/models/labels.json index.
+302,AGRI_TOMATO_EARLY_BLIGHT,Tomato___Early_blight,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 302 and assets/models/labels.json index.
+303,AGRI_TOMATO_LATE_BLIGHT,Tomato___Late_blight,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 303 and assets/models/labels.json index.
+304,AGRI_TOMATO_LEAF_MOLD,Tomato___Leaf_Mold,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 304 and assets/models/labels.json index.
+305,AGRI_TOMATO_SEPTORIA_LEAF_SPOT,Tomato___Septoria_leaf_spot,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 305 and assets/models/labels.json index.
+306,AGRI_TOMATO_HEALTHY,Tomato___healthy,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 306 and assets/models/labels.json index.
+401,AGRI_MANGO_ANTHRACNOSE,Mango___Anthracnose,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 401 and assets/models/labels.json index.
+402,AGRI_MANGO_BACTERIAL_CANKER,Mango___Bacterial Canker,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 402 and assets/models/labels.json index.
+403,AGRI_MANGO_HEALTHY,Mango___Healthy,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 403 and assets/models/labels.json index.
+501,AGRI_JUTE_STEM_ROT,Jute___Stem rot,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 501 and assets/models/labels.json index.
+502,AGRI_JUTE_ANTHRACNOSE,Jute___Anthracnose,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 502 and assets/models/labels.json index.
+503,AGRI_JUTE_HEALTHY,Jute___Healthy,100%_COMPATIBLE,YES,ENABLED,MAINTAIN_CURRENT_IDENTIFIER,Mapped 1:1 to AiCropCatalog.diseases ID 503 and assets/models/labels.json index.
