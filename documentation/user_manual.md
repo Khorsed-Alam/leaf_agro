@@ -346,6 +346,42 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
 9. **Prevention Navigation (`PreventionNavButton`):**
    - Direct button routing to long-term prevention protocols (`/prevention/:id`).
 
+### Screen 19: Prevention & Plant Care Screen (Crop Disease Prevention & Management)
+1. **Header Navigation (`PreventionHeader`):**
+   - Clean top bar displaying the screen title (*"Prevention & Plant Care"* / *"রোগ প্রতিরোধ ও যত্ন"*), shield icon (`Icons.shield_outlined`), back navigation arrow returning to previous screen (`context.pop()`), and LeafAgro branding badge.
+2. **Healthy Crop Hero Banner (`HealthyCropHeroSection`):**
+   - High-contrast emerald card featuring a healthy crop photograph, protective shield badge, headline (*"Keep Your Crops Healthy"*), and a transparent, realistic risk-mitigation disclaimer stating that good prevention practices significantly reduce disease risk but cannot guarantee complete immunity.
+3. **Active Crop Context & Crop Switcher (`SelectedCropContextCard`):**
+   - Identifies the active crop profile (e.g. *Rice (ধান)*) with botanical crop avatar.
+   - Shows active disease context pill when navigated from detection results or treatment recommendations.
+   - Horizontal choice-chip bar allowing farmers to seamlessly switch guidance across all 5 AI-supported crops: Rice, Potato, Tomato, Mango, and Jute.
+4. **Essential Preventive Practices (`EssentialPracticesSection`):**
+   - 6 foundational agricultural management cards formatted in a clean 2-column grid:
+     1. **Crop Monitoring & Scouting**: Early symptom scouting and field boundary inspection.
+     2. **Optimal Irrigation & Drainage**: Proper watering depth and prevention of stagnant surface water.
+     3. **Field Sanitation**: Removal of infected debris, weeds, and alternate hosts.
+     4. **Crop Rotation**: Breaking pathogen lifecycles by avoiding continuous monoculture.
+     5. **Spacing & Ventilation**: Optimal plant spacing for air circulation and rapid canopy drying.
+     6. **Certified Quality Seeds**: Sourcing clean, certified pathogen-free seeds and seedlings.
+5. **Crop-Specific Agronomic Care (`CropSpecificAdviceSection`):**
+   - Verified agronomic advice tailored specifically to the active crop:
+     - **Rice**: AWD irrigation, balanced N-P-K-Zn, weeding, water depth control.
+     - **Potato**: Well-drained raised beds, earthing up, certified tubers, humidity scouting.
+     - **Tomato**: Trellising/staking, drip or basin watering, mulching, air flow pruning.
+     - **Mango**: Canopy pruning, sanitation of fallen fruit, post-harvest sanitation.
+     - **Jute**: Soil moisture management, early thinning, weeding, drainage channels.
+6. **Disease-Specific Prevention Protocol (`DiseaseSpecificPreventionSection`):**
+   - Dynamically loaded when opened from a specific disease context (Screen 16, 17, or 18).
+   - Sourced from verified agronomic research (BRRI, BARI, DAE).
+   - Strictly omitted when browsing general crop care, avoiding irrelevant chemical or pathogen clutter.
+7. **Interactive Prevention Checklist (`PreventionChecklistCard`):**
+   - Interactive actionable checklist with real-time checkbox toggles.
+   - Live completion counter (e.g. *"3 of 6 completed"*) and dynamic progress bar.
+   - Local persistence using `SharedPreferences` keyed per crop (`prevention_checklist_${cropId}`), preserving farmer progress across app launches.
+8. **Resilient Fallback & Shimmer Loading:**
+   - `PreventionSkeleton`: Smooth shimmering skeleton layout while catalog/recommendations load.
+   - `PreventionNotFoundView`: Friendly fallback card with one-tap reset button if an invalid crop/disease ID is requested.
+
 ---
 
 ## 🇧🇩 বাংলা ব্যবহারিক নির্দেশিকা (কৃষক ও মাঠ কর্মকর্তাদের জন্য)
@@ -672,6 +708,41 @@ AgriCare AI (LeafAgro) provides automated, on-device AI plant pathology diagnosi
    - দেশের প্রধান কৃষি গবেষণা প্রতিষ্ঠানের তথ্যসূত্র প্রকাশ।
 ৯. **প্রতিরোধ টিপস বাটন (`PreventionNavButton`):**
    - দীর্ঘমেয়াদী মাঠ পরিচর্যা ও রোগ প্রতিরোধ স্ক্রিনে (`/prevention/:id`) সহজে যাওয়ার সুবিধা।
+
+### স্ক্রিন ১৯: রোগ প্রতিরোধ ও যত্ন স্ক্রিন (ফসল সুরক্ষা ও দীর্ঘমেয়াদী ব্যবস্থাপনা)
+১. **হেডার ও নেভিগেশন (`PreventionHeader`):**
+   - পরিষ্কার শীর্ষ বার, স্ক্রিন শিরোনাম (*"রোগ প্রতিরোধ ও যত্ন"* / *"Prevention & Plant Care"*), সুরক্ষা শিল্ড আইকন, পূর্ববর্তী স্ক্রিনে ফেরার ব্যাক বাটন এবং LeafAgro ব্র্যান্ডিং।
+২. **সুস্থ ফসল হিরো ব্যানার (`HealthyCropHeroSection`):**
+   - সবুজ চিত্র সংবলিত হিরো কার্ড, সুস্থ ফসলের ছবি, *"ফসল সুস্থ ও রোগমুক্ত রাখুন"* শিরোনাম এবং বাস্তবসম্মত সতর্কবার্তা যে নিয়মিত সঠিক পরিচর্যা রোগ সংক্রমণের ঝুঁকি উল্লেখযোগ্যভাবে কমায়, তবে প্রাকৃতিক পরিবেশে কোনো একক পদ্ধতি ১০০% নিশ্চয়তা দেয় না।
+৩. **নির্বাচিত ফসল ও সহজে ফসল পরিবর্তনের চিপস (`SelectedCropContextCard`):**
+   - বর্তমান ফসলের পরিচিতি ব্যাজ (যেমন: *ধান (Rice)*)।
+   - রোগ সম্পর্কিত প্রেক্ষাপট থাকলে সংশ্লিষ্ট রোগের নাম ব্যাজ প্রদর্শন।
+   - অনুভূমিক চয়েস চিপ বার, যার মাধ্যমে কৃষক যেকোনো মুহূর্তে ৫টি অনুমোদিত ফসলের (ধান, আলু, টমেটো, আম, পাট) যে কোনোটির প্রতিরোধ নির্দেশিকায় সুইচ করতে পারেন।
+৪. **৬টি মৌলিক প্রতিরোধ চর্চা (`EssentialPracticesSection`):**
+   - ২-কলামের সুন্দর কার্ড গ্রিডে ৬টি প্রমাণিত কৃষি চর্চা:
+     ১. **নিয়মিত মাঠ পরিদর্শন**: রোগের প্রাথমিক লক্ষণ শনাক্তে নিয়মিত আইল ও জমি পর্যবেক্ষণ।
+     ২. **সঠিক সেচ ও নিষ্কাশন**: পরিমিত পানি প্রদান ও জমিতে অতিরিক্ত পানি জমে থাকা রোধ।
+     ৩. **জমি পরিষ্কার-পরিচ্ছন্নতা**: আক্রান্ত ফসলের অবশিষ্টাংশ ও রোগবাহী আগাছা ধ্বংস।
+     ৪. **পর্যায়ক্রমিক ফসল চাষ (ফসল চক্র)**: জমিতে একই ফসলের পুনরাবৃত্তি না করে রোগচক্র ভাঙা।
+     ৫. **পরিমিত দূরত্ব ও আলো-বাতাস**: গাছের মধ্যে পর্যাপ্ত ফাঁক রাখা যাতে দ্রুত পাতা শুকায়।
+     ৬. **বিশুদ্ধ ও প্রত্যয়িত বীজ**: বিশ্বস্ত ও রোগমুক্ত বীজ/চারা ব্যবহার।
+৫. **ফসলভিত্তিক বিশেষ পরিচর্যা (`CropSpecificAdviceSection`):**
+   - নির্বাচিত ফসলের জন্য কৃষি গবেষণা প্রতিষ্ঠান ভিত্তিক বিশেষ টিপস:
+     - **ধান**: এডব্লিউডি (AWD) সেচ, সুষম সার, নিয়মিত নিড়ানি ও পানির উচ্চতা নিয়ন্ত্রণ।
+     - **আলু**: উঁচু বেড তৈরি, গোড়ায় মাটি তোলা, প্রত্যয়িত বীজআলু ও কুয়াশায় বিশেষ নজরদারি।
+     - **টমেটো**: মাচা তৈরি বা খুঁটি দেওয়া, গোড়ায় পানি দেওয়া, মালচিং ও পাতা ছাঁটাই।
+     - **আম**: গাছ ছাঁটাই (প্রুনিং), মরা ডাল ও ঝরে পড়া আক্রান্ত আম অপসারণ।
+     - **পাট**: জমির নিষ্কাশন নালা তৈরি, প্রাথমিক পর্যায়ে চারা পাতলাকরণ ও আগাছা দমন।
+৬. **রোগভিত্তিক নির্দিষ্ট প্রতিরোধ ব্যবস্থা (`DiseaseSpecificPreventionSection`):**
+   - রোগ শনাক্তকরণ (Screen 16, 17, 18) থেকে আসলে সংশ্লিষ্ট রোগের নির্দিষ্ট প্রতিরোধ নির্দেশিকা প্রদর্শন।
+   - সাধারণ ব্রাউজিংয়ের সময় অপ্রাসঙ্গিক তথ্য সম্পূর্ণ গোপন রাখা হয়।
+৭. **ইন্টারেক্টিভ প্রতিরোধ চেকলিস্ট (`PreventionChecklistCard`):**
+   - টিক দেওয়ার সুবিধা সংবলিত বাস্তবমুখী চেকলিস্ট।
+   - সম্পন্ন কাজের লাইভ কাউন্টার (যেমন: *"৩/৬ সম্পন্ন"*) এবং কালারফুল প্রোগ্রেস বার।
+   - `SharedPreferences`-এর মাধ্যমে ফসলাভিত্তিক স্বয়ংক্রিয় সংরক্ষণ, যা অ্যাপ বন্ধ করলেও মুছে যায় না।
+৮. **লোড ও ত্রুটি ব্যবস্থাপনা:**
+   - `PreventionSkeleton`: ডাটা লোড হওয়ার সময়ে আধুনিক শিমার লোডিং ভিউ।
+   - `PreventionNotFoundView`: কোনো ত্রুটি হলে এক ট্যাপে ডিফল্ট ফসলে ফিরে আসার ব্যাক-আপ কার্ড।
 
 ---
 

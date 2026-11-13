@@ -127,11 +127,32 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: '/prevention/:id',
+      path: '/prevention',
       builder: (context, state) {
-        final id = int.tryParse(state.pathParameters['id'] ?? '1') ?? 1;
-        return PreventionScreen(diseaseId: id);
+        final cropIdStr = state.uri.queryParameters['cropId'];
+        final cropId = cropIdStr != null ? int.tryParse(cropIdStr) : null;
+        final diseaseIdStr = state.uri.queryParameters['diseaseId'];
+        final diseaseId =
+            diseaseIdStr != null ? int.tryParse(diseaseIdStr) : null;
+        return PreventionScreen(
+          cropId: cropId,
+          diseaseId: diseaseId,
+        );
       },
+      routes: [
+        GoRoute(
+          path: ':id',
+          builder: (context, state) {
+            final id = int.tryParse(state.pathParameters['id'] ?? '1') ?? 1;
+            final cropIdStr = state.uri.queryParameters['cropId'];
+            final cropId = cropIdStr != null ? int.tryParse(cropIdStr) : null;
+            return PreventionScreen(
+              diseaseId: id,
+              cropId: cropId,
+            );
+          },
+        ),
+      ],
     ),
     GoRoute(
       path: '/history',
