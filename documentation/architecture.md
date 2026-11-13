@@ -1,18 +1,143 @@
 # AgriCare AI — Complete System Architecture
-*Comprehensive Flow, On-Device Neural Vision, and Cloud Persistence for Screens 01–07*
+*Comprehensive Flow, On-Device Neural Vision, and Cloud Persistence for Screens 00–30*
 
 ## 1. Executive Summary
 AgriCare AI is an offline-first, mobile-centric agricultural assistant designed to diagnose plant diseases across major Bangladeshi and global crops (**Rice**, **Potato**, **Tomato**, **Mango**, **Jute**) using an on-device quantized MobileNetV2 TensorFlow Lite model. It integrates seamlessly with Supabase for cloud persistence, user profiles, field log history, and expert treatment/prevention recommendations.
 
 ---
 
-## 2. Complete Application Flow & Architecture (Screens 00–20)
+## 2. Complete Application Flow & Architecture (Screens 00–30)
 
-![AgriCare AI Complete Application Flow (Screens 00–20)](images/agricare_ai_user_flow_00_20.png)
+![AgriCare AI Complete Application Flow (Screens 00–30)](images/agricare_ai_user_flow_00_30.png)
 
-> **Developer Architecture Reference**: The full user flow, modular sub-flows, and navigation mapping tables are documented in [user_flow_architecture_00_20.md](user_flow_architecture_00_20.md) and [agricare_ai_user_flow_00_20.mmd](agricare_ai_user_flow_00_20.mmd).
+> **Developer Architecture Reference**: The full user flow, modular sub-flows, and navigation mapping tables are documented in [user_flow_architecture_00_30.md](user_flow_architecture_00_30.md) and [agricare_ai_user_flow_00_30.mmd](agricare_ai_user_flow_00_30.mmd). Legacy Screen 00–20 reference remains at [user_flow_architecture_00_20.md](user_flow_architecture_00_20.md).
 
-### Complete Flowchart (Mermaid)
+### Master Application Flowchart (Mermaid)
+
+```mermaid
+flowchart TD
+    %% AgriCare AI - Master Application Flowchart (Screens 00 to 30)
+    %% 7 Functional Modules | 31 Completed Production Screens
+
+    classDef screenNode fill:#102A43,stroke:#2563EB,stroke-width:2px,color:#F8FAFC;
+    classDef highlightScreen fill:#064E3B,stroke:#10B981,stroke-width:2.5px,color:#ECFDF5;
+
+    %% Module 1: Initialization & Authentication
+    subgraph M1 ["Module 1: Initialization & Authentication"]
+        S00["Screen 00: Route Resolver / Splash Gate"]:::screenNode
+        S01["Screen 01: Animated Splash Screen"]:::screenNode
+        S02["Screen 02: Onboarding Carousel"]:::screenNode
+        S03["Screen 03: Farmer Login"]:::screenNode
+        S04["Screen 04: Farmer Registration"]:::screenNode
+        S05["Screen 05: Forgot / Reset Password"]:::screenNode
+
+        S00 --> S01
+        S01 -->|First Launch| S02
+        S01 -->|Logged In| S06
+        S01 -->|Logged Out| S03
+        S02 --> S03
+        S03 -->|Need Account| S04
+        S04 -->|Account Created| S06
+        S03 -->|Forgot Password| S05
+        S05 -->|Reset Complete| S03
+        S03 -->|Login Success| S06
+    end
+
+    %% Module 2: Home & Discovery
+    subgraph M2 ["Module 2: Home & Discovery"]
+        S06["Screen 06: Home Dashboard"]:::highlightScreen
+        S07["Screen 07: Crop Selection Screen"]:::screenNode
+        S08["Screen 08: Crop Detail Screen"]:::screenNode
+        S09["Screen 09: Disease Catalog Screen"]:::screenNode
+        S10["Screen 10: Global Search Screen"]:::screenNode
+        S17["Screen 17: Disease Detail Screen"]:::screenNode
+
+        S06 -->|Select Crop| S07
+        S06 -->|Browse Diseases| S09
+        S06 -->|Tap Search Bar| S10
+        S07 -->|Select Specific Crop| S08
+        S08 -->|View Crop Disease| S17
+        S09 -->|Tap Disease Card| S17
+        S10 -->|Select Search Result| S17
+    end
+
+    %% Module 3: AI Vision Detection Pipeline
+    subgraph M3 ["Module 3: AI Vision Detection Pipeline"]
+        S11["Screen 11: Detection Start Screen"]:::screenNode
+        S12["Screen 12: Real-time Camera Viewfinder"]:::screenNode
+        S13["Screen 13: Gallery Upload Screen"]:::screenNode
+        S14["Screen 14: Image Review Screen"]:::screenNode
+        S15["Screen 15: AI Analyzing Screen"]:::screenNode
+        S16["Screen 16: AI Detection Result Screen"]:::highlightScreen
+
+        S06 -->|Tap Diagnose Leaf| S11
+        S11 -->|Take Photo| S12
+        S11 -->|Choose From Gallery| S13
+        S12 -->|Capture Photo| S14
+        S13 -->|Select Photo| S14
+        S14 -->|Retake| S11
+        S14 -->|Confirm & Analyze| S15
+        S15 -->|TFLite Inference| S16
+        S16 -->|View Disease Details| S17
+    end
+
+    %% Module 4: Recommendations & Remedies
+    subgraph M4 ["Module 4: Recommendations & Remedies"]
+        S18["Screen 18: Treatment Recommendations"]:::screenNode
+        S19["Screen 19: Prevention & Plant Care"]:::screenNode
+        S20["Screen 20: Product & Solution Info"]:::screenNode
+        S21["Screen 21: Plant Recovery & Follow-up"]:::screenNode
+
+        S16 -->|View Treatments| S18
+        S17 -->|View Treatments| S18
+        S18 -->|View Prevention| S19
+        S19 -->|View Registered Products| S20
+        S18 -->|Record Observation| S21
+        S16 -->|Monitor Plant| S21
+    end
+
+    %% Module 5: History & Monitoring
+    subgraph M5 ["Module 5: History & Monitoring"]
+        S22["Screen 22: Detection History Dashboard"]:::screenNode
+        S23["Screen 23: History Details Screen"]:::screenNode
+
+        S06 -->|Open History| S22
+        S22 -->|Filter/Search| S22
+        S22 -->|Tap Past Scan| S23
+        S23 -->|Revisit Treatments| S18
+        S23 -->|Open Recovery Log| S21
+        S23 -->|Scan Plant Again| S11
+    end
+
+    %% Module 6: Profile & Settings
+    subgraph M6 ["Module 6: Profile & Settings"]
+        S24["Screen 24: User Profile Screen"]:::screenNode
+        S25["Screen 25: Settings Screen"]:::screenNode
+        S26["Screen 26: Language Selection Screen"]:::screenNode
+
+        S06 -->|Open Profile| S24
+        S24 -->|Open Settings| S25
+        S24 -->|Change Language| S26
+        S25 -->|Change Language| S26
+        S25 -->|Log Out| S03
+    end
+
+    %% Module 7: Support & Governance
+    subgraph M7 ["Module 7: Support & Governance"]
+        S27["Screen 27: Notifications Screen"]:::screenNode
+        S28["Screen 28: Help & FAQ Screen"]:::screenNode
+        S29["Screen 29: Feedback Screen"]:::screenNode
+        S30["Screen 30: About Application Screen"]:::screenNode
+
+        S06 -->|Bell Icon| S27
+        S24 -->|Help & Support| S28
+        S25 -->|Help & Support| S28
+        S24 -->|Submit Feedback| S29
+        S25 -->|Submit Feedback| S29
+        S25 -->|About App| S30
+        S28 -->|Send Feedback| S29
+    end
+```
 
 ```mermaid
 flowchart TD

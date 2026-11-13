@@ -18,6 +18,28 @@ AgriCare AI is a production-grade, offline-first mobile application designed to 
 
 ---
 
+## 🧭 Master Application Architecture & Flowchart (Screens 00 to 30)
+
+AgriCare AI features **31 completed production screens** organized into **7 core functional modules**, providing an offline-first, seamless diagnostic and agricultural care workflow.
+
+![AgriCare AI Master Flowchart (Screens 00 to 30)](documentation/images/agricare_ai_user_flow_00_30.png)
+
+> **Complete Architecture Documentation**: See **[user_flow_architecture_00_30.md](documentation/user_flow_architecture_00_30.md)** for detailed navigation contracts, route parameters, Riverpod providers, and fallback mechanisms.
+
+### 📱 7-Module Production Screen Map
+
+| Module | Screen ID & Title | Route Path | Core Capabilities |
+| :--- | :--- | :--- | :--- |
+| **Module 1: Initialization & Authentication** | **Screen 00:** Route Resolver / Gate<br/>**Screen 01:** Animated Splash Screen<br/>**Screen 02:** Onboarding Carousel<br/>**Screen 03:** Farmer Login<br/>**Screen 04:** Farmer Registration<br/>**Screen 05:** Forgot / Reset Password | `/splash`<br/>`/splash`<br/>`/onboarding`<br/>`/login`<br/>`/register`<br/>`/forgot-password` | Session token validation, leaf laser brand animation, 3-slide value education, Supabase authentication, 64-district selector, self-service password recovery. |
+| **Module 2: Home & Discovery** | **Screen 06:** Home Dashboard<br/>**Screen 07:** Crop Selection Screen<br/>**Screen 08:** Crop Detail Screen<br/>**Screen 09:** Disease Catalog Screen<br/>**Screen 10:** Global Search Screen<br/>**Screen 17:** Disease Detail Screen | `/home`<br/>`/crop-select`<br/>`/crops/:id`<br/>`/diseases`<br/>`/search`<br/>`/diseases/:id` | Central navigation hub, verified 5-crop selector, botanical profile, 19-class pathology encyclopedia, bilingual instant search, full disease pathology specs. |
+| **Module 3: AI Vision Detection Pipeline** | **Screen 11:** Detection Start Screen<br/>**Screen 12:** Real-time Camera Viewfinder<br/>**Screen 13:** Gallery Upload Screen<br/>**Screen 14:** Image Review Screen<br/>**Screen 15:** AI Analyzing Screen<br/>**Screen 16:** AI Detection Result Screen | `/detect`<br/>`/detect/camera`<br/>`/detect/gallery`<br/>`/detect/preview`<br/>`/detect/analyzing`<br/>`/detect/result` | Photo guidelines, reticle-guided viewfinder, image picker with preflight validation, blur detection, on-device quantized MobileNetV2 inference, confidence gauge & severity badge. |
+| **Module 4: Recommendations & Remedies** | **Screen 18:** Treatment Recommendations<br/>**Screen 19:** Prevention & Plant Care<br/>**Screen 20:** Product & Solution Info<br/>**Screen 21:** Plant Recovery & Follow-up | `/recommendations/:id`<br/>`/prevention`<br/>`/solutions`<br/>`/recovery` | Cultural, organic, and chemical remedies, long-term agronomic prevention, registered agrochemicals with dosage rates, longitudinal observation logger. |
+| **Module 5: History & Monitoring** | **Screen 22:** Detection History Dashboard<br/>**Screen 23:** History Details Screen | `/history`<br/>`/history/:id` | Chronological scan archive, date range and crop filters, past scan breakdown with image comparison and treatment re-entry. |
+| **Module 6: Profile & Settings** | **Screen 24:** User Profile Screen<br/>**Screen 25:** Settings Screen<br/>**Screen 26:** Language Selection Screen | `/profile`<br/>`/settings`<br/>`/settings/language` | Farmer credentials, district update, scan counters, offline cache management, model specs, live English/Bengali bilingual toggle. |
+| **Module 7: Support & Governance** | **Screen 27:** Notifications Screen<br/>**Screen 28:** Help & FAQ Screen<br/>**Screen 29:** Feedback Screen<br/>**Screen 30:** About Application Screen | `/notifications`<br/>`/help`<br/>`/feedback`<br/>`/about` | Unread notifications, mark-as-read, 4 visual photo guides, 12 searchable FAQs, 5-star feedback form, academic capstone credentials and legal disclaimers. |
+
+---
+
 ## 📱 Implemented Production Screens
 
 ### Screen 01: Splash Screen

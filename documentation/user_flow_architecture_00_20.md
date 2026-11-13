@@ -1,5 +1,8 @@
 # AgriCare AI (LeafAgro) — User Flow Architecture & Navigation Reference
-*Complete Technical User Journey from Screen 00 to Screen 20 for Developers and UI/UX Architects*
+*Technical User Journey for Developers and UI/UX Architects*
+
+> [!NOTE]
+> **Complete Master Flowchart Available**: AgriCare AI has expanded to **31 completed production screens** across 7 core modules. For the full end-to-end master flowchart and architectural breakdown covering Screens 00 through 30, refer to **[user_flow_architecture_00_30.md](user_flow_architecture_00_30.md)** and the master diagram at **[agricare_ai_user_flow_00_30.png](images/agricare_ai_user_flow_00_30.png)**.
 
 ---
 

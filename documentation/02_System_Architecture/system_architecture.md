@@ -3,6 +3,10 @@
 ## 1. High-Level Architecture
 The **AgriCare AI (LeafAgro)** system follows a hybrid offline-first, client-server edge computing architecture. By decoupling on-device computer vision inference from cloud data synchronization, the system guarantees that farmers can inspect damaged crops in remote locations without network connectivity.
 
+![AgriCare AI Complete Flowchart](../images/agricare_ai_user_flow_00_30.png)
+
+> **Master User Flow Reference**: The complete navigational and functional flow across all 31 screens is mapped in [complete_application_user_flow.md](../06_User_Flow/complete_application_user_flow.md) and [user_flow_architecture_00_30.md](../user_flow_architecture_00_30.md).
+
 ```mermaid
 graph TB
     subgraph Client_Device [Android Smartphone - Field Environment]
