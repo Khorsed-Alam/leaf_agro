@@ -8,6 +8,8 @@ import '../../../core/theme/app_colors.dart';
 import '../../../providers/crop_provider.dart';
 import '../../../providers/detection_provider.dart';
 import '../../../providers/settings_provider.dart';
+import '../data/models/selected_plant_image.dart';
+import 'providers/selected_image_provider.dart';
 import 'widgets/preview/analyze_image_button.dart';
 import 'widgets/preview/image_preview_actions.dart';
 import 'widgets/preview/image_preview_error_state.dart';
@@ -19,7 +21,7 @@ import 'widgets/preview/selected_leaf_image.dart';
 
 /// Screen 14 – Image Preview Screen for AgriCare AI (LeafAgro)
 /// Allows farmers to review their selected plant leaf photo, inspect quality status,
-/// confirm crop context, and initiate offline AI disease analysis.
+/// confirm crop context, retake or change the photo, and continue to Phase 43 preprocessing.
 class ImagePreviewScreen extends ConsumerStatefulWidget {
   final String? initialImagePath;
   final ImagePicker? imagePicker;
@@ -46,25 +48,39 @@ class _ImagePreviewScreenState extends ConsumerState<ImagePreviewScreen> {
     _picker = widget.imagePicker ?? ImagePicker();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (widget.initialImagePath != null &&
-          widget.initialImagePath!.isNotEmpty) {
-        ref
-            .read(detectionProvider.notifier)
-            .selectImage(widget.initialImagePath!);
+      if (widget.initialImagePath != null && widget.initialImagePath!.isNotEmpty) {
+        ref.read(detectionProvider.notifier).selectImage(widget.initialImagePath!);
+        final img = SelectedPlantImage(
+          imagePath: widget.initialImagePath!,
+          sourceType: ImageSourceType.gallery,
+          fileSizeBytes: _tryGetFileSize(widget.initialImagePath!),
+          width: 1024,
+          height: 1024,
+          selectedAt: DateTime.now(),
+        );
+        ref.read(selectedImageProvider.notifier).setExplicitImage(img);
       }
       _validateCurrentImage();
     });
   }
 
+  int _tryGetFileSize(String path) {
+    try {
+      final f = File(path);
+      if (f.existsSync()) return f.lengthSync();
+    } catch (_) {}
+    return 1024;
+  }
+
   void _validateCurrentImage() {
-    final imagePath = ref.read(detectionProvider).imagePath;
+    final imagePath = ref.read(selectedImageProvider).selectedImage?.imagePath ??
+        ref.read(detectionProvider).imagePath;
     final isBn = ref.read(settingsProvider).language == 'bn';
 
     if (imagePath == null || imagePath.isEmpty) {
       setState(() {
         _qualityState = QualityState.error;
-        _qualityMessage =
-            isBn ? 'কোনো ছবি পাওয়া যায়নি।' : 'No image file found.';
+        _qualityMessage = isBn ? 'কোনো ছবি পাওয়া যায়নি।' : 'No image file found.';
       });
       return;
     }
@@ -72,9 +88,7 @@ class _ImagePreviewScreenState extends ConsumerState<ImagePreviewScreen> {
     if (kIsWeb) {
       setState(() {
         _qualityState = QualityState.ready;
-        _qualityMessage = isBn
-            ? 'ছবি বিশ্লেষণের জন্য প্রস্তুত।'
-            : 'Image ready for analysis.';
+        _qualityMessage = isBn ? 'ছবি বিশ্লেষণের জন্য প্রস্তুত।' : 'Image ready for analysis.';
       });
       return;
     }
@@ -92,12 +106,12 @@ class _ImagePreviewScreenState extends ConsumerState<ImagePreviewScreen> {
       }
 
       final fileSize = file.lengthSync();
-      if (fileSize > 15 * 1024 * 1024) {
+      if (fileSize > 20 * 1024 * 1024) {
         setState(() {
           _qualityState = QualityState.warning;
           _qualityMessage = isBn
-              ? 'ছবির আকার ১৫MB এর বেশি। প্রক্রিয়াকরণে অতিরিক্ত সময় লাগতে পারে।'
-              : 'File size exceeds 15MB. Preprocessing may take longer.';
+              ? 'ছবির আকার ২০MB এর বেশি। প্রক্রিয়াকরণে অতিরিক্ত সময় লাগতে পারে।'
+              : 'File size exceeds 20MB. Preprocessing may take longer.';
         });
         return;
       }
@@ -123,17 +137,23 @@ class _ImagePreviewScreenState extends ConsumerState<ImagePreviewScreen> {
         final picked = await _picker.pickImage(source: ImageSource.camera);
         if (picked != null) {
           ref.read(detectionProvider.notifier).selectImage(picked.path);
+          final img = SelectedPlantImage(
+            imagePath: picked.path,
+            sourceType: ImageSourceType.camera,
+            fileSizeBytes: _tryGetFileSize(picked.path),
+            width: 1024,
+            height: 1024,
+            selectedAt: DateTime.now(),
+          );
+          ref.read(selectedImageProvider.notifier).setExplicitImage(img);
           _validateCurrentImage();
         }
       } catch (_) {}
       return;
     }
 
-    try {
-      context.push('/detect/camera');
-    } catch (_) {
-      Navigator.of(context).maybePop();
-    }
+    await ref.read(selectedImageProvider.notifier).captureImage();
+    _validateCurrentImage();
   }
 
   Future<void> _handleChooseAnotherImage() async {
@@ -144,21 +164,39 @@ class _ImagePreviewScreenState extends ConsumerState<ImagePreviewScreen> {
         final picked = await _picker.pickImage(source: ImageSource.gallery);
         if (picked != null) {
           ref.read(detectionProvider.notifier).selectImage(picked.path);
+          final img = SelectedPlantImage(
+            imagePath: picked.path,
+            sourceType: ImageSourceType.gallery,
+            fileSizeBytes: _tryGetFileSize(picked.path),
+            width: 1024,
+            height: 1024,
+            selectedAt: DateTime.now(),
+          );
+          ref.read(selectedImageProvider.notifier).setExplicitImage(img);
           _validateCurrentImage();
         }
       } catch (_) {}
       return;
     }
 
-    try {
-      context.push('/detect/gallery');
-    } catch (_) {
-      Navigator.of(context).maybePop();
+    await ref.read(selectedImageProvider.notifier).selectFromGallery();
+    _validateCurrentImage();
+  }
+
+  void _handleRemoveImage() {
+    ref.read(selectedImageProvider.notifier).clearSelection();
+    if (mounted) {
+      try {
+        context.pop();
+      } catch (_) {
+        Navigator.of(context).maybePop();
+      }
     }
   }
 
   Future<void> _handleAnalyze() async {
-    final imagePath = ref.read(detectionProvider).imagePath;
+    final imagePath = ref.read(selectedImageProvider).selectedImage?.imagePath ??
+        ref.read(detectionProvider).imagePath;
     final isBn = ref.read(settingsProvider).language == 'bn';
 
     if (imagePath == null || _qualityState == QualityState.error) {
@@ -173,7 +211,7 @@ class _ImagePreviewScreenState extends ConsumerState<ImagePreviewScreen> {
     try {
       context.push('/detect/analyzing');
     } catch (_) {
-      // In test environments without GoRouter host, run detection directly
+      // In test environments without GoRouter host, call detection directly
       await ref.read(detectionProvider.notifier).runDetection();
     }
   }
@@ -198,9 +236,10 @@ class _ImagePreviewScreenState extends ConsumerState<ImagePreviewScreen> {
   Widget build(BuildContext context) {
     final isBn = ref.watch(settingsProvider).language == 'bn';
     final detectionState = ref.watch(detectionProvider);
+    final selectedImageState = ref.watch(selectedImageProvider);
     final selectedCrop = ref.watch(selectedCropProvider);
-    final imagePath = detectionState.imagePath;
 
+    final imagePath = selectedImageState.selectedImage?.imagePath ?? detectionState.imagePath;
     final isBusy = _analyzeState == AnalyzeButtonState.analyzing;
 
     return Scaffold(
@@ -208,8 +247,7 @@ class _ImagePreviewScreenState extends ConsumerState<ImagePreviewScreen> {
       body: SafeArea(
         child: imagePath == null || imagePath.isEmpty
             ? ImagePreviewErrorState(
-                title:
-                    isBn ? 'কোনো ছবি নির্বাচন করা হয়নি' : 'No Image Selected',
+                title: isBn ? 'কোনো ছবি নির্বাচন করা হয়নি' : 'No Image Selected',
                 description: isBn
                     ? 'গাছের পাতার রোগ নির্ণয় করতে ক্যামেরা দিয়ে ছবি তুলুন বা গ্যালারি থেকে নির্বাচন করুন।'
                     : 'To diagnose crop diseases, capture a leaf photo or pick an existing image from your device.',
@@ -224,9 +262,7 @@ class _ImagePreviewScreenState extends ConsumerState<ImagePreviewScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // 1. Header (Back button, Title, Subtitle)
-                    ImagePreviewHeader(
-                      isBn: isBn,
-                    ),
+                    ImagePreviewHeader(isBn: isBn),
 
                     // 2. Selected Crop Information (if crop was selected)
                     SelectedCropInfo(
@@ -259,14 +295,29 @@ class _ImagePreviewScreenState extends ConsumerState<ImagePreviewScreen> {
                       isBusy: isBusy,
                       isBn: isBn,
                     ),
+
+                    // 7. Remove Option
+                    Center(
+                      child: TextButton.icon(
+                        onPressed: isBusy ? null : _handleRemoveImage,
+                        icon: const Icon(Icons.delete_outline_rounded, size: 16, color: AppColors.error),
+                        label: Text(
+                          isBn ? 'এই ছবি মুছুন' : 'Remove this photo',
+                          style: const TextStyle(
+                            fontSize: 12.5,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.error,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
       ),
       bottomNavigationBar: imagePath != null && imagePath.isNotEmpty
           ? AnalyzeImageButton(
-              onAnalyze:
-                  _qualityState != QualityState.error ? _handleAnalyze : null,
+              onAnalyze: _qualityState != QualityState.error ? _handleAnalyze : null,
               state: _analyzeState,
               isBn: isBn,
             )

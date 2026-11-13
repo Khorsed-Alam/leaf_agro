@@ -8,6 +8,9 @@ import '../../../core/theme/app_colors.dart';
 import '../../../providers/crop_provider.dart';
 import '../../../providers/detection_provider.dart';
 import '../../../providers/settings_provider.dart';
+import '../data/models/selected_plant_image.dart';
+import 'providers/selected_image_provider.dart';
+import 'widgets/active_selected_image_card.dart';
 import 'widgets/ai_scanning_illustration.dart';
 import 'widgets/detection_action_card.dart';
 import 'widgets/detection_screen_header.dart';
@@ -43,6 +46,11 @@ class _DetectionStartScreenState extends ConsumerState<DetectionStartScreen> {
   void initState() {
     super.initState();
     _picker = widget.imagePicker ?? ImagePicker();
+
+    // Check for any recovered lost camera data after Android low-memory recreation
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(selectedImageProvider.notifier).checkLostData();
+    });
   }
 
   /// Validates that the picked file exists, is non-empty, and has a supported image extension
@@ -139,8 +147,20 @@ class _DetectionStartScreenState extends ConsumerState<DetectionStartScreen> {
       if (pickedFile != null) {
         final isValid = _validateImageFile(pickedFile.path, isBn);
         if (isValid) {
-          // Pass validated image to existing detection provider
+          // Update both providers for complete consistency
           ref.read(detectionProvider.notifier).selectImage(pickedFile.path);
+
+          final selectedModel = SelectedPlantImage(
+            imagePath: pickedFile.path,
+            sourceType: source == ImageSource.camera
+                ? ImageSourceType.camera
+                : ImageSourceType.gallery,
+            fileSizeBytes: (tryGetFileSize(pickedFile.path)),
+            width: 1024,
+            height: 1024,
+            selectedAt: DateTime.now(),
+          );
+          ref.read(selectedImageProvider.notifier).setExplicitImage(selectedModel);
 
           // Navigate to existing confirmation & preview screen
           if (mounted) {
@@ -190,10 +210,94 @@ class _DetectionStartScreenState extends ConsumerState<DetectionStartScreen> {
     }
   }
 
+  int tryGetFileSize(String path) {
+    try {
+      final file = File(path);
+      if (file.existsSync()) return file.lengthSync();
+    } catch (_) {}
+    return 1024;
+  }
+
+  void _showReplaceBottomSheet(bool isBn) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) => Container(
+        padding: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(
+          color: AppColors.surface,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        child: SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  margin: const EdgeInsets.only(bottom: 16),
+                  decoration: BoxDecoration(
+                    color: AppColors.outlineVariant,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              Text(
+                isBn ? 'নতুন ছবি বেছে নিন' : 'Choose Replacement Photo',
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.primaryText,
+                ),
+              ),
+              const SizedBox(height: 16),
+              ListTile(
+                leading: const Icon(Icons.camera_alt_rounded, color: AppColors.forestGreen),
+                title: Text(isBn ? 'ক্যামেরা দিয়ে নতুন ছবি তুলুন' : 'Take new photo with Camera'),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  if (widget.imagePicker != null) {
+                    _handlePickImage(ImageSource.camera);
+                  } else {
+                    ref.read(selectedImageProvider.notifier).captureImage();
+                  }
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_library_outlined, color: AppColors.forestGreen),
+                title: Text(isBn ? 'গ্যালারি থেকে নির্বাচন করুন' : 'Select from Gallery'),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  if (widget.imagePicker != null) {
+                    _handlePickImage(ImageSource.gallery);
+                  } else {
+                    ref.read(selectedImageProvider.notifier).selectFromGallery();
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final isBn = ref.watch(settingsProvider).language == 'bn';
     final selectedCrop = ref.watch(selectedCropProvider);
+    final selectedImageState = ref.watch(selectedImageProvider);
+
+    // Listen for selection errors and display floating SnackBar
+    ref.listen<SelectedImageState>(selectedImageProvider, (prev, next) {
+      if (next.hasError && next.getErrorMessage(isBn) != null) {
+        _showErrorSnackBar(next.getErrorMessage(isBn)!);
+      }
+    });
+
+    final hasValidImage = selectedImageState.hasImage;
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -221,58 +325,73 @@ class _DetectionStartScreenState extends ConsumerState<DetectionStartScreen> {
 
               const SizedBox(height: 12),
 
-              // 4. Primary Action Card 1 – Take Photo (Camera)
-              DetectionActionCard(
-                title: isBn ? 'ছবি তুলুন' : 'Take Photo',
-                description: isBn
-                    ? 'আপনার ক্যামেরা দিয়ে পাতার স্পষ্ট ছবি তুলুন।'
-                    : 'Capture a leaf photo using your camera.',
-                icon: Icons.camera_alt_rounded,
-                isPrimary: true,
-                isLoading:
-                    _isPickingImage && _activeSource == ImageSource.camera,
-                onTap: _isPickingImage
-                    ? null
-                    : () {
-                        if (widget.imagePicker != null) {
-                          _handlePickImage(ImageSource.camera);
-                        } else {
-                          context.push('/detect/camera');
-                        }
-                      },
-                isBn: isBn,
-              ),
+              // 4. If image is selected, show ActiveSelectedImageCard
+              if (hasValidImage) ...[
+                ActiveSelectedImageCard(
+                  image: selectedImageState.selectedImage!,
+                  isBn: isBn,
+                  onReplace: () => _showReplaceBottomSheet(isBn),
+                  onRemove: () {
+                    ref.read(selectedImageProvider.notifier).clearSelection();
+                  },
+                  onContinue: () {
+                    try {
+                      context.push('/detect/preview');
+                    } catch (_) {}
+                  },
+                ),
+              ] else ...[
+                // 5. Primary Action Card 1 – Take Photo (Camera)
+                DetectionActionCard(
+                  title: isBn ? 'ছবি তুলুন' : 'Take Photo',
+                  description: isBn
+                      ? 'আপনার ক্যামেরা দিয়ে পাতার স্পষ্ট ছবি তুলুন।'
+                      : 'Capture a leaf photo using your camera.',
+                  icon: Icons.camera_alt_rounded,
+                  isPrimary: true,
+                  isLoading: _isPickingImage && _activeSource == ImageSource.camera,
+                  onTap: _isPickingImage
+                      ? null
+                      : () {
+                          if (widget.imagePicker != null) {
+                            _handlePickImage(ImageSource.camera);
+                          } else {
+                            context.push('/detect/camera');
+                          }
+                        },
+                  isBn: isBn,
+                ),
 
-              // 5. Primary Action Card 2 – Choose from Gallery
-              DetectionActionCard(
-                title: isBn ? 'গ্যালারি থেকে নির্বাচন' : 'Choose from Gallery',
-                description: isBn
-                    ? 'ডিভাইস থেকে বিদ্যমান পাতার ছবি বেছে নিন।'
-                    : 'Select an existing leaf photo from your device.',
-                icon: Icons.photo_library_outlined,
-                isPrimary: false,
-                isLoading:
-                    _isPickingImage && _activeSource == ImageSource.gallery,
-                onTap: _isPickingImage
-                    ? null
-                    : () {
-                        if (widget.imagePicker != null) {
-                          _handlePickImage(ImageSource.gallery);
-                        } else {
-                          context.push('/detect/gallery');
-                        }
-                      },
-                isBn: isBn,
-              ),
+                // 6. Primary Action Card 2 – Choose from Gallery
+                DetectionActionCard(
+                  title: isBn ? 'গ্যালারি থেকে নির্বাচন' : 'Choose from Gallery',
+                  description: isBn
+                      ? 'ডিভাইস থেকে বিদ্যমান পাতার ছবি বেছে নিন।'
+                      : 'Select an existing leaf photo from your device.',
+                  icon: Icons.photo_library_outlined,
+                  isPrimary: false,
+                  isLoading: _isPickingImage && _activeSource == ImageSource.gallery,
+                  onTap: _isPickingImage
+                      ? null
+                      : () {
+                          if (widget.imagePicker != null) {
+                            _handlePickImage(ImageSource.gallery);
+                          } else {
+                            context.push('/detect/gallery');
+                          }
+                        },
+                  isBn: isBn,
+                ),
+              ],
 
               const SizedBox(height: 10),
 
-              // 6. Image Quality Guide (4 Tips with Icons)
+              // 7. Image Quality Guide (4 Tips with Icons)
               ImageQualityGuide(isBn: isBn),
 
               const SizedBox(height: 6),
 
-              // 7. Offline AI Availability Indicator
+              // 8. Offline AI Availability Indicator
               OfflineAiStatusIndicator(isBn: isBn),
             ],
           ),
