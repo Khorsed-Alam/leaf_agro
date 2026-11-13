@@ -1,0 +1,10 @@
+dataset_id,dataset_name,crop_name,original_class_name,image_count,class_source,label_verification_status,notes
+DS_PLANTVILLAGE,PlantVillage Dataset,Potato,Potato___Early_blight,10,Original Publisher Class Directory,VERIFIED,Controlled-background leaf photography (PlantVillage)
+DS_PLANTVILLAGE,PlantVillage Dataset,Potato,Potato___Late_blight,10,Original Publisher Class Directory,VERIFIED,Controlled-background leaf photography (PlantVillage)
+DS_PLANTVILLAGE,PlantVillage Dataset,Potato,Potato___healthy,10,Original Publisher Class Directory,VERIFIED,Controlled-background leaf photography (PlantVillage)
+DS_PLANTVILLAGE,PlantVillage Dataset,Tomato,Tomato___Bacterial_spot,10,Original Publisher Class Directory,VERIFIED,Controlled-background leaf photography (PlantVillage)
+DS_PLANTVILLAGE,PlantVillage Dataset,Tomato,Tomato___Early_blight,10,Original Publisher Class Directory,VERIFIED,Controlled-background leaf photography (PlantVillage)
+DS_PLANTVILLAGE,PlantVillage Dataset,Tomato,Tomato___Late_blight,10,Original Publisher Class Directory,VERIFIED,Controlled-background leaf photography (PlantVillage)
+DS_PLANTVILLAGE,PlantVillage Dataset,Tomato,Tomato___Leaf_Mold,10,Original Publisher Class Directory,VERIFIED,Controlled-background leaf photography (PlantVillage)
+DS_PLANTVILLAGE,PlantVillage Dataset,Tomato,Tomato___Septoria_leaf_spot,10,Original Publisher Class Directory,VERIFIED,Controlled-background leaf photography (PlantVillage)
+DS_PLANTVILLAGE,PlantVillage Dataset,Tomato,Tomato___healthy,10,Original Publisher Class Directory,VERIFIED,Controlled-background leaf photography (PlantVillage)
