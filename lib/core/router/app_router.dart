@@ -27,6 +27,7 @@ import '../../features/history/presentation/history_screen.dart';
 import '../../features/history/presentation/history_detail_screen.dart';
 import '../../features/history/presentation/filter_search_screen.dart';
 import '../../features/profile/presentation/profile_screen.dart';
+import '../../features/profile/presentation/edit_profile_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/settings/presentation/language_screen.dart';
 import '../../features/notifications/presentation/notifications_screen.dart';
@@ -256,6 +257,12 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/profile',
       builder: (context, state) => const ProfileScreen(),
+      routes: [
+        GoRoute(
+          path: 'edit',
+          builder: (context, state) => const EditProfileScreen(),
+        ),
+      ],
     ),
     GoRoute(
       path: '/settings',

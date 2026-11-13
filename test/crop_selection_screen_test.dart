@@ -8,7 +8,6 @@ import 'package:leaf_agro/features/crops/presentation/widgets/crop_search_field.
 import 'package:leaf_agro/features/crops/presentation/widgets/crop_selection_card.dart';
 import 'package:leaf_agro/features/crops/presentation/widgets/empty_crop_search_state.dart';
 import 'package:leaf_agro/data/datasources/ai_crop_catalog.dart';
-import 'package:leaf_agro/providers/crop_provider.dart';
 import 'package:leaf_agro/providers/settings_provider.dart';
 
 void main() {

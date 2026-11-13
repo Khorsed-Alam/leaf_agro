@@ -186,5 +186,10 @@ class _MockHistoryNotifier extends AsyncNotifier<List<PredictionHistoryModel>>
   Future<void> addScanRecord(PredictionHistoryModel model) async {}
 
   @override
+  Future<void> deleteScanRecord(String id) async {
+    _history.removeWhere((item) => item.id == id);
+  }
+
+  @override
   Future<void> refresh() async {}
 }

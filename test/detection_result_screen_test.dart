@@ -35,6 +35,11 @@ class FakeHistoryRepository implements HistoryRepository {
   Future<void> savePrediction(PredictionHistoryModel model) async {
     savedRecords.add(model);
   }
+
+  @override
+  Future<void> deletePrediction(String id, String userId) async {
+    savedRecords.removeWhere((r) => r.id == id);
+  }
 }
 
 void main() {

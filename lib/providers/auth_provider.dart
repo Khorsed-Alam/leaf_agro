@@ -255,6 +255,14 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
     final newState = await _resolveCurrentSession();
     state = AsyncValue.data(newState);
   }
+
+  void updateCurrentUser(UserProfileModel updatedUser) {
+    if (state.value != null) {
+      state = AsyncValue.data(
+        state.value!.copyWith(user: updatedUser),
+      );
+    }
+  }
 }
 
 // ── Providers ─────────────────────────────────────────────────────────────────

@@ -4,7 +4,6 @@ import '../data/models/prediction_model.dart';
 import '../data/models/disease_model.dart';
 import '../data/models/recommendation_model.dart';
 import '../data/repositories/detection_repository.dart';
-import 'crop_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 enum DetectionStatus { initial, imageSelected, analyzing, success, error }
